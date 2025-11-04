@@ -1,0 +1,101 @@
+  .box {
+    display: flex;
+    gap: 0;
+    border: solid 1px;
+    border-color: gray;
+    border-radius: 10px;
+    flex-direction: column;
+    --card-margin: 20px;
+    --description-font-size: 15px;
+  }
+  
+  .clubName {
+    margin-top: var(--card-margin);
+    margin-bottom: 0px;
+    margin-left: var(--card-margin);
+    margin-right: var(--card-margin);
+    font-size: 18px;
+    text-align:left;
+    font-weight: 600;
+  }
+  
+  .category {
+    margin-top: 0px;
+    font-size: 18px;
+    color: gray;
+    text-align:left;
+    margin-left: var(--card-margin);
+    margin-right: var(--card-margin);
+    margin-bottom: 35px;
+    font-weight: 600;
+  }
+  
+  .descriptionLines {
+    color: gray;
+    font-size: var(--description-font-size);
+    text-align:left;
+    margin-left: var(--card-margin);
+    margin-right: var(--card-margin);
+    margin-bottom: 3px;
+    display: inline-block;
+  }
+  
+  .description {
+    margin-top: 0px;
+    overflow-wrap:break-word;
+    margin-bottom: 10px;
+  }
+  
+  .symbol {
+    width:19px;
+    height: 19px;
+    filter: invert(50%);
+  }
+  
+  .line {
+    margin-left: 10px;
+  }
+  
+  .symbol, .line {
+    display: inline-block;
+  }
+  
+  .addToTracker {
+    color: gray;
+    font-size: 13px;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: var(--card-margin);
+  
+  }
+  
+  .statusButton {
+    width: 110px;
+    height: 30px;
+    margin-bottom: var(--card-margin);
+    text-align:center;
+    color: white;
+    padding: 0px 10px;
+    font-weight: 100px;
+    font-size: var(--description-font-size);
+  }
+  
+  .buttonBox {
+    text-align: center;
+  }
+  
+  .considerButton {
+    background-color: rgb(35, 35, 248);
+  }
+  
+  .applyingButton {
+    background-color: orange;
+    margin-left: 10px;
+  }
+  
+  .appliedButton {
+    background-color: rgb(18, 176, 18);
+    margin-left: 10px;
+  }
+  
