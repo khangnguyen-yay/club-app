@@ -3,29 +3,38 @@ import calendarSymbol from './assets/calendar.svg'
 import locationSymbol from './assets/location.svg'
 import "./Card.css"
 
+type CardProps = {
+  name : string
+  category : string
+  description: string
+  numMembers : number
+  meetingTime : string
+  location : string
+}
+
 //Card component displaying club stuff
 //(no need to implement statuses yet just UI
 //place holder buttons for the different statuses)
-export function Card() {
+export function Card({name, category, description, numMembers, meetingTime, location} : CardProps) {
     return (
         <div className="box">
-          <h1 className="clubName">Robotics Club</h1>
-          <h2 className="category">Technology</h2>
-          <div className="descriptionLines description">Build and program robots for competitions and projects</div>
+          <h1 className="clubName">{name}</h1>
+          <h2 className="category">{category}</h2>
+          <div className="descriptionLines description">{description}</div>
     
           <div className="descriptionLines">
             <img className="symbol" src={membersSymbol}></img>
-            <div className="line">45 members</div>
+            <div className="line">{numMembers} members</div>
           </div>
     
           <div className="descriptionLines">
             <img className="symbol" src={calendarSymbol}></img>
-            <div className="line">Wednesdays 6-8 PM</div>
+            <div className="line">{meetingTime}</div>
           </div>
     
           <div className="descriptionLines">
             <img className="symbol" src={locationSymbol}></img>
-            <div className="line">Engineering Building Room 201</div>
+            <div className="line">{location}</div>
           </div>
           <div className="addToTracker">Add to tracker:</div>
           <div className="buttonBox">
