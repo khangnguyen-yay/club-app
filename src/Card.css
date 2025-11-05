@@ -1,6 +1,7 @@
   .box {
     display: flex;
-    width: 350px;
+    width: auto;
+    max-width: 600px;
     gap: 0;
     border: solid 1px;
     border-color: rgb(199, 199, 199);
@@ -48,6 +49,8 @@
   .description {
     margin-top: 0px;
     margin-bottom: 10px;
+
+
   }
   
   .symbol {
@@ -68,14 +71,14 @@
     color: gray;
     font-size: 13px;
     text-align: left;
-    margin-top: 20px;
+    margin-top: var(--card-margin);
     margin-bottom: 10px;
     margin-left: var(--card-margin);
   
   }
   
   .statusButton {
-    width: 90px;
+    width: 25%;
     height: 30px;
     margin-bottom: var(--card-margin);
     text-align:center;
@@ -91,16 +94,19 @@
   
   .considerButton {
     background-color: rgb(35, 35, 248);
+    border-color: rgb(35, 35, 248);
     margin-left: var(--card-margin);
   }
   
   .applyingButton {
     background-color: orange;
+    border-color: orange;
     margin-left: 10px;
   }
   
   .appliedButton {
     background-color: rgb(18, 176, 18);
+    border-color: rgb(18, 176, 18);
     margin-left: 10px;
     margin-right: var(--card-margin);
   }
@@ -121,6 +127,31 @@
     background-color: rgb(0, 101, 0)
   }
 
+  .filtersContainer {
+    text-align: left;
+    margin-left: var(--card-margin);
+    margin-right: var(--card-margin);
+    margin-top: var(--card-margin);
+  }
+
+  .filterBox {
+    border: solid 1px;
+    border-radius: 7px;
+    border-color: rgb(189, 187, 187);
+    
+    width: fit-content;
+    display: inline-block;
+
+    margin-right: 10px;
+  }
+
+  .filterText {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 
 
 
