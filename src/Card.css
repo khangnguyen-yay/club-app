@@ -1,12 +1,17 @@
   .box {
     display: flex;
+    width: 350px;
     gap: 0;
     border: solid 1px;
-    border-color: gray;
+    border-color: rgb(199, 199, 199);
     border-radius: 10px;
     flex-direction: column;
     --card-margin: 20px;
     --description-font-size: 15px;
+    margin-left: var(--card-margin);
+    margin-right: var(--card-margin);
+    margin-bottom: var(--card-margin);
+    margin-top: var(--card-margin);
   }
   
   .clubName {
@@ -42,7 +47,6 @@
   
   .description {
     margin-top: 0px;
-    overflow-wrap:break-word;
     margin-bottom: 10px;
   }
   
@@ -71,7 +75,7 @@
   }
   
   .statusButton {
-    width: 110px;
+    width: 90px;
     height: 30px;
     margin-bottom: var(--card-margin);
     text-align:center;
@@ -87,6 +91,7 @@
   
   .considerButton {
     background-color: rgb(35, 35, 248);
+    margin-left: var(--card-margin);
   }
   
   .applyingButton {
@@ -97,6 +102,7 @@
   .appliedButton {
     background-color: rgb(18, 176, 18);
     margin-left: 10px;
+    margin-right: var(--card-margin);
   }
 
   .box:hover {
