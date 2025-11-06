@@ -1,0 +1,154 @@
+.box {
+    display: flex;
+    width: auto;
+    max-width: 600px;
+    gap: 0;
+    border: solid 1px;
+    border-color: rgb(199, 199, 199);
+    border-radius: 10px;
+    flex-direction: column;
+    --card-margin: 20px;
+    --description-font-size: 15px;
+    margin-left: var(--card-margin);
+    margin-right: var(--card-margin);
+    margin-bottom: var(--card-margin);
+    margin-top: var(--card-margin);
+  }
+  
+  .clubName {
+    margin-top: var(--card-margin);
+    margin-bottom: 0px;
+    margin-left: var(--card-margin);
+    margin-right: var(--card-margin);
+    font-size: 18px;
+    text-align:left;
+    font-weight: 600;
+  }
+  
+  .category {
+    margin-top: 0px;
+    font-size: 18px;
+    color: gray;
+    text-align:left;
+    margin-left: var(--card-margin);
+    margin-right: var(--card-margin);
+    margin-bottom: 35px;
+    font-weight: 600;
+  }
+  
+  .descriptionLines {
+    color: gray;
+    font-size: var(--description-font-size);
+    text-align:left;
+    margin-left: var(--card-margin);
+    margin-right: var(--card-margin);
+    margin-bottom: 3px;
+    display: inline-block;
+  }
+  
+  .description {
+    margin-top: 0px;
+    margin-bottom: 10px;
+
+
+  }
+  
+  .symbol {
+    width:19px;
+    height: 19px;
+    filter: invert(50%);
+  }
+  
+  .line {
+    margin-left: 10px;
+  }
+  
+  .symbol, .line {
+    display: inline-block;
+  }
+  
+  .addToTracker {
+    color: gray;
+    font-size: 13px;
+    text-align: left;
+    margin-top: var(--card-margin);
+    margin-bottom: 10px;
+    margin-left: var(--card-margin);
+  
+  }
+  
+  .statusButton {
+    width: 25%;
+    height: 30px;
+    margin-bottom: var(--card-margin);
+    text-align:center;
+    color: white;
+    padding: 0px 10px;
+    font-weight: 100px;
+    font-size: var(--description-font-size);
+  }
+  
+  .buttonBox {
+    text-align: center;
+  }
+  
+  .considerButton {
+    background-color: rgb(35, 35, 248);
+    border-color: rgb(35, 35, 248);
+    margin-left: var(--card-margin);
+  }
+  
+  .applyingButton {
+    background-color: orange;
+    border-color: orange;
+    margin-left: 10px;
+  }
+  
+  .appliedButton {
+    background-color: rgb(18, 176, 18);
+    border-color: rgb(18, 176, 18);
+    margin-left: 10px;
+    margin-right: var(--card-margin);
+  }
+
+  .box:hover {
+    box-shadow: 0 1px 5px gray;
+  }
+
+  .considerButton:hover {
+    background-color: rgb(18, 18, 165)
+  }
+
+  .applyingButton:hover {
+    background-color: rgb(194, 126, 0)
+  }
+  
+  .appliedButton:hover {
+    background-color: rgb(0, 101, 0)
+  }
+
+  .filtersContainer {
+    text-align: left;
+    margin-left: var(--card-margin);
+    margin-right: var(--card-margin);
+    margin-top: var(--card-margin);
+  }
+
+  .filterBox {
+    border: solid 1px;
+    border-radius: 7px;
+    border-color: rgb(189, 187, 187);
+    
+    width: fit-content;
+    display: inline-block;
+
+    margin-right: 10px;
+  }
+
+  .filterText {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
