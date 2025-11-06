@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  mysql:
+    image: mysql:8
+    container_name: clubapp-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: clubapp_db
+    volumes:
+      - clubapp-mysql-data:/var/lib/mysql
+      - ./db/clubapp_db.sql:/docker-entrypoint-initdb.d/clubapp_db.sql
+volumes:
+  clubapp-mysql-data:
