@@ -1,15 +1,16 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const dotenv = require('dotenv');
+dotenv.config();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const app = express();
+const port = process.env.PORT || 3000;
 
-app.get('/api', (req, res) => {
-  res.json({ "users": ["user1", "user2", "user3"] })
-})
+app.use(express.json());
+
+// Import routes
+const clubRoutes = require('./routes/clubRoutes');
+app.use('/api', clubRoutes);
 
 app.listen(port, () => {
-  console.log(`Server started on port ${port}`)
-})
+  console.log(`Server running on port ${port}`);
+});
