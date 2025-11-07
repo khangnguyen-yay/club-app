@@ -1,14 +1,13 @@
-const express = require('express');
-const dotenv = require('dotenv');
+import express from 'express';
+import dotenv from 'dotenv';
+import clubRoutes from './routes/clubRoutes.js'; 
+
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-
-// Import routes
-const clubRoutes = require('./routes/clubRoutes');
 app.use('/api', clubRoutes);
 
 app.listen(port, () => {
