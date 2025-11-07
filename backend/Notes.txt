@@ -1,0 +1,3 @@
+
+Notes for Package.JSON
+- Dev Dependencies: Nodemon allows us to automatically restart server on file changes so we don't have to do it manually
