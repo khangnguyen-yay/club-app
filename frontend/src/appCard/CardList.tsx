@@ -59,10 +59,9 @@ export function CardList() {
     <ul>
         {clubs.map((club) => (
             <li key={club.id}>
-                <Card name={club.name} category={club.category} description={club.description} numMembers={12} meetingTime="temp meeting time" location="temp location" filters={["temp filter 1", "temp filter2"]}></Card>
+                <Card name={club.name} category={club.category} description={club.description} numMembers={12} website={club.website} instagram={club.instagram} filters={["temp filter 1", "temp filter2"]}></Card>
             </li>
         ))}
     </ul>
     )
 }
-  

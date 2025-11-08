@@ -49,18 +49,18 @@
   .description {
     margin-top: 0px;
     margin-bottom: 10px;
-
-
   }
   
   .symbol {
-    width:19px;
+    width: 19px;
     height: 19px;
     filter: invert(50%);
   }
   
   .line {
     margin-left: 10px;
+    color: gray;
+    font-size: 14px;
   }
   
   .symbol, .line {
