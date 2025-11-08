@@ -1,18 +1,15 @@
 .box {
-    display: flex;
-    width: auto;
-    max-width: 600px;
     gap: 0;
     border: solid 1px;
     border-color: rgb(199, 199, 199);
     border-radius: 10px;
-    flex-direction: column;
+    /*flex-direction: column;*/
     --card-margin: 20px;
     --description-font-size: 15px;
+    margin-top: var(--card-margin);
+    margin-bottom: var(--card-margin);
     margin-left: var(--card-margin);
     margin-right: var(--card-margin);
-    margin-bottom: var(--card-margin);
-    margin-top: var(--card-margin);
   }
   
   .clubName {

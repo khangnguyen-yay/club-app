@@ -1,5 +1,6 @@
 import React from "react"
 import { Card } from './Card.tsx'
+import './CardList.css'
 
 /*SAMPLE
 {
@@ -55,6 +56,13 @@ let clubs = [
 }]
 
 export function CardList() {
+    return (
+      <div className="cardGrid">
+        {clubs.map((club) => (
+                <Card name={club.name} category={club.category} description={club.description} numMembers={12} website={club.website} instagram={club.instagram} filters={["temp filter 1", "temp filter2"]}></Card>
+        ))}
+      </div>
+    )
     return (
     <ul>
         {clubs.map((club) => (
