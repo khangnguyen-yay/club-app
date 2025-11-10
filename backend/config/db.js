@@ -8,7 +8,10 @@ const db = mysql.createConnection({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: 3306
+  port: 3306,
+  authPlugins: {
+    mysql_native_password: () => require('mysql2/lib/auth_plugins').cachingSha2PasswordAuth
+  }
 });
 
 db.connect(err => {
