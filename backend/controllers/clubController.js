@@ -1,11 +1,10 @@
-import db from '../config/db.js';
+import { getAllClubs } from '../services/clubService.js';
 
-export const getClubs = (req, res) => {
-  const query = 'SELECT * FROM clubapp_db';
-  db.query(query, (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    res.json(results);
-  });
+export const getClubs = async (req, res) => {
+  try {
+    const clubs = await getAllClubs();
+    res.json(clubs);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
