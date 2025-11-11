@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 
 // Define the Club type
 interface Club {
-  name: string;
+  club_name: string;
   type: string;
-  facebook?: string;
-  instagram?: string;
+  fb?: string;
+  ig?: string;
   website?: string;
   notes?: string;
 }
@@ -41,21 +41,21 @@ export default function ClubList() {
       <div style={styles.list}>
         {clubs.map((club, index) => (
           <div key={index} style={styles.card}>
-            <h3 style={styles.clubName}>{club.name}</h3>
+            <h3 style={styles.clubName}>{club.club_name}</h3>
             <p><strong>Type:</strong> {club.type}</p>
             {club.website && (
               <p>
                 🌐 <a href={club.website} target="_blank" rel="noreferrer">{club.website}</a>
               </p>
             )}
-            {club.instagram && (
+            {club.ig && (
               <p>
-                📸 <a href={club.instagram} target="_blank" rel="noreferrer">{club.instagram}</a>
+                📸 <a href={club.ig} target="_blank" rel="noreferrer">{club.ig}</a>
               </p>
             )}
-            {club.facebook && (
+            {club.fb && (
               <p>
-                👍 <a href={club.facebook} target="_blank" rel="noreferrer">{club.facebook}</a>
+                👍 <a href={club.fb} target="_blank" rel="noreferrer">{club.fb}</a>
               </p>
             )}
             {club.notes && <p>{club.notes}</p>}
@@ -80,6 +80,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
     gap: "20px",
     marginTop: "20px",
+    color: "#555",
   },
   card: {
     border: "1px solid #ddd",
@@ -90,5 +91,6 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   clubName: {
     marginBottom: "8px",
+    color: "#333"
   },
 };
