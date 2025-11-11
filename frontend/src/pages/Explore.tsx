@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import type { ClubCard } from "../filter-view/data";
 import {cards} from "../filter-view/data";
+import { CardList } from "../appCard/CardList";
 import CategoryFilter from "../filter-view/filter-view";
 
 const ExplorePage: React.FC = () => {
@@ -23,17 +24,7 @@ const ExplorePage: React.FC = () => {
         onCategoryChange={setSelectedCategory}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {filteredClubs.map((club) => (
-          <div
-            key={club.id}
-            className="border rounded-xl p-4 shadow hover:shadow-md transition"
-          >
-            <h2 className="font-bold text-lg">{club.name}</h2>
-            <p className="text-gray-600">{club.category}</p>
-          </div>
-        ))}
-      </div>
+      <CardList filteredCards={filteredClubs} />
     </div>
   );
 };
