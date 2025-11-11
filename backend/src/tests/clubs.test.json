@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Society of Women Engineers",
+    "category": "Engineering",
+    "description": "Empowers women to achieve their full potential in engineering.",
+    "email": "swe@ucla.edu"
+  },
+  {
+    "name": "Bruin Entrepreneurs",
+    "category": "Business",
+    "description": "Connects students interested in startups and innovation.",
+    "email": "entrepreneurs@ucla.edu"
+  },
+  {
+    "name": "AI at UCLA",
+    "category": "Technology",
+    "description": "Explores applications of artificial intelligence and machine learning.",
+    "email": "ai@ucla.edu"
+  }
+]
