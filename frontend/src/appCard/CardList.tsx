@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { Card } from './Card.tsx'
 import './CardList.css'
 
@@ -12,30 +12,28 @@ import './CardList.css'
     "instagram": "https://instagram.com/ucladanceteam"
 }
 */
-type CardProps = {
-  name: string
-  category: string
-  description: string
-  numMembers: number
-  website: string
-  instagram: string
-  filters: string[]
-}
 
-type Club = Omit<CardProps, "numMembers" | "filters"> & { id: number }
+export interface Club {
+  club_name: string;
+  type: string;
+  fb?: string;
+  ig?: string;
+  website?: string;
+  notes: string;
+}
 
 interface CardListProps {
   filteredCards: Club[]
 }
 
-
-export function CardList({filteredCards}: CardListProps) {
+export default function ClubList({filteredCards}: CardListProps) {
     return (
       <div className="cardGrid">
         {filteredCards.map((club) => (
-                <Card name={club.name} category={club.category} description={club.description} numMembers={12} website={club.website} instagram={club.instagram} filters={["temp filter 1", "temp filter2"]}></Card>
+                <Card name={club.club_name} type={club.type} notes={club.notes} website={club.website} instagram={club.ig}></Card>
         ))}
       </div>
     )
     
+
 }
