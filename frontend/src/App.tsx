@@ -1,18 +1,32 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 // Import your page components
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import Calendar from "./pages/Calendar";
 
+import HomeLogo from './pages/NavigationUI/NavigationImages/home.svg';
+import ExploreLogo from './pages/NavigationUI/NavigationImages/explore.svg';
+import CalendarLogo from './pages/NavigationUI/NavigationImages/calendar.svg';
+
+import './pages/NavigationUI/Navigation.css';
+
 function App() {
   return (
     <Router>
-      <nav>
+      <nav className="navLinks">
         {/* Simple navigation links */}
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/explore">Explore</Link> |{" "}
-        <Link to="/calendar">Calendar</Link>
+        <NavLink to="/" className="link">
+          <img src={HomeLogo} className="navBarLogo"></img> Home
+        </NavLink>
+
+        <NavLink to="/explore" className="link">
+          <img src={ExploreLogo} className="navBarLogo"></img> Explore
+        </NavLink>
+      
+        <NavLink to="/calendar" className="link">
+        <img src={CalendarLogo} className="navBarLogo"></img> Calendar
+        </NavLink>
       </nav>
 
       <Routes>

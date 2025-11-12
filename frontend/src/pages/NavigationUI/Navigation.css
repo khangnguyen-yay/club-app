@@ -1,0 +1,36 @@
+.navLinks {
+    align-self: left;
+    background-color: rgb(237, 237, 237);
+    border-radius: 17px;
+    height: 4vh;
+    width: 50vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  
+  .link {
+    color: black;
+    font-weight: bold;
+    font-size: 17px;
+
+    display: flex;
+    padding: 0.001vh 3vw;
+    align-items: left;
+    border-radius: 17px;
+  }
+
+  .link.active {
+    background-color: white;
+  }
+  
+  .link:hover {
+    color: black;
+  }
+
+  .navBarLogo {
+    padding: 4px 1px 1px 1px; /*top, R, bottom, L*/
+    width: 2vw;
+    height: 2vh;
+  }
