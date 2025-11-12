@@ -28,3 +28,9 @@
   .link:hover {
     color: black;
   }
+
+  .navBarLogo {
+    padding: 4px 1px 1px 1px; /*top, R, bottom, L*/
+    width: 2vw;
+    height: 2vh;
+  }
