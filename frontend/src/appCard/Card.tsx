@@ -7,12 +7,11 @@ import websiteSymbol from './CardImages/website.svg'
 
 type CardProps = {
   name : string
-  category : string
-  description: string
-  numMembers : number
-  website : string
-  instagram : string
-  filters : string[]
+  type : string
+  notes: string
+  website? : string
+  instagram? : string
+  filters? : string[]
 }
 
 //Card component displaying club stuff
@@ -20,17 +19,16 @@ type CardProps = {
 //place holder buttons for the different statuses)
 
 //later: add assertions about width/contents of each parameter before displaying it (ex. isn't too long, etc)
-export function Card({name, category, description, numMembers, website, instagram, filters} : CardProps) {
-  const instagramHandle = extractInstagramHandle(instagram)
+export function Card({name, type, notes, website, instagram, filters} : CardProps) {
+  const instagramHandle = extractInstagramHandle(instagram || '')
   return (
       <div className="box">
         <h1 className="clubName">{name}</h1>
-        <h2 className="category">{category}</h2>
-        <div className="descriptionLines description">{description}</div>
+        <h2 className="category">{type}</h2>
+        <div className="descriptionLines description">{notes}</div>
   
         <div className="descriptionLines">
           <img className="symbol" src={membersSymbol}></img>
-          <div className="line">{numMembers} members</div>
         </div>
   
         <div className="descriptionLines">
@@ -44,7 +42,7 @@ export function Card({name, category, description, numMembers, website, instagra
         </div>
 
         <div className="filtersContainer">
-          {filters.map((filter) => (
+          {filters && filters.map((filter) => (
             <div className="filterBox">
               <div className="filterText"> {filter} </div>
             </div>
