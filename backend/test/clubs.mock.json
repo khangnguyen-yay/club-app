@@ -1,0 +1,4 @@
+[
+  { "id": 1, "name": "Chess Club", "description": "For chess enthusiasts" },
+  { "id": 2, "name": "Robotics Club", "description": "Building cool robots" }
+]
