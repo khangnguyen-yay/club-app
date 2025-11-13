@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import passport from 'passport';
 import { loginSuccess, logout } from '../controllers/authController.js';
+import { createUser } from '../controllers/userController.js';
 
 const router = Router();
 
@@ -13,6 +14,7 @@ router.get( '/google/callback',
     // On success, passport will attach user to req.user and call next -> loginSuccess
     loginSuccess
 );
+router.post('/signup', createUser); //Not fully set up yet
 
 // Logout route
 router.get('/logout', logout); //Not fully set up yet
