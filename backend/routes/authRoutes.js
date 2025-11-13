@@ -4,6 +4,9 @@ import { loginSuccess, logout } from '../controllers/authController.js';
 
 const router = Router();
 
+// Start Google OAuth login flow -> GET /auth/google
+router.get('/google', passport.authenticate('google', { scope: ['email', 'profile'] }));
+
 // Handle Google callback
 router.get( '/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
