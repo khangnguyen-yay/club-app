@@ -1,4 +1,4 @@
-// export const logger = (req, res, next) => {
-//   console.log(`${req.method} ${req.url}`);
-//   next();
+// export const ensureAuth = (req, res, next) => {
+//   if (req.isAuthenticated()) return next();
+//   res.status(401).json({ message: 'Unauthorized' });
 // };
