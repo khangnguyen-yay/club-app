@@ -15,11 +15,18 @@ export const findOrCreateUser = async (profile) => {
     [googleId, email, name]
   );
 
-  return {
-    id: result.insertId,
+  const insertId = result.insertId;
+  const [newRows] = await db.query('SELECT * FROM users WHERE id = ? LIMIT 1', [insertId]);
+  return newRows[0] || {
+    id: insertId,
     google_id: googleId,
-    name,
+    display_name: name,
     email
   };
+};
+
+export const findUserById = async (id) => {
+  const [rows] = await db.query('SELECT * FROM users WHERE id = ? LIMIT 1', [id]);
+  return rows[0] || null;
 };
 
