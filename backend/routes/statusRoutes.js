@@ -1,8 +1,10 @@
 import express from 'express';
-import {getUserStatus} from '../controllers/statusController.js';
+import { getUserClubStatus } from '../controllers/statusController.js';
+import ensureAuth from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.get('/', getUserStatus);
+// GET /api/user/clubs?status=considering
+router.get('/user/clubs', ensureAuth, getUserClubStatus);
 
 export default router;

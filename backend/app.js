@@ -35,9 +35,8 @@ app.use(passport.session());
 
 //Routes
 app.use('/api', clubRoutes);
-// Mount auth routes under /auth -> endpoints: /auth/google and /auth/google/callback
 app.use('/auth', authRoutes);
-app.use('/status', statusRoutes);
+app.use('/api', statusRoutes);
 
 // app.get('/protected', (req, res) => {
 //   if (req.isAuthenticated && req.isAuthenticated()) {
