@@ -1,6 +1,5 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-// import { Strategy as LocalStrategy } from 'passport-local';
 import dotenv from 'dotenv';
 import { findOrCreateUser } from '../services/userService.js'; 
 
@@ -19,15 +18,6 @@ passport.use(new GoogleStrategy({
   }
   
 }));
-
-// passport.use(new LocalStrategy((username, password, done) => {
-//   // Replace with real user authentication logic
-//   if (username === 'testuser' && password === 'testpass') {
-//     return done(null, { username: 'testuser' });
-//   } else {
-//     return done(null, false, { message: 'Incorrect credentials.' });
-//   }
-// }));
 
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));

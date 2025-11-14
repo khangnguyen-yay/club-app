@@ -1,5 +1,3 @@
-import { getUserByUsername } from '../services/userService.js';
-
 export const createUser = async (req, res) => {
   const { username, password } = req.body;
   
