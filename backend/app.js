@@ -7,6 +7,8 @@ import session from 'express-session';
 
 import authRoutes from './routes/authRoutes.js';
 import './config/passport.js';
+import statusRoutes from './routes/statusRoutes.js';
+
 dotenv.config();
 
 const app = express();
@@ -35,6 +37,7 @@ app.use(passport.session());
 app.use('/api', clubRoutes);
 // Mount auth routes under /auth -> endpoints: /auth/google and /auth/google/callback
 app.use('/auth', authRoutes);
+app.use('/status', statusRoutes);
 
 // app.get('/protected', (req, res) => {
 //   if (req.isAuthenticated && req.isAuthenticated()) {
