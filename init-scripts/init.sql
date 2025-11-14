@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS club_preferences (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     club_id INT NOT NULL,
-    status ENUM('selected', 'hidden') DEFAULT 'selected',
+    preference ENUM('considering', 'applying', 'applied', 'none') DEFAULT 'none',
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (club_id) REFERENCES clubs(id)
 );
