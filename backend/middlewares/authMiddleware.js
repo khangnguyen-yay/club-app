@@ -1,6 +1,6 @@
 export const ensureAuth = (req, res, next) => {
 	// Session-based Passport check
-    console.log('ensureAuth: isAuthenticated=', !!(req.isAuthenticated && req.isAuthenticated()), 'auth header=', req.headers.authorization);
+    console.log('ensureAuth: isAuthenticated=', !!(req.isAuthenticated && req.isAuthenticated()));
 	if (req.isAuthenticated && req.isAuthenticated()) return next();
 
 	// Fallback: JWT in Authorization header (Bearer)
