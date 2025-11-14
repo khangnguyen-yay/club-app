@@ -12,9 +12,9 @@ router.get('/google', passport.authenticate('google', { scope: ['email', 'profil
 router.get( '/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
     // On success, passport will attach user to req.user and call next -> loginSuccess
-    loginSuccess
+    loginSuccess //replace with findOrCreateUser
 );
-router.post('/signup', createUser); //Not fully set up yet
+// router.post('/signup', createUser); //Not fully set up yet
 
 // Logout route
 router.get('/logout', logout); //Not fully set up yet
