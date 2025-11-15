@@ -1,23 +1,11 @@
 export const ensureAuth = (req, res, next) => {
-	// Session-based Passport check
+    /*
+    Session-based Passport checks:
+    req.isAuthenticated → Ensures Passport is installed and the middleware is running correctly. Checks if there is a function provided by Passport for auth checks
+    req.isAuthenticated() → Checks if the user really logged in according to Passport
+    */
     console.log('ensureAuth: isAuthenticated=', !!(req.isAuthenticated && req.isAuthenticated()));
 	if (req.isAuthenticated && req.isAuthenticated()) return next();
-
-	// Fallback: JWT in Authorization header (Bearer)
-	// const auth = req.headers.authorization;
-	// if (auth && auth.startsWith('Bearer ')) {
-	// 	try {
-	// 		const token = auth.slice(7);
-	// 		// lazy require to avoid adding top-level dependency if not used
-	// 		const jwt = require('jsonwebtoken');
-	// 		const payload = jwt.verify(token, process.env.JWT_SECRET || 'supersecretjwt');
-	// 		req.user = payload; // payload should include user id/email
-	// 		return next();
-	// 	} catch (err) {
-	// 		// invalid token -> fall through to unauthorized
-	// 	}
-	// }
-
 	res.status(401).json({ message: 'Unauthorized' });
 };
 
