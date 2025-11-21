@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import type { Club } from "../appCard/CardList";
 import ClubList from "../appCard/CardList";
-import CategoryFilter from "../filter-view/filter-view";
+import CategoryFilter from "../components/filter-view/filter-view";
+import SearchBar from "../components/search-bar";
 
 const ExplorePage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [clubs, setClubs] = useState<Club[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+  const [searchValue, setSearchValue] = useState<string>("");
 
   useEffect(() => {
     // Fetch data from backend
@@ -42,6 +43,7 @@ const ExplorePage: React.FC = () => {
     <div className="p-6">
       <h1 className="text-2xl font-semibold mb-4">Explore Clubs</h1>
 
+      <SearchBar query={searchValue} onSearch={setSearchValue} placeholderText="Search clubs..." />
       <CategoryFilter
         categories={categories}
         selectedCategory={selectedCategory}
