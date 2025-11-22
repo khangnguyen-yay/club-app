@@ -22,7 +22,7 @@ type CardProps = {
 export function Card({name, type, notes, website, instagram, filters} : CardProps) {
   const instagramHandle = extractInstagramHandle(instagram || '')
   return (
-      <div className="box">
+      <div className="club-card" data-testid="club-card">
         <h1 className="clubName">{name}</h1>
         <h2 className="category">{type}</h2>
         <div className="descriptionLines description">{notes}</div>
