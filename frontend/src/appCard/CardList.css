@@ -1,15 +1,15 @@
 .cardGrid {
     width: 100%;
     display: grid;
-
-    /* Responsive 1–3 columns depending on screen width */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-    gap: 20px; /* spacing between cards */
-    padding: 20px; /* prevent touching screen edge */
-    box-sizing: border-box;
+    /*
+    border: solid;
+    border-width: 1px;
+    border-color: black;
+    */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 390px));
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-columns: 1fr 1fr 1fr;
 }
-
 /*
  grid-template-columns: repeat(auto-fit, minmax(200px, 390px));
     width: 100%;
