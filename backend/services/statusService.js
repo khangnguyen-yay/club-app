@@ -21,3 +21,19 @@ export const getAllUserClubsWithStatus = async (userId) => {
     const [rows] = await db.query(query, [userId]);
     return rows;
 };
+
+export async function insertUserPreference(userId, clubId, preference = "none") {
+  await db.query(
+    "INSERT INTO user_preferences (user_id, club_id, preference) VALUES (?, ?, ?)",
+    [userId, clubId, preference]
+  );
+  return { userId, clubId, preference };
+}
+
+export async function updateUserPreference(userId, clubId, preference) {
+  await db.query(
+    "UPDATE user_preferences SET preference = ? WHERE user_id = ? AND club_id = ?",
+    [preference, userId, clubId]
+  );
+  return { userId, clubId, preference };
+}
