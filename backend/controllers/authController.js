@@ -14,6 +14,7 @@ export const logout = (req, res) => {
     if (err) {
       return res.status(500).json({ message: 'Error logging out' });
     }
-    res.redirect('/');
+    console.log('User logged out successfully');
+    res.redirect('/api/clubs');
   });
 };
