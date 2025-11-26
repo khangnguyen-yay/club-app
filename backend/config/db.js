@@ -1,29 +1,25 @@
-import mysql from 'mysql2/promise';
+import mysql from 'mysql2';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Use a promise-based pool for async/await queries
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
+const db = mysql.createConnection({
+  host: process.env.DB_HOST, 
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
+  port: 3306,
+  authPlugins: {
+    mysql_native_password: () => require('mysql2/lib/auth_plugins').cachingSha2PasswordAuth
+  }
 });
 
-// Optional: test a connection on startup (non-blocking)
-(async () => {
-  try {
-    const conn = await pool.getConnection();
-    conn.release();
-    console.log('Connected to MySQL (pool)');
-  } catch (err) {
-    console.error('DB pool connection error:', err);
+db.connect(err => {
+  if (err) {
+    console.error('DB connection error:', err);
+  } else {
+    console.log('Connected to MySQL!');
   }
-})();
+});
 
-export default pool;
+export default db;
