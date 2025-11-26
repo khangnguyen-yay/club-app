@@ -3,10 +3,9 @@ export const loginSuccess = (req, res) => {
     return res.status(401).json({ message: 'Authentication failed' });
   }
 
-    // For testing: redirect the browser to the API endpoint that returns the
-  // authenticated user's club preferences. This requires the session cookie
-  // to be set and sent by the browser (sameSite settings and credentials).
-  return res.redirect('/api/user/clubs');
+    // For testing: redirect the browser to fronted
+  const frontendOrigin = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
+    return res.redirect(frontendOrigin);
 };
 
 export const logout = (req, res) => {
