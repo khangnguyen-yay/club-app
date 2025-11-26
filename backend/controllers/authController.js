@@ -18,12 +18,10 @@ export const logout = (req, res) => {
     const finish = (statusOk = true) => {
       // Clear session cookie (name depends on express-session default: connect.sid)
       res.clearCookie('connect.sid');
-      const frontendOrigin = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
-      if (wantsJSON(req)) {
-        return res.status(statusOk ? 200 : 500).json({ message: statusOk ? 'Logged out' : 'Partial logout' });
-      }
-      //Redirect to wherever the login page is (https://localhost:5173/login perhaps?)
-      return res.redirect(frontendOrigin);
+      // Always return JSON response for SPA to handle navigation client-side
+      const code = statusOk ? 200 : 500;
+      const msg = statusOk ? 'Logged out' : 'Partial logout';
+      return res.status(code).json({ message: msg });
     };
 
     if (req.session) {
@@ -40,6 +38,3 @@ export const logout = (req, res) => {
   });
 };
 
-function wantsJSON(req) {
-  return req.query.format === 'json' || (req.headers.accept && req.headers.accept.includes('application/json'));
-}
