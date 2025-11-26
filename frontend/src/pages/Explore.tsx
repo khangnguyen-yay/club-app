@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import type { Club } from "../appCard/CardList";
 import ClubList from "../appCard/CardList";
-import CategoryFilter from "../filter-view/filter-view";
+import CategoryFilter from "../components/filter-view/filter-view";
+import "./explore.css"
+import SearchBar from "../components/search-bar";
 
 const ExplorePage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [clubs, setClubs] = useState<Club[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+  const [searchValue, setSearchValue] = useState<string>("");
 
   useEffect(() => {
     // Fetch data from backend
@@ -36,19 +38,28 @@ const ExplorePage: React.FC = () => {
     selectedCategory === "All"
       ? clubs
       : clubs.filter((club) => club.type === selectedCategory);
-
+  
+  const searchedClubs: Club[] = filteredClubs.filter((club) =>
+    club.club_name.toLowerCase().includes(searchValue.toLowerCase())
+  );  
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">Explore Clubs</h1>
+    //p-6 for padding
+    // text-2xl font-semibold mb-4
+    <div className="explore-container"> 
+      <h1 className="heading">Explore Clubs</h1>
 
-      <CategoryFilter
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-      />
+      <div className="filters-row">
+        <SearchBar query={searchValue} onSearch={setSearchValue} placeholderText="Search clubs..." />
+      
+        <CategoryFilter
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
+        />
+      </div>
 
-      <ClubList filteredCards={filteredClubs} />
+      <ClubList filteredCards={searchedClubs} />
     </div>
   );
 };
