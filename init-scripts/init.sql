@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS clubs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     club_name VARCHAR(100) NOT NULL,
     type VARCHAR(255),
+    app_date DATETIME,
     fb VARCHAR(255),
     ig VARCHAR(255),
     website TEXT,
@@ -32,11 +33,19 @@ CREATE TABLE IF NOT EXISTS club_preferences (
     FOREIGN KEY (club_id) REFERENCES clubs(id)
 );
 
-LOAD DATA INFILE '/var/lib/mysql-files/clubs.csv'
+LOAD DATA INFILE '/var/lib/mysql-files/clubs_dates.csv'
 INTO TABLE clubs
 FIELDS TERMINATED BY ',' 
-ENCLOSED BY '"'
+ENCLOSED BY '"' 
 ESCAPED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES
-(club_name, type, fb, ig, website, notes);
+(@club_name, @type, @app_date, @fb, @ig, @website, @notes, @extra)
+SET 
+    club_name = @club_name,
+    type = @type,
+    app_date = STR_TO_DATE(@app_date, '%Y-%m-%d %H:%i:%s'),
+    fb = @fb,
+    ig = @ig,
+    website = @website,
+    notes = LEFT(@notes, 255);
