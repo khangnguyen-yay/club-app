@@ -14,9 +14,8 @@ router.get( '/google/callback',
     // On success, passport will attach user to req.user and call next -> loginSuccess
     loginSuccess //replace with findOrCreateUser
 );
-// router.post('/signup', createUser); //Not fully set up yet
 
-// Logout route
-router.get('/logout', logout); //Not fully set up yet
+router.post('/logout', logout);
+//router.get('/logout', logout); // legacy convenience; consider removing later
 
 export default router;
