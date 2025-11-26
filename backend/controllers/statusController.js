@@ -1,4 +1,4 @@
-import { getUserClubsByStatus, getAllUserClubsWithStatus, insertUserPreference, updateUserPreference } from "../services/statusService.js";
+import { getUserClubsByStatus, getAllUserClubsWithStatus, insertUserStatus, updateUserStatus, getUserClubPreference } from "../services/statusService.js";
 
 export const getUserClubStatus = async (req, res) => {
     try {
@@ -21,30 +21,35 @@ export const getUserClubStatus = async (req, res) => {
     }
 };
 
-export async function addUserPreference(req, res) {
-  const { userId } = req.params;
+export async function addUserStatus(req, res) {
+  const user = req.user; // populated by ensureAuth middleware
+  const userId = user?.id || user?.google_id || null;
   const { clubId, preference } = req.body;
 
-  try {
-    // Look for existing row
-    const existing = await getUserPreference(userId, clubId);
+  console.log("addUserStatus -> user:", user);
 
-    // UPDATE if found
+  if (!userId) return res.status(401).json({ error: 'Unauthorized' });
+  if (!clubId) return res.status(400).json({ error: 'Missing clubId in request body' });
+
+  try {
+    const existing = await getUserClubPreference(userId, clubId);
+
     if (existing) {
-      const result = await updateUserPreference(userId, clubId, preference);
-      return res.json({ message: "Preference updated", ...result });
+      const result = await updateUserStatus(userId, clubId, preference || existing.preference || 'none');
+      return res.json({ message: "Status updated", ...result });
     }
 
-    // INSERT if not found
-    const result = await insertUserPreference(
+    const result = await insertUserStatus(
       userId,
       clubId,
-      preference || "none"
+      preference || 'none'
     );
-    return res.json({ message: "Preference added", ...result });
+
+    return res.json({ message: "Status added", ...result });
 
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Server error" });
   }
 }
+
