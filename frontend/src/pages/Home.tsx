@@ -1,12 +1,14 @@
 import React from "react";
 import './Home.css';
-import ClubList from "../components/testClubList";
+import TestStatus from "../components/testStatus";
 
 function Home() {
 
   let categoryCount : number = 0;
 
   let categoryDisplay : string = "No clubs in this category yet."
+
+  let listStatus = "applied";
 
   return (
     <div>
@@ -32,7 +34,7 @@ function Home() {
         <span className="countBox">{categoryCount}</span>
       </div>
       <h3>{categoryDisplay}</h3>
-      <ClubList />
+      <TestStatus />
     </div>
   );
 }
