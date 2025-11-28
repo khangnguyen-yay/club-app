@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "cucumber": "cucumber-js --require-module ts-node/register --require 'src/steps/**/*.ts' --project tsconfig.cucumber.json src/features/**/*.feature"
+    "cucumber" : "TS_NODE_PROJECT=tsconfig.cucumber.json cucumber-js --config cucumber.cjs"
   },
   "dependencies": {
     "react": "^19.1.1",
@@ -19,6 +19,9 @@
     "@eslint/js": "^9.36.0",
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.6.0",
+    "playwright": "^1.40.0",
+    "@cucumber/cucumber": "^10.0.0",
+    "ts-node": "^10.0.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",
