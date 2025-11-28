@@ -14,6 +14,8 @@ type CardProps = {
   filters? : string[]
 }
 
+//const [clicked, setClicked]
+
 //Card component displaying club stuff
 //(no need to implement statuses yet just UI
 //place holder buttons for the different statuses)
@@ -70,5 +72,8 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
     const handle : (string | null) = match == null ? null : "@" + match[2]
     console.log(handle)
     return handle
-
   }
+
+  //function handleApplyingClick() {
+
+  //}

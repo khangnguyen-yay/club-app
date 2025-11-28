@@ -15,8 +15,11 @@ When('we click on the Applying button', async function () {
 });
 
 Then('the Applying button should turn dark orange', async function () {
-    //verify that button is highlighted
+    //move mouse to different button
+    await this.applyingButton.nth(1).click()
+     //verify that original button is highlighted
     await expect(this.applyingButton.first()).toHaveCSS('background-color', 'rgb(194, 126, 0)');
+
 });
 
 /*
