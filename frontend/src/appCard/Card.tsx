@@ -15,41 +15,29 @@ type CardProps = {
   filters? : string[]
 }
 
-//const [clicked, setClicked]
-
-//Card component displaying club stuff
-//(no need to implement statuses yet just UI
-//place holder buttons for the different statuses)
-
 //later: add assertions about width/contents of each parameter before displaying it (ex. isn't too long, etc)
 export function Card({name, type, notes, website, instagram, filters} : CardProps) {
-  const [clickedOrange, setClickedOrange] = useState(false);
-  const [clickedBlue, setClickedBlue] = useState(false);
-  const [clickedGreen, setClickedGreen] = useState(false);
 
-  function handleClickOrange() {
-    setClickedOrange(true);
+  const [clicked, setClicked] = useState({
+    consider: false,
+    applying: false,
+    applied: false,
+  });
+
+  function handleClick(label : string) {
+    //setClicked lets you pass in a function that also returns a struct instead of a struct
+    //React will pass in the current state
+    setClicked((prev) => ({...prev, [label] : true})); //second part of struct overwrites current state
   }
 
-  function handleClickBlue() {
-    setClickedBlue(true);
-  }
+  const classNameConsider = ["statusButton", 
+  clicked.consider ? "considerButtonClicked" : "considerButton"].join(' ')
 
-  function handleClickGreen() {
-    setClickedGreen(true);
-  }
+  const classNameApplying = ["statusButton", 
+    clicked.applying ? "applyingButtonClicked" : "applyingButton"].join(' ');
 
-  const classNameOrange = ["statusButton", 
-  clickedOrange ? "applyingButtonClicked" : "applyingButton"
-  ].join(' ');
-
-  const classNameBlue = ["statusButton", 
-  clickedBlue ? "considerButtonClicked" : "considerButton"
-  ].join(' ')
-
-  const classNameGreen = ["statusButton", 
-    clickedGreen ? "appliedButtonClicked" : "appliedButton"
-    ].join(' ')
+  const classNameApplied = ["statusButton", 
+  clicked.applied ? "appliedButtonClicked" : "appliedButton"].join(' ')
 
   const instagramHandle = extractInstagramHandle(instagram || '')
   return (
@@ -82,9 +70,9 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
 
         <div className="addToTracker">Add to tracker:</div>
         <div className="buttonBox">
-          <button className={classNameBlue} onClick={handleClickBlue}>Consider</button>
-          <button className={classNameOrange} onClick={handleClickOrange}>Applying</button>
-          <button className={classNameGreen} onClick={handleClickGreen}>Applied</button>
+          <button className={classNameConsider} onClick={() => handleClick("consider")}>Consider</button>
+          <button className={classNameApplying} onClick={() => handleClick("applying")}>Applying</button>
+          <button className={classNameApplied} onClick={() => handleClick("applied")}>Applied</button>
         </div>
       </div>
     )
