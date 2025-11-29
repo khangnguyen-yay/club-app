@@ -6,7 +6,7 @@ export const loginSuccess = (req, res) => {
     // For testing: redirect the browser to frontend after every login, but would probably be where 
     //home page is located 
     //redirect('/api/clubs');
-    const frontendOrigin = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
+    const frontendOrigin = process.env.FRONTEND_ORIGIN;
     return res.redirect(`${frontendOrigin}/home`);
 };
 

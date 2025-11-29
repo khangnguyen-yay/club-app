@@ -5,7 +5,7 @@ import { createUser } from '../controllers/userController.js';
 
 const router = Router();
 
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN;
 
 // Start Google OAuth login flow -> GET /auth/google
 router.get('/google', passport.authenticate('google', { scope: ['email', 'profile'] }));
@@ -18,6 +18,5 @@ router.get( '/google/callback',
 );
 
 router.post('/logout', logout);
-//router.get('/logout', logout); // legacy convenience; consider removing later
 
 export default router;
