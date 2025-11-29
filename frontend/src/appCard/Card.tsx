@@ -4,6 +4,7 @@ import membersSymbol from './CardImages/members.svg'
 //import locationSymbol from './CardImages/location.svg'
 import instagramSymbol from './CardImages/instagram.svg'
 import websiteSymbol from './CardImages/website.svg'
+import { useState } from 'react'
 
 type CardProps = {
   name : string
@@ -22,6 +23,16 @@ type CardProps = {
 
 //later: add assertions about width/contents of each parameter before displaying it (ex. isn't too long, etc)
 export function Card({name, type, notes, website, instagram, filters} : CardProps) {
+  const [clicked, setClicked] = useState(false);
+
+  function handleApplyingClick() {
+    setClicked(true);
+  }
+
+  const classNameOrange = ["statusButton", 
+  clicked ? "applyingButtonClicked" : "applyingButton"
+  ].join(' ');
+
   const instagramHandle = extractInstagramHandle(instagram || '')
   return (
       <div className="club-card" data-testid="club-card">
@@ -54,7 +65,7 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
         <div className="addToTracker">Add to tracker:</div>
         <div className="buttonBox">
           <button className="statusButton considerButton">Consider</button>
-          <button className="statusButton applyingButton">Applying</button>
+          <button className={classNameOrange} onClick={handleApplyingClick}>Applying</button>
           <button className="statusButton appliedButton">Applied</button>
         </div>
       </div>
@@ -73,7 +84,3 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
     console.log(handle)
     return handle
   }
-
-  //function handleApplyingClick() {
-
-  //}
