@@ -133,6 +133,13 @@
     background-color: rgb(18, 18, 165);
     margin-left: var(--card-margin);
   }
+
+  .appliedButtonClicked {
+    background-color: rgb(0, 101, 0);
+    border-color: white;
+    margin-left: 10px;
+    margin-right: var(--card-margin);
+  }
   
 
   .filtersContainer {

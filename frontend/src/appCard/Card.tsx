@@ -25,6 +25,7 @@ type CardProps = {
 export function Card({name, type, notes, website, instagram, filters} : CardProps) {
   const [clickedOrange, setClickedOrange] = useState(false);
   const [clickedBlue, setClickedBlue] = useState(false);
+  const [clickedGreen, setClickedGreen] = useState(false);
 
   function handleClickOrange() {
     setClickedOrange(true);
@@ -34,6 +35,10 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
     setClickedBlue(true);
   }
 
+  function handleClickGreen() {
+    setClickedGreen(true);
+  }
+
   const classNameOrange = ["statusButton", 
   clickedOrange ? "applyingButtonClicked" : "applyingButton"
   ].join(' ');
@@ -41,6 +46,10 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
   const classNameBlue = ["statusButton", 
   clickedBlue ? "considerButtonClicked" : "considerButton"
   ].join(' ')
+
+  const classNameGreen = ["statusButton", 
+    clickedGreen ? "appliedButtonClicked" : "appliedButton"
+    ].join(' ')
 
   const instagramHandle = extractInstagramHandle(instagram || '')
   return (
@@ -75,7 +84,7 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
         <div className="buttonBox">
           <button className={classNameBlue} onClick={handleClickBlue}>Consider</button>
           <button className={classNameOrange} onClick={handleClickOrange}>Applying</button>
-          <button className="statusButton appliedButton">Applied</button>
+          <button className={classNameGreen} onClick={handleClickGreen}>Applied</button>
         </div>
       </div>
     )
