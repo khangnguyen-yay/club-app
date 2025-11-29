@@ -1,12 +1,15 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 
-Given('the Applying button is not highlighted', async function () {
+Given('the user is on the explore page', async function () {
     await this.page.goto('http://localhost:5173/explore'); //navigate to explore page
-    
-    this.firstButton = this.page.locator('.applyingButton').first()
-    //test that first applyingButton is orange
-    await expect(this.firstButton).toHaveCSS('background-color', 'rgb(255, 165, 0)');
+})
+
+//Applying button test
+Given('the Applying button is not highlighted', async function() {
+  this.firstButton = this.page.locator('.applyingButton').first()
+  //test that first applyingButton is orange
+  await expect(this.firstButton).toHaveCSS('background-color', 'rgb(255, 165, 0)');
 })
 
 When('we click on the Applying button', async function () {
@@ -23,9 +26,8 @@ Then('the Applying button should turn dark orange', async function () {
     await expect(this.firstButton).toHaveCSS('background-color', 'rgb(194, 126, 0)');
 });
 
+//Consider button test
 Given('the Consider button is not highlighted', async function () {
-  await this.page.goto('http://localhost:5173/explore'); //navigate to explore page
-  
   this.firstButton = this.page.locator('.considerButton').first()
   //test that first considerButton is blue
   await expect(this.firstButton).toHaveCSS('background-color', 'rgb(35, 35, 248)');
@@ -45,9 +47,8 @@ Then('the Consider button should turn dark blue', async function () {
   await expect(this.firstButton).toHaveCSS('background-color', 'rgb(18, 18, 165)');
 });
 
+//Applied button test
 Given('the Applied button is not highlighted', async function () {
-  await this.page.goto('http://localhost:5173/explore'); //navigate to explore page
-  
   this.firstButton = this.page.locator('.appliedButton').first()
   //test that first considerButton is green
   await expect(this.firstButton).toHaveCSS('background-color', 'rgb(18, 176, 18)');
