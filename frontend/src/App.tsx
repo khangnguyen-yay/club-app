@@ -1,9 +1,11 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+
+import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 // Import your page components
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import Calendar from "./pages/Calendar";
+import LoginPage from "./pages/Login";
 
 import HomeLogo from './pages/NavigationUI/NavigationImages/home.svg';
 import ExploreLogo from './pages/NavigationUI/NavigationImages/explore.svg';
@@ -11,12 +13,16 @@ import CalendarLogo from './pages/NavigationUI/NavigationImages/calendar.svg';
 
 import './pages/NavigationUI/Navigation.css';
 
-function App() {
+const AppLayout = () => {
+  const location = useLocation();
+  const hideNavBar = location.pathname === '/login';
+
   return (
-    <Router>
-      <nav className="navLinks">
+    <>
+      {!hideNavBar && (
+        <nav className="navLinks">
         {/* Simple navigation links */}
-        <NavLink to="/" className="link">
+        <NavLink to="/home" className="link">
           <img src={HomeLogo} className="navBarLogo"></img> Home
         </NavLink>
 
@@ -28,13 +34,28 @@ function App() {
         <img src={CalendarLogo} className="navBarLogo"></img> Calendar
         </NavLink>
       </nav>
+    )}
 
-      <Routes>
+    <Routes>
+        {/* Login Page first */}
+        <Route path="/login" element={<LoginPage />} />
         {/* Define your routes */}
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/calendar" element={<Calendar />} />
+
+        {/* Default and all other routes should go to login page*/}
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <AppLayout />
     </Router>
   );
 }
