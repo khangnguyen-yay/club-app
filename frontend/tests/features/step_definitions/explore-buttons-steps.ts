@@ -4,7 +4,6 @@ import { expect } from '@playwright/test';
 Given('the Applying button is not highlighted', async function () {
     await this.page.goto('http://localhost:5173/explore'); //navigate to explore page
     
-    //this.applyingButton = this.page.locator('.applyingButton') //locate all applyingButtons
     this.firstButton = this.page.locator('.applyingButton').first()
     //test that first applyingButton is orange
     await expect(this.firstButton).toHaveCSS('background-color', 'rgb(255, 165, 0)');
@@ -27,9 +26,8 @@ Then('the Applying button should turn dark orange', async function () {
 Given('the Consider button is not highlighted', async function () {
   await this.page.goto('http://localhost:5173/explore'); //navigate to explore page
   
-  //this.applyingButton = this.page.locator('.applyingButton') //locate all applyingButtons
   this.firstButton = this.page.locator('.considerButton').first()
-  //test that first applyingButton is orange
+  //test that first considerButton is blue
   await expect(this.firstButton).toHaveCSS('background-color', 'rgb(35, 35, 248)');
 })
 
@@ -46,6 +44,30 @@ Then('the Consider button should turn dark blue', async function () {
   this.firstButton = this.page.locator('.statusButton.considerButtonClicked').first()
   await expect(this.firstButton).toHaveCSS('background-color', 'rgb(18, 18, 165)');
 });
+
+Given('the Applied button is not highlighted', async function () {
+  await this.page.goto('http://localhost:5173/explore'); //navigate to explore page
+  
+  this.firstButton = this.page.locator('.appliedButton').first()
+  //test that first considerButton is green
+  await expect(this.firstButton).toHaveCSS('background-color', 'rgb(18, 176, 18)');
+})
+
+When('we click on the Applied button', async function () {
+  await this.firstButton.click(); //click on button
+});
+
+Then('the Applied button should turn dark green', async function () {
+  //move mouse to different button
+  this.appliedButtons = this.page.locator('.considerButton')
+  await this.appliedButtons.nth(1).click()
+
+  //verify that button is highlighted
+  this.firstButton = this.page.locator('.statusButton.appliedButtonClicked').first()
+  await expect(this.firstButton).toHaveCSS('background-color', 'rgb(0, 101, 0)');
+});
+
+
 
 /*
 .considerButton {
