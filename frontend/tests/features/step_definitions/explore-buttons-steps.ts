@@ -14,14 +14,37 @@ When('we click on the Applying button', async function () {
     await this.firstButton.click(); //click on button
 });
 
-Then('the Applying button should turn dark orange', {timeout : 60000}, async function () {
+Then('the Applying button should turn dark orange', async function () {
     //move mouse to different button
-    this.applyingButton = this.page.locator('.applyingButton')
-    await this.applyingButton.nth(1).click()
+    this.applyingButtons = this.page.locator('.applyingButton')
+    await this.applyingButtons.nth(1).click()
 
     //verify that button is highlighted
     this.firstButton = this.page.locator('.statusButton.applyingButtonClicked').first()
     await expect(this.firstButton).toHaveCSS('background-color', 'rgb(194, 126, 0)');
+});
+
+Given('the Consider button is not highlighted', async function () {
+  await this.page.goto('http://localhost:5173/explore'); //navigate to explore page
+  
+  //this.applyingButton = this.page.locator('.applyingButton') //locate all applyingButtons
+  this.firstButton = this.page.locator('.considerButton').first()
+  //test that first applyingButton is orange
+  await expect(this.firstButton).toHaveCSS('background-color', 'rgb(35, 35, 248)');
+})
+
+When('we click on the Consider button', async function () {
+  await this.firstButton.click(); //click on button
+});
+
+Then('the Consider button should turn dark blue', async function () {
+  //move mouse to different button
+  this.considerButtons = this.page.locator('.considerButton')
+  await this.considerButtons.nth(1).click()
+
+  //verify that button is highlighted
+  this.firstButton = this.page.locator('.statusButton.considerButtonClicked').first()
+  await expect(this.firstButton).toHaveCSS('background-color', 'rgb(18, 18, 165)');
 });
 
 /*
