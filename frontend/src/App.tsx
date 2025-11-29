@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import Calendar from "./pages/Calendar";
 import LoginPage from "./pages/Login";
+import Header from "./components/header";
 
 import HomeLogo from './pages/NavigationUI/NavigationImages/home.svg';
 import ExploreLogo from './pages/NavigationUI/NavigationImages/explore.svg';
@@ -15,11 +16,17 @@ import './pages/NavigationUI/Navigation.css';
 
 const AppLayout = () => {
   const location = useLocation();
-  const hideNavBar = location.pathname === '/login';
+
+  //check if current path is /login
+  //if so, do not render navigation bar and header component
+  const isLoginPage = location.pathname === '/login';
 
   return (
     <>
-      {!hideNavBar && (
+      {/* if not on login page, then show header and nav bar*/}
+
+      {!isLoginPage && <Header />}
+      {!isLoginPage && (
         <nav className="navLinks">
         {/* Simple navigation links */}
         <NavLink to="/home" className="link">

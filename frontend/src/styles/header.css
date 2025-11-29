@@ -1,0 +1,75 @@
+/* Overall header bar */
+.app-header {
+  top: 0;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;              /* vertical centering */
+  justify-content: space-between;   /* left vs right sides */
+  padding: 1.2rem 2.5rem;
+
+  background: #1e3a8a;                      
+  color: #ffffff;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(30, 58, 138, 0.35);
+
+  margin-bottom: 2rem;
+
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  overflow: hidden;  
+}
+
+/* Left side: title + subtitle stacked */
+.header-left {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+/* Make "Clubfindr" smaller */
+.header-title {
+  font-size: 1.7rem;      /* ↓ smaller than before */
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.2rem;
+}
+
+/* Subtitle styling */
+.header-subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* Log out button on the right */
+.header-logout-btn {
+  padding: 0.45rem 1.2rem;
+  border-radius: 999px;
+
+  border: 1px solid #111827;
+  background: #111827;
+  color: #ffffff;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.12s ease,
+    box-shadow 0.15s ease;
+}
+
+.header-logout-btn:hover {
+  background: #020617;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+}
+
+.header-logout-btn:active {
+  transform: translateY(0px);
+  box-shadow: none;
+}
