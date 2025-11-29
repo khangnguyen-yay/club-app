@@ -40,7 +40,8 @@
     margin-left: var(--card-margin);
     margin-right: var(--card-margin);
     margin-bottom: 3px;
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
   }
   
   .description {
@@ -52,18 +53,20 @@
     width: 19px;
     height: 19px;
     filter: invert(50%);
+    flex: 0 0 auto;
   }
   
   .line {
     margin-left: 10px;
     color: gray;
     font-size: 14px;
+
+    flex: 1 1 auto;
+    min-width: 0;
+    word-break: break-word;
   }
   
-  .symbol, .line {
-    display: inline-block;
-  }
-  
+
   .addToTracker {
     color: gray;
     font-size: 13px;
