@@ -23,15 +23,24 @@ type CardProps = {
 
 //later: add assertions about width/contents of each parameter before displaying it (ex. isn't too long, etc)
 export function Card({name, type, notes, website, instagram, filters} : CardProps) {
-  const [clicked, setClicked] = useState(false);
+  const [clickedOrange, setClickedOrange] = useState(false);
+  const [clickedBlue, setClickedBlue] = useState(false);
 
-  function handleApplyingClick() {
-    setClicked(true);
+  function handleClickOrange() {
+    setClickedOrange(true);
+  }
+
+  function handleClickBlue() {
+    setClickedBlue(true);
   }
 
   const classNameOrange = ["statusButton", 
-  clicked ? "applyingButtonClicked" : "applyingButton"
+  clickedOrange ? "applyingButtonClicked" : "applyingButton"
   ].join(' ');
+
+  const classNameBlue = ["statusButton", 
+  clickedBlue ? "considerButtonClicked" : "considerButton"
+  ].join(' ')
 
   const instagramHandle = extractInstagramHandle(instagram || '')
   return (
@@ -64,8 +73,8 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
 
         <div className="addToTracker">Add to tracker:</div>
         <div className="buttonBox">
-          <button className="statusButton considerButton">Consider</button>
-          <button className={classNameOrange} onClick={handleApplyingClick}>Applying</button>
+          <button className={classNameBlue} onClick={handleClickBlue}>Consider</button>
+          <button className={classNameOrange} onClick={handleClickOrange}>Applying</button>
           <button className="statusButton appliedButton">Applied</button>
         </div>
       </div>
