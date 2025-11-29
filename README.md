@@ -1,8 +1,6 @@
-# Clubfindr — Local Development Guide
+# clubfindr — Local Development Guide
 
 This guide explains how to locally host and run the **Clubfindr** application, including the frontend, backend, and database.
-
----
 
 ## 🖥️ Prerequisites
 
@@ -13,13 +11,9 @@ Before getting started, ensure you have the following installed:
 * **Docker Desktop**
 * **Git** (optional, for cloning the repo)
 
----
-
 ## 🚀 How to Locally Host Clubfindr
 
 Follow the steps below in order.
-
----
 
 ## 1. Start the Frontend
 
@@ -29,8 +23,6 @@ npm run dev
 ```
 
 This will launch the frontend on its default development port **(http://localhost:5173)**.
-
----
 
 ## 2. Start the Database (Docker)
 
@@ -44,8 +36,6 @@ This will launch the frontend on its default development port **(http://localhos
 
 This builds and starts the database container defined in your `docker-compose.yml` file.
 
----
-
 ## 3. Start the Backend
 
 Open a new terminal window and run:
@@ -56,8 +46,6 @@ npm run dev
 ```
 
 This will start the backend server (commonly on **(http://localhost:3000)**).
-
----
 
 ## 🧩 Summary of Commands
 
@@ -81,8 +69,6 @@ docker compose up --build
 cd backend
 npm run dev
 ```
-
----
 
 ## ✅ Your local environment should now be running!
 
