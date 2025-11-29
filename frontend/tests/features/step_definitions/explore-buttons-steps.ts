@@ -6,6 +6,7 @@ Given('the user is on the explore page', async function () {
 })
 
 //Applying button test
+//Shared - given the user is on the explore page
 Given('the Applying button is not highlighted', async function() {
   this.firstButton = this.page.locator('.applyingButton').first()
   //test that first applyingButton is orange
@@ -27,6 +28,7 @@ Then('the Applying button should turn dark orange', async function () {
 });
 
 //Consider button test
+//Shared - given the user is on the explore page
 Given('the Consider button is not highlighted', async function () {
   this.firstButton = this.page.locator('.considerButton').first()
   //test that first considerButton is blue
@@ -48,6 +50,7 @@ Then('the Consider button should turn dark blue', async function () {
 });
 
 //Applied button test
+//Shared - Given the user is on the explore page
 Given('the Applied button is not highlighted', async function () {
   this.firstButton = this.page.locator('.appliedButton').first()
   //test that first considerButton is green
@@ -67,37 +70,3 @@ Then('the Applied button should turn dark green', async function () {
   this.firstButton = this.page.locator('.statusButton.appliedButtonClicked').first()
   await expect(this.firstButton).toHaveCSS('background-color', 'rgb(0, 101, 0)');
 });
-
-
-
-/*
-.considerButton {
-    background-color: rgb(35, 35, 248);
-    border-color: rgb(35, 35, 248);
-    margin-left: var(--card-margin);
-  }
-  
-  .applyingButton {
-    background-color: orange;
-    border-color: orange;
-    margin-left: 10px;
-  }
-  
-  .appliedButton {
-    background-color: rgb(18, 176, 18);
-    border-color: rgb(18, 176, 18);
-    margin-left: 10px;
-    margin-right: var(--card-margin);
-
-      .considerButton:hover {
-    background-color: rgb(18, 18, 165)
-  }
-
-  .applyingButton:hover {
-    background-color: rgb(194, 126, 0)
-  }
-  
-  .appliedButton:hover {
-    background-color: rgb(0, 101, 0)
-  }
-  }*/
