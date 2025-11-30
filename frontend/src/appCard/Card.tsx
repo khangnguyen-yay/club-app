@@ -1,7 +1,4 @@
 import "./Card.css"
-import membersSymbol from './CardImages/members.svg'
-//import calendarSymbol from './CardImages/calendar.svg'
-//import locationSymbol from './CardImages/location.svg'
 import instagramSymbol from './CardImages/instagram.svg'
 import websiteSymbol from './CardImages/website.svg'
 
@@ -26,11 +23,8 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
         <h1 className="clubName">{name}</h1>
         <h2 className="category">{type}</h2>
         <div className="descriptionLines description">{notes}</div>
-  
-        <div className="descriptionLines">
-          <img className="symbol" src={membersSymbol}></img>
-        </div>
-  
+
+
         <div className="descriptionLines">
           <img className="symbol" src={websiteSymbol}></img>
           <a className="line" href={website}>{website}</a>
