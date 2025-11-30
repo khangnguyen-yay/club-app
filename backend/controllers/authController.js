@@ -3,11 +3,9 @@ export const loginSuccess = (req, res) => {
     return res.status(401).json({ message: 'Authentication failed' });
   }
 
-    // For testing: redirect the browser to frontend after every login, but would probably be where 
-    //home page is located 
-    //redirect('/api/clubs');
-  const frontendOrigin = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
-    return res.redirect(frontendOrigin);
+    //Redirect the browser to frontend after every login (home page)
+    const frontendOrigin = process.env.FRONTEND_ORIGIN;
+    return res.redirect(`${frontendOrigin}/home`);
 };
 
 export const logout = (req, res) => {
@@ -16,7 +14,7 @@ export const logout = (req, res) => {
     if (err) return res.status(500).json({ message: 'Error logging out' });
 
     const finish = (statusOk = true) => {
-      // Clear session cookie (name depends on express-session default: connect.sid)
+      // Clear session cookie (connect.sid)
       res.clearCookie('connect.sid');
       // Always return JSON response for SPA to handle navigation client-side
       const code = statusOk ? 200 : 500;
@@ -38,3 +36,6 @@ export const logout = (req, res) => {
   });
 };
 
+export const getStatus = (req, res) => {
+  res.json({ authenticated: !!req.user, user: req.user || null });
+};

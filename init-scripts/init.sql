@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS club_preferences (
 
 LOAD DATA INFILE '/var/lib/mysql-files/clubs_dates.csv'
 INTO TABLE clubs
-FIELDS TERMINATED BY ',' 
-ENCLOSED BY '"' 
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
 ESCAPED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES
@@ -41,4 +41,11 @@ SET
     fb = @fb,
     ig = @ig,
     website = @website,
-    notes = LEFT(@notes, 255);
+    notes = CASE
+        WHEN @notes IS NULL OR @notes = '' THEN
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae urna ut nunc cursus posuere. Integer ac velit id lorem tincidunt feugiat nec id metus...'
+        WHEN CHAR_LENGTH(@notes) > 150 THEN
+            CONCAT(LEFT(@notes, 147), '...')
+        ELSE
+            @notes
+    END;
