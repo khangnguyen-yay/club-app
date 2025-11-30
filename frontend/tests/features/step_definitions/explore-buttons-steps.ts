@@ -8,7 +8,6 @@ Given('the user is on the explore page', async function () {
 //Applying button test
 //Shared - given the user is on the explore page
 Given('the Applying button is not highlighted', async function() {
-  this.firstButton = this.page.locator('.applyingButton').first()
   //test that first applyingButton is orange
   await expect(this.firstButton).toHaveCSS('background-color', 'rgb(255, 165, 0)');
 })

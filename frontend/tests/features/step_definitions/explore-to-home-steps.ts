@@ -3,7 +3,7 @@ import { expect } from '@playwright/test';
 
 //Shared
 When('we navigate to the home page', async function() {
-    await this.page.goto('http://localhost:5173');
+    await this.page.goto('http://localhost:5173/home');
 })
 
 //First card appears under "Applying" category under home page test
@@ -48,3 +48,8 @@ Then('the card should not be displayed under the Applying category label', async
         expect(homeClubTitle.trim()).not.toBe(this.exploreClubTitle.trim());
     }
 })
+
+//Refresh
+When('we refresh the page', async function() {
+    await this.page.reload();
+}) 

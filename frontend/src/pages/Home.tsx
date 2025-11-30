@@ -13,14 +13,6 @@ function Home() {
 
   let categoryDisplay : React.JSX.Element | string = "No clubs in this category yet."
 
-  const testClub : Club = {
-    club_name: "Pilipinos In Engineering and Science",
-    type: "Academic",
-    ig: "https://www.instagram.com/pierrethepiebear/",
-    website: "https://piesucla.wixsite.com/pies",
-    notes : ''
-  }
-
   const [clubs, setClubs] = useState<Club[]>([]);
   const [loading, setLoading] = useState(true);
 
