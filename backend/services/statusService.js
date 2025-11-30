@@ -25,6 +25,7 @@ export const getAllUserClubsWithStatus = async (userId) => {
 };
 
 //these functions are used during POST requests (POST api/user/statuses)
+// ---checks if a user already has a status for that club selected---
 export async function getUserClubPreference(userId, clubId) {
   const query = `SELECT * FROM club_preferences WHERE user_id = ? AND club_id = ? LIMIT 1`;
   const [rows] = await db.query(query, [userId, clubId]);
