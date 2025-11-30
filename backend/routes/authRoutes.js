@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import passport from 'passport';
 import { loginSuccess, logout, getStatus } from '../controllers/authController.js';
-import { createUser } from '../controllers/userController.js';
 import ensureAuth from '../middlewares/authMiddleware.js';
 
 const router = Router();
