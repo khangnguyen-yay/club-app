@@ -30,6 +30,12 @@ await jest.unstable_mockModule('../config/db.js', () => ({
   default: { query: async () => [[], []] }
 }));
 
+// Avoid initializing real Google OAuth strategy during tests
+await jest.unstable_mockModule('../config/passport.js', () => ({
+  __esModule: true,
+  default: () => {}
+}));
+
 const { default: app } = await import('../app.js');
 const { getUserClubsByStatus, getAllUserClubsWithStatus, getUserClubPreference, updateUserStatus } = await import('../services/statusService.js');
 
