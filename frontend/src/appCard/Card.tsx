@@ -5,6 +5,7 @@ import membersSymbol from './CardImages/members.svg'
 import instagramSymbol from './CardImages/instagram.svg'
 import websiteSymbol from './CardImages/website.svg'
 import { useState } from 'react'
+import { postStatus } from "../apiHelpers.ts"
 
 type CardProps = {
   name : string
@@ -28,6 +29,7 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
     //setClicked lets you pass in a function that also returns a struct instead of a struct
     //React will pass in the current state
     setClicked((prev) => ({...prev, [label] : true})); //second part of struct overwrites current state
+    postStatus("1", "applying");
   }
 
   const classNameConsider = ["statusButton", 

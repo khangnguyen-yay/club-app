@@ -1,8 +1,10 @@
 import React from "react";
+import { useState, useEffect } from "react"
 import './Home.css';
 import CardList from '../appCard/CardList.tsx';
 import type { Club } from '../appCard/CardList.tsx';
 import TestStatus from "../components/testStatus";
+import { fetchClubsByStatus } from "../apiHelpers.ts";"../apiHelpers.ts";
 
 
 function Home() {
@@ -19,7 +21,32 @@ function Home() {
     notes : ''
   }
 
-  categoryDisplay = <CardList filteredCards={[testClub]}></CardList>
+  const [clubs, setClubs] = useState<Club[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchClubs() {
+      try {
+        const res = await fetchClubsByStatus("applying");
+        const data = await res;
+        if (typeof data == "string") {
+          return;
+        }
+        setClubs(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchClubs();
+  }, []); 
+
+  if (loading) return <div>Loading...</div>;
+
+  categoryDisplay = <CardList filteredCards={clubs}></CardList>
+
 
   return (
     <div>
