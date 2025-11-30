@@ -28,8 +28,22 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
   function handleClick(label : string) {
     //setClicked lets you pass in a function that also returns a struct instead of a struct
     //React will pass in the current state
-    setClicked((prev) => ({...prev, [label] : true})); //second part of struct overwrites current state
-    postStatus("1", "applying");
+    setClicked((prev) => 
+      {
+        const labelSelected = !prev[label as keyof typeof prev];
+
+        if (labelSelected) {
+          postStatus("1", "applying");
+        }
+        else {
+          postStatus("1", "none");
+        }
+
+        return  {...prev, [label] : !prev[label as keyof typeof prev]};
+        
+      }
+    ); //second part of struct overwrites current state
+
   }
 
   const classNameConsider = ["statusButton", 
