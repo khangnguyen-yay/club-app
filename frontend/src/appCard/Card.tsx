@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { postStatus } from "../apiHelpers.ts"
 
 type CardProps = {
+  id : string
   name : string
   type : string
   notes: string
@@ -17,10 +18,10 @@ type CardProps = {
 }
 
 //later: add assertions about width/contents of each parameter before displaying it (ex. isn't too long, etc)
-export function Card({name, type, notes, website, instagram, filters} : CardProps) {
+export function Card({id, name, type, notes, website, instagram, filters} : CardProps) {
 
   const [clicked, setClicked] = useState({
-    consider: false,
+    considering: false,
     applying: false,
     applied: false,
   });
@@ -34,10 +35,10 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
         const newState = { ...prev, [label]: !prev[label as keyof typeof prev] };
 
         if (labelSelected) {
-          postStatus("1", "applying");
+          postStatus(id, label);
         }
         else {
-          postStatus("1", "none");
+          postStatus(id, "none");
         }
 
         //mark that we'll need to update the page
@@ -51,7 +52,7 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
   }
 
   const classNameConsider = ["statusButton", 
-  clicked.consider ? "considerButtonClicked" : "considerButton"].join(' ')
+  clicked.considering ? "considerButtonClicked" : "considerButton"].join(' ')
 
   const classNameApplying = ["statusButton", 
     clicked.applying ? "applyingButtonClicked" : "applyingButton"].join(' ');
@@ -90,7 +91,7 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
 
         <div className="addToTracker">Add to tracker:</div>
         <div className="buttonBox">
-          <button className={classNameConsider} onClick={() => handleClick("consider")}>Consider</button>
+          <button className={classNameConsider} onClick={() => handleClick("considering")}>Consider</button>
           <button className={classNameApplying} onClick={() => handleClick("applying")}>Applying</button>
           <button className={classNameApplied} onClick={() => handleClick("applied")}>Applied</button>
         </div>

@@ -14,6 +14,7 @@ import './CardList.css'
 */
 
 export interface Club {
+  id : string;
   club_name: string;
   type: string;
   fb?: string;
@@ -30,7 +31,7 @@ export default function ClubList({filteredCards}: CardListProps) {
     return (
       <div className="cardGrid">
         {filteredCards.map((club) => (
-                <Card name={club.club_name} type={club.type} notes={club.notes} website={club.website} instagram={club.ig}></Card>
+                <Card id={club.id} name={club.club_name} type={club.type} notes={club.notes} website={club.website} instagram={club.ig}></Card>
         ))}
       </div>
     )
