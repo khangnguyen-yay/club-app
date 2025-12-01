@@ -60,9 +60,6 @@ button.calendar-nav-button:hover {
   cursor: pointer;
 }
 
-.calendar-nav-button:hover {
-  background: #d1d5db;
-}
 
 .calendar-grid {
   display: grid;
