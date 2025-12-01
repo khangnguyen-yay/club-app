@@ -21,6 +21,7 @@ const ExplorePage: React.FC = () => {
     })
     .then((data: Club[]) => {
     setClubs(data);
+    console.log("ExplorePage clubs:", data);
     setLoading(false);
     })
     .catch((err: Error) => {

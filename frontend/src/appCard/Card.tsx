@@ -31,6 +31,7 @@ export function Card({id, name, type, notes, website, instagram, filters, prefer
   function handleClick(label : string) {
     //setClicked lets you pass in a function that also returns a struct instead of a struct
     //React will pass in the current state
+    console.log(preference)
     setSelected((prev) => 
       {
         const labelSelected = !prev[label as keyof typeof prev];
