@@ -1,5 +1,4 @@
-//import CalendarView from "../components/calendar-view/calendar-view";
-import CalendarView2 from "../components/calendar-view/cal-view2";
+import CalendarView from "../components/calendar/calendar-view";
 
 
 const Calendar = () => {
@@ -12,7 +11,7 @@ const Calendar = () => {
         applying to.
       </p>
 
-      <CalendarView2 />
+      <CalendarView />
     </div>  
   );
 }
