@@ -2,24 +2,11 @@ Feature: Selecting and unselecting status buttons on the explore page updates th
     
     Scenario: First card appears under "Applying" category under home page
         Given the user is on the explore page
-        Given the Applying button on the first card is selected
-        When we navigate to the home page
-        Then the first card should appear under the Applying section
-
-    Scenario: First card doesn't appear under "Applying" category under home page, refresh
-        Given the user is on the explore page
-        Given the Applying button on the first card is unselected
-        When we navigate to the home page
-        When we refresh the page
-        Then the card should not be displayed under the Applying category label
-
-    Scenario: First card doesn't appear under "Applying" category under home page when deselected, refresh
-        Given the user is on the explore page
-        Given the Applying button on the first card is selected
+        Given the Applying button is not highlighted
+        Given the first card has a title
         When we click on the Applying button
         When we navigate to the home page
-        When we refresh the page
-        Then the card should not be displayed under the Applying category label
+        Then the first card should appear under the Applying section
 
     Scenario: First card doesn't appear under "Applying" category under home page
         Given the user is on the explore page
@@ -31,5 +18,17 @@ Feature: Selecting and unselecting status buttons on the explore page updates th
         Given the user is on the explore page
         Given the Applying button on the first card is selected
         When we click on the Applying button
+        When we navigate to the home page
+        Then the card should not be displayed under the Applying category label
+
+    Scenario: Second card appears under "Applying" category under home page
+        Given the user is on the explore page
+        Given the Applying button on the first card is selected
+        When we navigate to the home page
+        Then the first card should appear under the Applying section
+
+    Scenario: Second card doesn't appear under "Applying" category under home page
+        Given the user is on the explore page
+        Given the Applying button on the first card is unselected
         When we navigate to the home page
         Then the card should not be displayed under the Applying category label

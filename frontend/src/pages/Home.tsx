@@ -38,6 +38,7 @@ function Home() {
   if (loading) return <div>Loading...</div>;
 
   categoryDisplay = <CardList filteredCards={clubs}></CardList>
+  console.log(clubs);
 
 
   return (

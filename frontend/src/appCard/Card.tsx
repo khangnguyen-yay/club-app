@@ -31,6 +31,7 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
     setClicked((prev) => 
       {
         const labelSelected = !prev[label as keyof typeof prev];
+        const newState = { ...prev, [label]: !prev[label as keyof typeof prev] };
 
         if (labelSelected) {
           postStatus("1", "applying");
@@ -39,10 +40,13 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
           postStatus("1", "none");
         }
 
-        return  {...prev, [label] : !prev[label as keyof typeof prev]};
+        //mark that we'll need to update the page
+
+        return  newState;
+        //second part of struct overwrites current state
         
       }
-    ); //second part of struct overwrites current state
+    );
 
   }
 
