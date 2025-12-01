@@ -121,7 +121,6 @@ button.calendar-nav-button:hover {
   text-overflow: ellipsis;
   font-size: 0.75rem;
   max-height: 80px;   
-  padding-right: 4px;
   line-height: 1.1rem;
   padding: 0.1rem 0.35rem;
   border-radius: 999px;
