@@ -20,8 +20,8 @@ await jest.unstable_mockModule('../services/statusService.js', () => ({
   getUserClubsByStatus: jest.fn(),
   getAllUserClubsWithStatus: jest.fn(),
   getUserClubPreference: jest.fn(),
-  insertUserStatus: jest.fn(),
-  updateUserStatus: jest.fn()
+  addUserClubPreference: jest.fn(),
+  updateUserClubPreference: jest.fn()
 }));
 
 // Prevent real DB pool from connecting during tests
@@ -37,7 +37,7 @@ await jest.unstable_mockModule('../config/passport.js', () => ({
 }));
 
 const { default: app } = await import('../app.js');
-const { getUserClubsByStatus, getAllUserClubsWithStatus, getUserClubPreference, updateUserStatus } = await import('../services/statusService.js');
+const { getUserClubsByStatus, getAllUserClubsWithStatus, getUserClubPreference, updateUserClubPreference } = await import('../services/statusService.js');
 
 describe('Clubs and Auth Routes', () => {
     beforeEach(() => {
@@ -88,7 +88,7 @@ describe('Clubs and Auth Routes', () => {
       // Mock service to confirm correct parameters
       const mockResult = { userId: 11, clubId: 77, preference: 'applied' };
       getUserClubPreference.mockResolvedValue({ user_id: 11, club_id: 77, preference: 'considering' });
-      updateUserStatus.mockResolvedValue(mockResult);
+      updateUserClubPreference.mockResolvedValue(mockResult);
 
       const res = await request(app)
         .post('/api/user/statuses')
@@ -96,7 +96,7 @@ describe('Clubs and Auth Routes', () => {
         .expect(200);
 
       expect(getUserClubPreference).toHaveBeenCalledWith(11, 77);
-      expect(updateUserStatus).toHaveBeenCalledWith(11, 77, 'applied');
+      expect(updateUserClubPreference).toHaveBeenCalledWith(11, 77, 'applied');
       expect(res.body).toMatchObject({ message: 'Status updated', userId: 11, clubId: 77, preference: 'applied' });
     });
 
@@ -115,4 +115,8 @@ describe('Clubs and Auth Routes', () => {
       expect(getUserClubsByStatus).toHaveBeenCalledWith(42, 'considering');
       expect(res.body).toEqual(mockClubs);
     });
+});
+
+afterAll(() => {
+  jest.restoreAllMocks();
 });
