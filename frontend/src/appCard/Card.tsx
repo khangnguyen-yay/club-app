@@ -6,6 +6,7 @@ import instagramSymbol from './CardImages/instagram.svg'
 import websiteSymbol from './CardImages/website.svg'
 import { useState } from 'react'
 import { postStatus } from "../apiHelpers.ts"
+import { useEffect } from "react"
 
 type CardProps = {
   id : string
@@ -22,9 +23,9 @@ type CardProps = {
 export function Card({id, name, type, notes, website, instagram, filters, preference} : CardProps) {
 
   const [selected, setSelected] = useState({
-    considering: false,
+    considering: (preference == "consider"),
     applying: (preference === "applying"),
-    applied: false,
+    applied: (preference == "applied")
   });
 
   function handleClick(label : string) {
