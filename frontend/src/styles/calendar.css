@@ -77,10 +77,7 @@ button.calendar-nav-button:hover {
 }
 
 .calendar-cell {
-  min-height: 120px;            /* fixed height */
-  max-height: 120px;            /* uniform boxes */
   height: 120px;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
