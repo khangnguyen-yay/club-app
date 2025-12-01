@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUserClubStatus, addUserStatus } from '../controllers/statusController.js';
+import { getUserClubStatus, modifyUserClubStatus } from '../controllers/statusController.js';
 import ensureAuth from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
@@ -8,6 +8,6 @@ const router = express.Router();
 router.get('/user/clubs', ensureAuth, getUserClubStatus);
 
 // route for POST api/user/statuses
-router.post("/user/statuses", ensureAuth, addUserStatus);
+router.post("/user/statuses", ensureAuth, modifyUserClubStatus);
 
 export default router;
