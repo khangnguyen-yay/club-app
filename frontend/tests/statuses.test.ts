@@ -50,3 +50,25 @@ test('Selecting applied button adds club to applied category in backend', async 
     console.log(applyingClubs);
     expect(applyingClubs.some((club : Club) => club.clubID === clubIDToCheck)).toBe(true);
   });
+
+  test('Selecting consider button adds club to considering category in backend', async ({ page }) => {
+    // Go to explore page
+    await page.goto('http://localhost:5173/explore');
+
+    //Click applied button that is currently unselected
+    const considerButton = await page.locator('.considerButton').first();
+    await expect(considerButton).toHaveCSS('background-color', 'rgb(35, 35, 248)');
+    await considerButton.click();
+
+    const updatedConsiderButtons = page.locator('.statusButton.considerButtonClicked');
+
+    const updatedConsiderButton = await updatedConsiderButtons.first();
+    await expect(updatedConsiderButton).toHaveCSS('background-color', 'rgb(18, 18, 165)');
+    // Check that it is now in backend
+    //const appliedClubs = await fetchClubsByStatus("applied"); this didn't work
+    const res = await page.request.get('http://localhost:3000/api/user/clubs?status=considering');
+    const considerClubs : Club[] = await res.json();
+    const clubIDToCheck = 1;
+    console.log(considerClubs);
+    expect(considerClubs.some((club : Club) => club.clubID === clubIDToCheck)).toBe(true);
+  });
