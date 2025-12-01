@@ -30,7 +30,7 @@ export async function modifyUserClubStatus(req, res) {
   //Validation
   if (!userId) return res.status(401).json({ error: 'Unauthorized' });
   if (!clubId) return res.status(400).json({ error: 'Missing clubId in request body' });
-  if(!preference) return res.status(400).json({ error: 'Missing preference in request body' });
+  if (!preference) return res.status(400).json({ error: 'Missing preference in request body' });
  
   try {
     // If the user already has a preference for this club
