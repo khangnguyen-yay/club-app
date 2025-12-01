@@ -24,7 +24,7 @@ export const getUserClubStatus = async (req, res) => {
 
 export async function modifyUserClubStatus(req, res) {
   // User object is stored in req.user after user deserialization by Passport
-  const userId = req.user?.id;
+  const userId = req.user?.id || req.user?.google_id;
   const { clubId, preference } = req.body;
 
   //Validation
