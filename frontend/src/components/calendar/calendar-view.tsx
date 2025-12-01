@@ -1,4 +1,4 @@
-// src/pages/calendar-view.tsx  (or wherever you keep it)
+// src/components/calendar/calendar-view.tsx
 import { useEffect, useState } from "react";
 import DeadlineCalendar from "./deadlineCalendar";
 import type { ClubDeadline } from "./calendarUtils";
