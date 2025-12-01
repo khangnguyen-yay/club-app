@@ -15,24 +15,25 @@ type CardProps = {
   website? : string
   instagram? : string
   filters? : string[]
+  preference : string
 }
 
 //later: add assertions about width/contents of each parameter before displaying it (ex. isn't too long, etc)
-export function Card({id, name, type, notes, website, instagram, filters} : CardProps) {
+export function Card({id, name, type, notes, website, instagram, filters, preference} : CardProps) {
 
-  const [clicked, setClicked] = useState({
+  const [selected, setSelected] = useState({
     considering: false,
-    applying: false,
+    applying: (preference === "applying"),
     applied: false,
   });
 
   function handleClick(label : string) {
     //setClicked lets you pass in a function that also returns a struct instead of a struct
     //React will pass in the current state
-    setClicked((prev) => 
+    setSelected((prev) => 
       {
         const labelSelected = !prev[label as keyof typeof prev];
-        const newState = { ...prev, [label]: !prev[label as keyof typeof prev] };
+        const newState = { ...prev, [label]: labelSelected };
 
         if (labelSelected) {
           postStatus(id, label);
@@ -52,13 +53,13 @@ export function Card({id, name, type, notes, website, instagram, filters} : Card
   }
 
   const classNameConsider = ["statusButton", 
-  clicked.considering ? "considerButtonClicked" : "considerButton"].join(' ')
+  selected.considering ? "considerButtonClicked" : "considerButton"].join(' ')
 
   const classNameApplying = ["statusButton", 
-    clicked.applying ? "applyingButtonClicked" : "applyingButton"].join(' ');
+    selected.applying ? "applyingButtonClicked" : "applyingButton"].join(' ');
 
   const classNameApplied = ["statusButton", 
-  clicked.applied ? "appliedButtonClicked" : "appliedButton"].join(' ')
+  selected.applied ? "appliedButtonClicked" : "appliedButton"].join(' ')
 
   const instagramHandle = extractInstagramHandle(instagram || '')
   return (
