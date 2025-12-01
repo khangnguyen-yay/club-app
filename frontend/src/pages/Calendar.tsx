@@ -12,7 +12,7 @@ const Calendar = () => {
       </p>
 
       <CalendarView />
-    </div>  
+    </div>
   );
 }
 
