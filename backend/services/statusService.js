@@ -45,7 +45,7 @@ export async function addUserClubPreference(userId, clubId, preference = "none")
   );
   return { userId, clubId, preference };
 }
-// ---set a user's preference for a club with a new status---
+// ---set a user's preference for a club with a new preference---
 export async function updateUserClubPreference(userId, clubId, preference) {
   await db.query(
     "UPDATE club_preferences SET preference = ? WHERE user_id = ? AND club_id = ?",
