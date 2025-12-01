@@ -14,13 +14,15 @@ type CardProps = {
   instagram? : string
   filters? : string[]
   preference : string
+  test : string
 }
 
 //later: add assertions about width/contents of each parameter before displaying it (ex. isn't too long, etc)
-export function Card({id, name, type, notes, website, instagram, filters, preference} : CardProps) {
+export function Card({id, name, type, notes, website, instagram, filters, preference, test} : CardProps) {
 
+  console.log(test);
   const [selected, setSelected] = useState({
-    considering: (preference == "consider"),
+    considering: (preference == "considering"),
     applying: (preference === "applying"),
     applied: (preference == "applied")
   });
@@ -28,11 +30,12 @@ export function Card({id, name, type, notes, website, instagram, filters, prefer
   function handleClick(label : string) {
     //setClicked lets you pass in a function that also returns a struct instead of a struct
     //React will pass in the current state
+    console.log("Preference: ")
     console.log(preference)
     setSelected((prev) => 
       {
         const labelSelected = !prev[label as keyof typeof prev];
-        const newState = { ...prev, [label]: labelSelected };
+        const newState = { ...prev, [label]: labelSelected }; //second part of struct overwrites current state
 
         if (labelSelected) {
           postStatus(id, label);
@@ -42,9 +45,9 @@ export function Card({id, name, type, notes, website, instagram, filters, prefer
         }
 
         //mark that we'll need to update the page
+        
 
         return  newState;
-        //second part of struct overwrites current state
         
       }
     );
