@@ -10,11 +10,9 @@ test('Selecting applied button adds club to applied category in backend', async 
     await expect(appliedButton).toHaveCSS('background-color', 'rgb(18, 176, 18)');
 
     // Check that it is now in backend
-    const appliedClubs = await fetchClubsByStatus("applied");
-    await expect(appliedClubs.toString()).toEqual("hi");
-    if (typeof appliedClubs == "string") {
-      return;
-    }
-    console.log("HI")
-    console.log(appliedClubs.map(c => c.name));
+    //const appliedClubs = await fetchClubsByStatus("applied"); this didn't work
+    const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applied');
+    const appliedClubs = await res.json();
+    console.log(appliedClubs);
+    await expect(appliedClubs.length).toEqual(1);
   });
