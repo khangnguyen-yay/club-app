@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { monthNames, weekDays } from "./constants";
 import type { DeadlineCalendarProps } from "./calendarUtils";
 import groupByDate from "./calendarUtils";
-import {FiChevronLeft, FiChevronRight} from 'react-icons/fi';   
+import {FiChevronLeft, FiChevronRight} from 'react-icons/fi';
 
 const DeadlineCalendar: React.FC<DeadlineCalendarProps> = ({ deadlines }) => {
   const grouped = groupByDate(deadlines);
