@@ -8,6 +8,7 @@ import session from 'express-session';
 import authRoutes from './routes/authRoutes.js';
 import './config/passport.js';
 import statusRoutes from './routes/statusRoutes.js';
+import calendarRoutes from './routes/calendarRoutes.js';
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.use(passport.session());
 app.use('/api', clubRoutes);
 app.use('/auth', authRoutes);
 app.use('/api', statusRoutes);
+app.use('/api/calendar', calendarRoutes);
 
 // app.get('/protected', (req, res) => {
 //   if (req.isAuthenticated && req.isAuthenticated()) {
