@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react"
-import './Home.css';
+import '../styles/Home.css';
 import ClubList from '../appCard/CardList.tsx';
 import type { Club } from '../appCard/CardList.tsx';
 import TestStatus from "../components/testStatus";
-import { fetchClubsByStatus } from "../apiHelpers.ts";"../apiHelpers.ts";
+import { fetchClubsByStatus } from "../../utils/apiHelpers.ts";
 
 
 function Home() {

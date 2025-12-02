@@ -1,9 +1,9 @@
 import "./Card.css"
-import instagramSymbol from './CardImages/instagram.svg'
-import websiteSymbol from './CardImages/website.svg'
-import { useState } from 'react'
-import { postStatus } from "../apiHelpers.ts"
-import { useEffect } from "react"
+import instagramSymbol from './CardImages/instagram.svg';
+import websiteSymbol from './CardImages/website.svg';
+import { useState } from 'react';
+import { postStatus } from "../../utils/apiHelpers.ts";
+
 
 type CardProps = {
   id : string

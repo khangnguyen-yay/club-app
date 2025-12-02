@@ -4,7 +4,6 @@ import ClubList from "../appCard/CardList";
 import CategoryFilter from "../components/filter-view/filter-view";
 import "../styles/explore.css";
 import SearchBar from "../components/search-bar";
-import { fetchClubsWithStatus } from "../apiHelpers";
 
 const ExplorePage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -13,27 +12,6 @@ const ExplorePage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchValue, setSearchValue] = useState<string>("");
 
-
-  useEffect(() => {
-    const loadClubs = async () => {
-      try {
-        const res = await fetchClubsWithStatus();
-        if (typeof res === "string") {
-          return;
-        }
-        setClubs(res);
-      } catch (err) {
-        setError((err as Error).message);
-      } finally {
-        setLoading(false);
-      }
-    };
-  
-    loadClubs();
-  }, []);
-
-  
-/*
   useEffect(() => {
     // Fetch data from backend
     fetch("http://localhost:3000/api/clubs")
@@ -43,10 +21,6 @@ const ExplorePage: React.FC = () => {
     })
     .then((data: Club[]) => {
     setClubs(data);
-    console.log("ExplorePage clubs:", data);
-    data.forEach((club, index) => {
-      console.log(`Club ${index + 1}:`, club);
-    });
     setLoading(false);
     })
     .catch((err: Error) => {
@@ -54,10 +28,10 @@ const ExplorePage: React.FC = () => {
     setLoading(false);
     });
   }, []);
-   
+      
   if (loading) return <p>Loading clubs...</p>;
   if (error) return <p>Error: {error}</p>;
-*/
+
   const categories: string[] = ["All", ...Array.from(new Set(clubs.map(c => c.type)))];
 
   const filteredClubs: Club[] =
