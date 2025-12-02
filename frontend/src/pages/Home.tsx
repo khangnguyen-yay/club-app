@@ -25,7 +25,7 @@ function Home() {
       try {
         let res = await fetchClubsByStatus("applying");
         const applyingData = await res;
-        console.log(applyingData);
+        //console.log(applyingData);
         if (typeof applyingData == "string") {
           return;
         }

@@ -17,6 +17,7 @@ export const getUserClubsByStatus = async (userId, status) => {
     const [rows] = await db.query(query, [userId, status]);
     return rows;
 };
+
 // ---returns all clubs for a user, regardless of status---
 export const getAllUserClubsWithStatus = async (userId) => {
     const query = `

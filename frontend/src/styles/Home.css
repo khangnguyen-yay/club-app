@@ -22,3 +22,8 @@
     background-color: #000000;
     border-radius: 4px;
 }
+
+.appliedSection {
+    --section-color: orange;
+}
+
