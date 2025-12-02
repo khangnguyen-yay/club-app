@@ -54,10 +54,10 @@ const ExplorePage: React.FC = () => {
     setLoading(false);
     });
   }, []);
-   */ 
+   
   if (loading) return <p>Loading clubs...</p>;
   if (error) return <p>Error: {error}</p>;
-
+*/
   const categories: string[] = ["All", ...Array.from(new Set(clubs.map(c => c.type)))];
 
   const filteredClubs: Club[] =
