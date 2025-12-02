@@ -9,7 +9,7 @@ used in function names for POST requests.
 // ---returns all clubs for a user that match a specific status---
 export const getUserClubsByStatus = async (userId, status) => {
     const query = `
-        SELECT c.id AS clubID, c.club_name, c.type, cp.preference
+        SELECT c.*
         FROM clubs c
         JOIN club_preferences cp ON c.id = cp.club_id
         WHERE cp.user_id = ? AND cp.preference = ?
