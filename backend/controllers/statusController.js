@@ -51,3 +51,19 @@ export async function modifyUserClubStatus(req, res) {
   }
 }
 
+export const getAllUserClubsWithStatusController = async (req, res) => {
+  try {
+    const user = req.user;
+    if (!user) return res.status(401).json({ error: "Unauthorized" });
+
+    const clubs = await getAllUserClubsWithStatus(
+      user.id || user.google_id || user.id
+    );
+
+    res.json(clubs);
+  } catch (err) {
+    console.error("clubsWithStatus error:", err);
+    res.status(500).json({ error: err.message });
+  }
+};
+

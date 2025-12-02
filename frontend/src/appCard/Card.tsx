@@ -1,22 +1,68 @@
 import "./Card.css"
-import instagramSymbol from './CardImages/instagram.svg'
-import websiteSymbol from './CardImages/website.svg'
+import instagramSymbol from './CardImages/instagram.svg';
+import websiteSymbol from './CardImages/website.svg';
+import { useState } from 'react';
+import { postStatus } from "../../utils/apiHelpers.ts";
+
 
 type CardProps = {
+  id : string
   name : string
   type : string
   notes: string
   website? : string
   instagram? : string
   filters? : string[]
+  preference : string
+  test : string
 }
 
-//Card component displaying club stuff
-//(no need to implement statuses yet just UI
-//place holder buttons for the different statuses)
-
 //later: add assertions about width/contents of each parameter before displaying it (ex. isn't too long, etc)
-export function Card({name, type, notes, website, instagram, filters} : CardProps) {
+export function Card({id, name, type, notes, website, instagram, filters, preference, test} : CardProps) {
+
+  console.log("ID")
+  console.log(id)
+  console.log("name")
+  console.log(name)
+  console.log("preference")
+  console.log(preference)
+  console.log(test);
+  const [selected, setSelected] = useState({
+    considering: (preference === "considering"),
+    applying: (preference === "applying"),
+    applied: (preference === "applied")
+  });
+
+  function handleClick(label : string) {
+    //setClicked lets you pass in a function that also returns a struct instead of a struct
+    //React will pass in the current state
+    console.log("Preference: ")
+    console.log(preference)
+    let labelSelected = !selected[label as keyof typeof selected];
+    if (labelSelected) {
+      postStatus(id, label);
+    }
+    else {
+      postStatus(id, "none");
+    }
+
+    setSelected((prev) => 
+      {
+        const newState = { ...prev, [label]: labelSelected }; //second part of struct overwrites current state
+        return  newState;
+      }
+    );
+  }
+
+  const classNameConsider = ["statusButton", 
+  selected.considering ? "considerButtonClicked" : "considerButton"].join(' ')
+
+  const classNameApplying = ["statusButton", 
+    selected.applying ? "applyingButtonClicked" : "applyingButton"].join(' ');
+
+  const classNameApplied = ["statusButton", 
+  selected.applied ? "appliedButtonClicked" : "appliedButton"].join(' ')
+
   const instagramHandle = extractInstagramHandle(instagram || '')
   return (
       <div className="club-card" data-testid="club-card">
@@ -45,9 +91,9 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
 
         <div className="addToTracker">Add to tracker:</div>
         <div className="buttonBox">
-          <button className="statusButton considerButton">Consider</button>
-          <button className="statusButton applyingButton">Applying</button>
-          <button className="statusButton appliedButton">Applied</button>
+          <button className={classNameConsider} onClick={() => handleClick("considering")}>Consider</button>
+          <button className={classNameApplying} onClick={() => handleClick("applying")}>Applying</button>
+          <button className={classNameApplied} onClick={() => handleClick("applied")}>Applied</button>
         </div>
       </div>
     )
@@ -64,5 +110,4 @@ export function Card({name, type, notes, website, instagram, filters} : CardProp
     const handle : (string | null) = match == null ? null : "@" + match[2]
     console.log(handle)
     return handle
-
   }

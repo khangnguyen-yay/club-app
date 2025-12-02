@@ -13,6 +13,8 @@ const TestStatus: React.FC = () => {
   const [clubs, setClubs] = useState<ClubRow[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  //setListStatus("applied");
+
   async function postStatus() {
     setLoading(true);
     setResult('');
