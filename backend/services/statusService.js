@@ -21,7 +21,7 @@ export const getUserClubsByStatus = async (userId, status) => {
 export const getAllUserClubsWithStatus = async (userId) => {
     const query = `
         SELECT 
-    c.id AS club_id,
+    c.id,
     c.club_name,
     c.type,
     c.app_date,
