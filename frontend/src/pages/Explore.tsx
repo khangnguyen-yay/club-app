@@ -52,6 +52,8 @@ const ExplorePage: React.FC = () => {
     <div className="explore-container"> 
       <h1 className="heading">Explore Clubs</h1>
 
+      <p className="filter-heading">Filters</p>
+      
       <div className="filters-row">
         <SearchBar query={searchValue} onSearch={setSearchValue} placeholderText="Search clubs..." />
       
