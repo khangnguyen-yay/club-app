@@ -20,11 +20,17 @@ type CardProps = {
 //later: add assertions about width/contents of each parameter before displaying it (ex. isn't too long, etc)
 export function Card({id, name, type, notes, website, instagram, filters, preference, test} : CardProps) {
 
+  console.log("ID")
+  console.log(id)
+  console.log("name")
+  console.log(name)
+  console.log("preference")
+  console.log(preference)
   console.log(test);
   const [selected, setSelected] = useState({
-    considering: (preference == "considering"),
+    considering: (preference === "considering"),
     applying: (preference === "applying"),
-    applied: (preference == "applied")
+    applied: (preference === "applied")
   });
 
   function handleClick(label : string) {

@@ -1,10 +1,17 @@
-import React from "react";
+import CalendarView from "../components/calendar/calendar-view";
 
-function Calendar() {
+
+const Calendar = () => {
+
   return (
-    <div>
-      <h1>Calendar Page</h1>
-      <p>This page will display your events and schedule.</p>
+    <div className="calendar-page">
+      <h1 className="calendar-title">Calendar</h1>
+      <p>
+        Upcoming application deadlines for clubs you're considering or
+        applying to.
+      </p>
+
+      <CalendarView />
     </div>
   );
 }

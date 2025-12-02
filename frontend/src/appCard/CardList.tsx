@@ -37,6 +37,4 @@ export default function ClubList({filteredCards}: CardListProps) {
         ))}
       </div>
     )
-    
-
 }

@@ -1,0 +1,141 @@
+.calendar-grid-container {
+  margin-top: 1.5rem;
+  max-width: 1100px;
+  margin: 2rem auto;
+  width: 100%;
+
+
+  border: 2px solid #e5e7eb;       
+  border-radius: 16px;             
+  padding: 1.5rem;                 
+  background: #ffffff;             
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+
+.calendar-grid-header {
+  display: flex;
+  align-items: center;        
+  justify-content: center;    
+  gap: 1rem;                  
+  margin: 1.5rem 0 1rem 0;
+  margin-bottom: 1.5rem;
+}
+
+button.calendar-nav-button {
+  /* reset global button look */
+  all: unset;
+
+  /* now define what we actually want */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+
+  background: #e5e7eb;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+button.calendar-nav-button:hover {
+  background: #d1d5db;
+}
+
+
+.calendar-month-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.calendar-nav-button {
+  border: none;
+  background: #e5e7eb;
+  border-radius: 999px;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 equal columns for days of the week */
+  gap: 0.25rem;
+}
+
+.calendar-weekday {
+  text-align: center;
+  font-weight: 600;
+  padding: 0.25rem 0;
+}
+
+.calendar-cell {
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: hidden;             
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fafafa;
+  padding: 0.25rem 0.35rem;
+}
+
+
+.calendar-cell.empty {
+  background: transparent;
+  border: none;
+}
+
+.calendar-cell.today {
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 1px #1d4ed8;
+}
+
+.calendar-cell.has-deadlines {
+  background: #f9fafb;
+}
+
+.calendar-date-number {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.calendar-events {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.calendar-event {
+  white-space: normal;          /* allow wrapping */
+  word-wrap: break-word;        /* break club names */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.75rem;
+  max-height: 80px;   
+  line-height: 1.1rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  margin-bottom: 0.2rem;
+}
+
+/* Different colors for different preferences */
+.calendar-event.event-considering {
+  background: #fef3c7;
+}
+
+.calendar-event.event-applying {
+  background: #dcfce7;
+}
+
+.calendar-event.event-applied {
+  background: #e0f2fe;
+}

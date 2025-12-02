@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react"
 import './Home.css';
-import CardList from '../appCard/CardList.tsx';
+import ClubList from '../appCard/CardList.tsx';
 import type { Club } from '../appCard/CardList.tsx';
 import TestStatus from "../components/testStatus";
 import { fetchClubsByStatus } from "../apiHelpers.ts";"../apiHelpers.ts";
@@ -54,10 +54,9 @@ function Home() {
 
   if (loading) return <div>Loading...</div>;
 
-  applyingDisplay = <CardList filteredCards={applyingClubs}></CardList>
-  appliedDisplay = <CardList filteredCards={appliedClubs}></CardList>
-  considerDisplay = <CardList filteredCards={considerClubs}></CardList>
-
+  applyingDisplay = <ClubList filteredCards={applyingClubs}></ClubList>
+  appliedDisplay = <ClubList filteredCards={appliedClubs}></ClubList>
+  considerDisplay = <ClubList filteredCards={considerClubs}></ClubList>
 
   return (
     <div>

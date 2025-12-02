@@ -38,9 +38,10 @@
     }
   }
 
+  /*
   export async function fetchClubsWithStatus() {
     try {
-      const res = await fetch(`http://localhost:3000/api/user/clubs` , {
+      const res = await fetch(`http://localhost:3000/api/clubsWithStatus` , {
         method: 'GET',
         credentials: 'include'
       });
@@ -55,3 +56,24 @@
       return `Network error: ${msg}`;
   }
   }
+  */
+
+
+  export async function fetchClubsWithStatus() {
+    try {
+      const res = await fetch(`http://localhost:3000/api/user/clubsWithStatus` , {
+        method: 'GET',
+        credentials: 'include'
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        return `Error ${res.status}: ${data?.error || 'Request failed'}`;
+      } else {
+        return Array.isArray(data) ? data : [];
+      }
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      return `Network error: ${msg}`;
+  }
+  }
+  

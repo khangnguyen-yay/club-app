@@ -13,6 +13,27 @@ const ExplorePage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchValue, setSearchValue] = useState<string>("");
 
+
+  useEffect(() => {
+    const loadClubs = async () => {
+      try {
+        const res = await fetchClubsWithStatus();
+        if (typeof res === "string") {
+          return;
+        }
+        setClubs(res);
+      } catch (err) {
+        setError((err as Error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    loadClubs();
+  }, []);
+
+  
+/*
   useEffect(() => {
     // Fetch data from backend
     fetch("http://localhost:3000/api/clubs")
@@ -33,7 +54,7 @@ const ExplorePage: React.FC = () => {
     setLoading(false);
     });
   }, []);
-      
+   */ 
   if (loading) return <p>Loading clubs...</p>;
   if (error) return <p>Error: {error}</p>;
 
