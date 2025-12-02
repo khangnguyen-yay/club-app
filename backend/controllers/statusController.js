@@ -53,7 +53,9 @@ export async function modifyUserClubStatus(req, res) {
 
 export const getAllUserClubsWithStatusController = async (req, res) => {
   try {
+    // Require authenticated user (middleware should set req.user)
     const user = req.user;
+    console.log('statusController.getAllUserClubsWithStatus -> req.user =', user);
     if (!user) return res.status(401).json({ error: "Unauthorized" });
 
     const clubs = await getAllUserClubsWithStatus(
