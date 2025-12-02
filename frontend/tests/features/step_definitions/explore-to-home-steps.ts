@@ -121,3 +121,4 @@ Then('the card should not be displayed under the Applying category label', async
         expect(homeClubTitle.trim()).not.toBe(this.exploreClubTitle.trim());
     }
 })
+

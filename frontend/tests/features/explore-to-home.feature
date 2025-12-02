@@ -33,7 +33,7 @@ Feature: Selecting and unselecting status buttons on the explore page updates th
         When we navigate to the home page
         Then the card should not be displayed under the Applying category label
 
-     Scenario: Status is preserved when navigating from explore to home
+     Scenario: Status is preserved for Applying when navigating from explore to home
         Given the user is on the explore page
         Given the Applying button is light orange
         When we click on the Applying button
