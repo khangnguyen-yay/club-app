@@ -8,11 +8,11 @@ import Calendar from "./pages/Calendar";
 import LoginPage from "./pages/Login";
 import Header from "./components/header";
 
-import HomeLogo from './pages/NavigationUI/NavigationImages/home.svg';
-import ExploreLogo from './pages/NavigationUI/NavigationImages/explore.svg';
-import CalendarLogo from './pages/NavigationUI/NavigationImages/calendar.svg';
+import HomeLogo from './styles/navigation-ui/home.svg';
+import ExploreLogo from './styles/navigation-ui/explore.svg';
+import CalendarLogo from './styles/navigation-ui/calendar.svg';
 
-import './pages/NavigationUI/Navigation.css';
+import './styles/navigation-ui/Navigation.css';
 
 const AppLayout = () => {
   const location = useLocation();
