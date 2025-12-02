@@ -1,0 +1,63 @@
+.calendar-legend-container {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  width: fit-content;
+  margin-bottom: 1rem;
+  margin-left: 3.5rem;
+}
+
+
+/* Title */
+.legend-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+
+/* Items Wrapper */
+.legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+/* Each legend entry */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+/* The colored box */
+.legend-color-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+
+/* reuse your event classes */
+.legend-color-box.event-considering {
+  background: #fef3c7;
+}
+
+
+.legend-color-box.event-applying {
+  background: #dcfce7;
+}
+
+
+.legend-color-box.event-applied {
+  background: #e0f2fe;
+}
+
+
+.legend-label {
+  font-size: 0.9rem;
+  color: #4b5563;
+}

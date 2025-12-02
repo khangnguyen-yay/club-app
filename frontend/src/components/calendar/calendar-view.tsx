@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import DeadlineCalendar from "./deadlineCalendar";
 import type { ClubDeadline } from "./calendarUtils";
 import "../../styles/calendar.css";
+import CalendarLegend from "./calendar-legend";
 
 const CalendarView: React.FC = () => {
   const [deadlines, setDeadlines] = useState<ClubDeadline[]>([]);
@@ -43,7 +44,12 @@ const CalendarView: React.FC = () => {
     return <p>You don't have any upcoming deadlines yet.</p>;
   }
 
-  return <DeadlineCalendar deadlines={deadlines} />;
+  return  (
+    <>
+      <CalendarLegend />
+      <DeadlineCalendar deadlines={deadlines} />
+    </>
+  );
 };
 
 export default CalendarView;

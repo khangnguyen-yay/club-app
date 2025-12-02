@@ -1,4 +1,3 @@
-import React from "react";
 import TestStatus from "../components/testStatus";
 function Home() {
   return (
