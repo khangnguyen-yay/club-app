@@ -69,6 +69,12 @@ docker compose up --build
 cd backend
 npm run dev
 ```
+## Tests
+```
+cd frontend
+npx ts-node --esm utils/saveGoogleSession.ts
+npx playwright test
+npm run cucumber
 
 ## ✅ Your local environment should now be running!
 
