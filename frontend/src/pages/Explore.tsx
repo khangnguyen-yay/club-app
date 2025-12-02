@@ -4,6 +4,7 @@ import ClubList from "../appCard/CardList";
 import CategoryFilter from "../components/filter-view/filter-view";
 import "../styles/explore.css";
 import SearchBar from "../components/search-bar";
+import { fetchClubsWithStatus } from "../../utils/apiHelpers";
 
 const ExplorePage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -12,21 +13,23 @@ const ExplorePage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchValue, setSearchValue] = useState<string>("");
 
+
   useEffect(() => {
-    // Fetch data from backend
-    fetch("http://localhost:3000/api/clubs")
-    .then((res) => {
-    if (!res.ok) throw new Error("Failed to fetch clubs");
-    return res.json();
-    })
-    .then((data: Club[]) => {
-    setClubs(data);
-    setLoading(false);
-    })
-    .catch((err: Error) => {
-    setError(err.message);
-    setLoading(false);
-    });
+    const loadClubs = async () => {
+      try {
+        const res = await fetchClubsWithStatus();
+        if (typeof res === "string") {
+          return;
+        }
+        setClubs(res);
+      } catch (err) {
+        setError((err as Error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    loadClubs();
   }, []);
       
   if (loading) return <p>Loading clubs...</p>;
