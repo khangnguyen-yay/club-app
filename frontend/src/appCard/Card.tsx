@@ -38,26 +38,20 @@ export function Card({id, name, type, notes, website, instagram, filters, prefer
     //React will pass in the current state
     console.log("Preference: ")
     console.log(preference)
+    let labelSelected = !selected[label as keyof typeof selected];
+    if (labelSelected) {
+      postStatus(id, label);
+    }
+    else {
+      postStatus(id, "none");
+    }
+
     setSelected((prev) => 
       {
-        const labelSelected = !prev[label as keyof typeof prev];
         const newState = { ...prev, [label]: labelSelected }; //second part of struct overwrites current state
-
-        if (labelSelected) {
-          postStatus(id, label);
-        }
-        else {
-          postStatus(id, "none");
-        }
-
-        //mark that we'll need to update the page
-        
-
         return  newState;
-        
       }
     );
-
   }
 
   const classNameConsider = ["statusButton", 
