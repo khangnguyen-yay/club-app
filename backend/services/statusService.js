@@ -20,7 +20,7 @@ export const getUserClubsByStatus = async (userId, status) => {
 // ---returns all clubs for a user, regardless of status---
 export const getAllUserClubsWithStatus = async (userId) => {
     const query = `
-        SELECT c.id AS clubID, c.club_name, c.type, cp.preference
+        SELECT *
         FROM clubs c
         JOIN club_preferences cp ON c.id = cp.club_id
         WHERE cp.user_id = ?
