@@ -11,20 +11,37 @@ function Home() {
 
   let categoryCount : number = 0;
 
-  let categoryDisplay : React.JSX.Element | string = "No clubs in this category yet."
+  let applyingDisplay : React.JSX.Element | string = "No clubs in this category yet."
+  let appliedDisplay : React.JSX.Element | string = "No clubs in this category yet."
+  let considerDisplay : React.JSX.Element | string = "No clubs in this category yet."
 
-  const [clubs, setClubs] = useState<Club[]>([]);
+  const [applyingClubs, setApplyingClubs] = useState<Club[]>([]);
+  const [appliedClubs, setAppliedClubs] = useState<Club[]>([]);
+  const [considerClubs, setConsiderClubs] = useState<Club[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchClubs() {
       try {
-        const res = await fetchClubsByStatus("applying");
-        const data = await res;
-        if (typeof data == "string") {
+        let res = await fetchClubsByStatus("applying");
+        const applyingData = await res;
+        console.log(applyingData);
+        if (typeof applyingData == "string") {
           return;
         }
-        setClubs(data);
+        setApplyingClubs(applyingData);
+        res = await fetchClubsByStatus("applied");
+        const appliedData = await res;
+        if (typeof appliedData == "string") {
+          return;
+        }
+        setAppliedClubs(appliedData);
+        res = await fetchClubsByStatus("considering");
+        const considerData = await res;
+        if (typeof considerData == "string") {
+          return;
+        }
+        setConsiderClubs(considerData);
       } catch (err) {
         console.error(err);
       } finally {
@@ -37,8 +54,9 @@ function Home() {
 
   if (loading) return <div>Loading...</div>;
 
-  categoryDisplay = <CardList filteredCards={clubs}></CardList>
-  console.log(clubs);
+  applyingDisplay = <CardList filteredCards={applyingClubs}></CardList>
+  appliedDisplay = <CardList filteredCards={appliedClubs}></CardList>
+  considerDisplay = <CardList filteredCards={considerClubs}></CardList>
 
 
   return (
@@ -51,7 +69,7 @@ function Home() {
           <h2>Applied</h2>
           <span className="countBox">{categoryCount}</span>
         </div>
-        <h3>{categoryDisplay}</h3>
+        <h3>{appliedDisplay}</h3>
       </div>
 
       <div className="applyingSection">
@@ -60,7 +78,7 @@ function Home() {
           <h2>Applying</h2>
           <span className="countBox">{categoryCount}</span>
         </div>
-        <h3>{categoryDisplay}</h3>
+        <h3>{applyingDisplay}</h3>
       </div>
       <div className="considerSection">
         <div className="categoryBlock">
@@ -68,7 +86,7 @@ function Home() {
           <h2>Considering</h2>
           <span className="countBox">{categoryCount}</span>
         </div>
-        <h3>{categoryDisplay}</h3>
+        <h3>{considerDisplay}</h3>
       </div>
 
       <TestStatus />

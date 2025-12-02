@@ -21,6 +21,8 @@ export interface Club {
   ig?: string;
   website?: string;
   notes: string;
+  preference: string;
+  test : string;
 }
 
 interface CardListProps {
@@ -31,7 +33,7 @@ export default function ClubList({filteredCards}: CardListProps) {
     return (
       <div className="cardGrid">
         {filteredCards.map((club) => (
-                <Card id={club.id} name={club.club_name} type={club.type} notes={club.notes} website={club.website} instagram={club.ig}></Card>
+                <Card id={club.id} name={club.club_name} type={club.type} notes={club.notes} website={club.website} instagram={club.ig} preference={club.preference} test={club.test}></Card>
         ))}
       </div>
     )

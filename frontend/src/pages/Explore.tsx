@@ -4,6 +4,7 @@ import ClubList from "../appCard/CardList";
 import CategoryFilter from "../components/filter-view/filter-view";
 import "../styles/explore.css";
 import SearchBar from "../components/search-bar";
+import { fetchClubsWithStatus } from "../apiHelpers";
 
 const ExplorePage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -21,6 +22,10 @@ const ExplorePage: React.FC = () => {
     })
     .then((data: Club[]) => {
     setClubs(data);
+    console.log("ExplorePage clubs:", data);
+    data.forEach((club, index) => {
+      console.log(`Club ${index + 1}:`, club);
+    });
     setLoading(false);
     })
     .catch((err: Error) => {

@@ -3,6 +3,7 @@ import instagramSymbol from './CardImages/instagram.svg'
 import websiteSymbol from './CardImages/website.svg'
 import { useState } from 'react'
 import { postStatus } from "../apiHelpers.ts"
+import { useEffect } from "react"
 
 type CardProps = {
   id : string
@@ -12,24 +13,29 @@ type CardProps = {
   website? : string
   instagram? : string
   filters? : string[]
+  preference : string
+  test : string
 }
 
 //later: add assertions about width/contents of each parameter before displaying it (ex. isn't too long, etc)
-export function Card({id, name, type, notes, website, instagram, filters} : CardProps) {
+export function Card({id, name, type, notes, website, instagram, filters, preference, test} : CardProps) {
 
-  const [clicked, setClicked] = useState({
-    considering: false,
-    applying: false,
-    applied: false,
+  console.log(test);
+  const [selected, setSelected] = useState({
+    considering: (preference == "considering"),
+    applying: (preference === "applying"),
+    applied: (preference == "applied")
   });
 
   function handleClick(label : string) {
     //setClicked lets you pass in a function that also returns a struct instead of a struct
     //React will pass in the current state
-    setClicked((prev) => 
+    console.log("Preference: ")
+    console.log(preference)
+    setSelected((prev) => 
       {
         const labelSelected = !prev[label as keyof typeof prev];
-        const newState = { ...prev, [label]: !prev[label as keyof typeof prev] };
+        const newState = { ...prev, [label]: labelSelected }; //second part of struct overwrites current state
 
         if (labelSelected) {
           postStatus(id, label);
@@ -39,9 +45,9 @@ export function Card({id, name, type, notes, website, instagram, filters} : Card
         }
 
         //mark that we'll need to update the page
+        
 
         return  newState;
-        //second part of struct overwrites current state
         
       }
     );
@@ -49,13 +55,13 @@ export function Card({id, name, type, notes, website, instagram, filters} : Card
   }
 
   const classNameConsider = ["statusButton", 
-  clicked.considering ? "considerButtonClicked" : "considerButton"].join(' ')
+  selected.considering ? "considerButtonClicked" : "considerButton"].join(' ')
 
   const classNameApplying = ["statusButton", 
-    clicked.applying ? "applyingButtonClicked" : "applyingButton"].join(' ');
+    selected.applying ? "applyingButtonClicked" : "applyingButton"].join(' ');
 
   const classNameApplied = ["statusButton", 
-  clicked.applied ? "appliedButtonClicked" : "appliedButton"].join(' ')
+  selected.applied ? "appliedButtonClicked" : "appliedButton"].join(' ')
 
   const instagramHandle = extractInstagramHandle(instagram || '')
   return (
