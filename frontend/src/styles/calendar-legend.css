@@ -23,7 +23,7 @@
 }
 
 
-/* Items Wrapper */
+/* Items */
 .legend-items {
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@
 }
 
 
-/* reuse your event classes */
+/* reusing colours from calendar.css */
 .legend-color-box.event-considering {
   background: #fef3c7;
 }

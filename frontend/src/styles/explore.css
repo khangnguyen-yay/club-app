@@ -1,4 +1,4 @@
-/* ===== EXPLORE PAGE WRAPPER ===== */
+/* Page container */
 
 .explore-container {
   max-width: 1100px;
@@ -7,7 +7,7 @@
 }
 
 
-/* ===== HEADING ===== */
+/* Explore Heading */
 
 .heading {
   margin: 0 0 1.4rem 0;
@@ -23,15 +23,15 @@
 }
 
 
-/* ===== FILTER ROW: SEARCH + DROPDOWN ===== */
+/* SEARCH + DROPDOWN  */
 
 .filters-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;   /* space between heading side + controls */
+  justify-content: space-between;   
   gap: 1rem;
   margin-bottom: 1.5rem;
-  flex-wrap: wrap;                  /* wrap nicely on smaller screens */
+  flex-wrap: wrap;                  
 }
 
 /* Shared styles for both controls */
@@ -43,12 +43,11 @@
   font-size: 0.95rem;
   box-sizing: border-box;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', sans-serif;
+    'Segoe UI', sans-serif; /* adding font styling */
     flex: 1;
 }
 
 
-/* Focus state for both controls */
 .filters-row input[type="text"]:focus,
 .filters-row select:focus {
   outline: none;
@@ -60,9 +59,9 @@
   margin: 0 0 0.5rem 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 0.95rem;
-  color: #6B7280;     /* gray-500 */
+  color: #6B7280;     
   text-align: left;
-  padding-left: 4px;  /* tiny indent so it aligns visually */
+  padding-left: 4px;  
 }
 
 
