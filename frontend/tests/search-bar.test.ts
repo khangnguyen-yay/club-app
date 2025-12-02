@@ -19,6 +19,12 @@ test('Typing Test in search Bar', async ({ page }) => {
   await expect(searchBar).toHaveValue('Test');
 });
 
+/* TESTING NOTES */
+/* The next two tests were implemented before OAuth integration. 
+  Since OAuth is now implemented, this requires session cookies to be sent from the playwright broswer for the explore page to render cards.
+  Following commands on the README can be used to set up playwright with session cookies. 
+  However, these tests failing is a message that the user is not authenticated and thus the explore page does not render any club cards. */
+  
 test('Search bar input filters club list', async ({ page }) => {
   await page.goto('http://localhost:5173/explore');
 
