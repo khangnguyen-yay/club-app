@@ -117,8 +117,6 @@ function Home() {
         </div>
         <h3>{considerDisplay}</h3>
       </div>
-
-      <TestStatus />
     </div>
   );
 }
