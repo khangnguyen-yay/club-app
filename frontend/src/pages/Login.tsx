@@ -1,11 +1,9 @@
 import React from "react";
 import "../styles/login-page.css";
+import { useAuth } from "../AuthContext/authContext";
 
 const LoginPage: React.FC = () => {
-  const handleGoogleLogin = () => {
-    // Redirect to backend Google OAuth route
-    window.location.href = "http://localhost:3000/auth/google";
-  };
+  const { loginWithGoogle } = useAuth();
 
   return (
     <div className="login-page">
@@ -13,15 +11,12 @@ const LoginPage: React.FC = () => {
         <h1 className="page-title">Clubfindr</h1>
         <p className="page-subtitle">Discover and Join Campus Clubs Effortlessly</p>
 
-        <button
-          onClick={handleGoogleLogin}
-          className="google button"
-        >
+        <button onClick={loginWithGoogle} className="google button">
           Sign in with Google
         </button>
       </div>
     </div>
   );
-}
+};
 
 export default LoginPage;
