@@ -16,7 +16,7 @@
 
   body.dark {
     /* Dark mode: higher contrast */
-    --bg: #0e0e10;
+    --bg: #1b1b4a;
     --text: #e8eaed;
     --card-bg: #1a1c1f;
     --accent: #8ab4f8;
