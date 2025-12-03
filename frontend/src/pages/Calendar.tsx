@@ -3,7 +3,7 @@ import "../styles/calendar.css"
 
 const Calendar = () => {
   return (
-    <main className="calendar-page">
+    <main className="calendar-page calendar-root">
       <section className="calendar-header-container">
         <h1 className="calendar-heading">Calendar</h1>
         <p className="calendar-subtitle">

@@ -2,17 +2,73 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
+    /* Light mode variables (default)*/
+    --bg: #ffffff;
+    --text: #111111;
+    --card-bg: #f7f7f7;
+    --accent: #0b57d0;
+  }
+
+  body.dark {
+    /* Dark mode: higher contrast */
+    --bg: #1b1b4a;
+    --text: #e8eaed;
+    --card-bg: #1a1c1f;
+    --accent: #8ab4f8;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  /* Calendar page: dark page background, but keep inner containers light */
+  body.dark .calendar-page {
+    background-color: var(--bg);
+  }
+  body.dark .calendar-grid-container,
+  body.dark .calendar-legend-container {
+    background-color: #ffffff; /* same as light mode */
+    color: #111111;            /* same as light mode */
+  }
+
+  Keep calendar heading/subtitle colors identical to light mode
+  body.dark .calendar-heading {
+    color: #1e3a8a; 
+  }
+  body.dark .calendar-subtitle {
+    color: #6b7280; /* matches light subtitle*/
+  }
+
+  /* Example components picking up variables */
+  .navLinks {
+    background: var(--card-bg);
+  }
+
+  .link {
+    color: var(--text);
+  }
+
+  .deadline-card,
+  .card {
+    background: var(--card-bg);
+    color: var(--text);
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* Keep calendar containers light, but do not override text colors globally
+     so headings/subtitles can use dark-mode text */
+
+  /* Commentary: CSS variables define theme colors.
+     Light mode is the default; dark mode applies when body has .dark.
+     Components use variables so they automatically adapt. */
+  
 a {
   font-weight: 500;
   color: #646cff;
