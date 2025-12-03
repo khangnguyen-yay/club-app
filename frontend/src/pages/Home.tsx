@@ -71,8 +71,8 @@ function Home() {
   considerDisplay = <ClubList filteredCards={considerClubs}></ClubList>
 
   return (
-    <div>
-      <h1>Home Page</h1>
+    <div className="homeContainer">
+      <h1 className="heading">Home</h1>
 
       <div className="appliedSection">
         <div className="categoryBlock">
