@@ -93,7 +93,7 @@
   }
   
   .considerButton {
-    background-color: rgb(35, 35, 248);
+    background-color: #94d298;
     border-color: white;
     margin-left: var(--card-margin);
   }
