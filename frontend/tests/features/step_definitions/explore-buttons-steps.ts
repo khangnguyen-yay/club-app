@@ -1,9 +1,5 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { setDefaultTimeout } from '@cucumber/cucumber';
-
-setDefaultTimeout(10000)
-
 
 Given('the user is on the explore page', async function () {
     await this.page.goto('http://localhost:5173/explore'); //navigate to explore page

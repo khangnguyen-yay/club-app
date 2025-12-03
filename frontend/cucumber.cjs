@@ -1,6 +1,5 @@
 module.exports = {
   default: {
-    timeout: 10000,
     import: [
       'ts-node/register',
       'tests/world.ts',
