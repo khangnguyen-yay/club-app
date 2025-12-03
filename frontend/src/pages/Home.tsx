@@ -9,7 +9,17 @@ import { fetchClubsByStatus } from "../../utils/apiHelpers.ts";
 
 function Home() {
 
-  let categoryCount : number = 0;
+  interface categoryCounts {
+    appliedCount : number,
+    applyingCount : number,
+    considerCount : number
+  }
+
+  const [categoryCounts, setCategoryCounts] = useState<categoryCounts>({
+    appliedCount : 0,
+    applyingCount : 0,
+    considerCount : 0
+})
 
   let applyingDisplay : React.JSX.Element | string = "No clubs in this category yet."
   let appliedDisplay : React.JSX.Element | string = "No clubs in this category yet."
@@ -25,23 +35,35 @@ function Home() {
       try {
         let res = await fetchClubsByStatus("applying");
         const applyingData = await res;
-        //console.log(applyingData);
         if (typeof applyingData == "string") {
           return;
         }
-        setApplyingClubs(applyingData);
+        const applyingDataWithStatus = applyingData.map(club => ({
+          ...club,
+          preference: "applying"
+        }))
+        console.log(applyingDataWithStatus);
+        setApplyingClubs(applyingDataWithStatus);
         res = await fetchClubsByStatus("applied");
         const appliedData = await res;
         if (typeof appliedData == "string") {
           return;
         }
-        setAppliedClubs(appliedData);
+        const appliedDataWithStatus = appliedData.map(club => ({
+          ...club,
+          preference: "applied"
+        }))
+        setAppliedClubs(appliedDataWithStatus);
         res = await fetchClubsByStatus("considering");
         const considerData = await res;
         if (typeof considerData == "string") {
           return;
         }
-        setConsiderClubs(considerData);
+        const considerDataWithStatus = considerData.map(club => ({
+          ...club,
+          preference: "considering"
+        }))
+        setConsiderClubs(considerDataWithStatus);
       } catch (err) {
         console.error(err);
       } finally {
@@ -52,6 +74,14 @@ function Home() {
     fetchClubs();
   }, []); 
 
+  useEffect(() => {
+    setCategoryCounts({
+      applyingCount: applyingClubs.length,
+      appliedCount: appliedClubs.length,
+      considerCount: considerClubs.length
+    })
+  }, [applyingClubs, appliedClubs, considerClubs])
+
   if (loading) return <div>Loading...</div>;
 
   applyingDisplay = <ClubList filteredCards={applyingClubs}></ClubList>
@@ -59,14 +89,14 @@ function Home() {
   considerDisplay = <ClubList filteredCards={considerClubs}></ClubList>
 
   return (
-    <div>
-      <h1>Home Page</h1>
+    <div className="homeContainer">
+      <h1 className="heading">Home</h1>
 
       <div className="appliedSection">
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Applied</h2>
-          <span className="countBox">{categoryCount}</span>
+          <span className="countBox">{categoryCounts.appliedCount}</span>
         </div>
         <h3>{appliedDisplay}</h3>
       </div>
@@ -75,7 +105,7 @@ function Home() {
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Applying</h2>
-          <span className="countBox">{categoryCount}</span>
+          <span className="countBox">{categoryCounts.applyingCount}</span>
         </div>
         <h3>{applyingDisplay}</h3>
       </div>
@@ -83,12 +113,10 @@ function Home() {
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Considering</h2>
-          <span className="countBox">{categoryCount}</span>
+          <span className="countBox">{categoryCounts.considerCount}</span>
         </div>
         <h3>{considerDisplay}</h3>
       </div>
-
-      <TestStatus />
     </div>
   );
 }
