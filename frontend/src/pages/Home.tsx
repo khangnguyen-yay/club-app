@@ -25,23 +25,35 @@ function Home() {
       try {
         let res = await fetchClubsByStatus("applying");
         const applyingData = await res;
-        //console.log(applyingData);
         if (typeof applyingData == "string") {
           return;
         }
-        setApplyingClubs(applyingData);
+        const applyingDataWithStatus = applyingData.map(club => ({
+          ...club,
+          preference: "applying"
+        }))
+        console.log(applyingDataWithStatus);
+        setApplyingClubs(applyingDataWithStatus);
         res = await fetchClubsByStatus("applied");
         const appliedData = await res;
         if (typeof appliedData == "string") {
           return;
         }
-        setAppliedClubs(appliedData);
+        const appliedDataWithStatus = appliedData.map(club => ({
+          ...club,
+          preference: "applied"
+        }))
+        setAppliedClubs(appliedDataWithStatus);
         res = await fetchClubsByStatus("considering");
         const considerData = await res;
         if (typeof considerData == "string") {
           return;
         }
-        setConsiderClubs(considerData);
+        const considerDataWithStatus = considerData.map(club => ({
+          ...club,
+          preference: "considering"
+        }))
+        setConsiderClubs(considerDataWithStatus);
       } catch (err) {
         console.error(err);
       } finally {
