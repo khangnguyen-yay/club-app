@@ -6,13 +6,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  */
 
-    /* Light mode variables (default): no visual changes requested */
+    /* Light mode variables (default)*/
     --bg: #ffffff;
     --text: #111111;
     --card-bg: #f7f7f7;
@@ -27,6 +22,24 @@
     --accent: #8ab4f8;
     background-color: var(--bg);
     color: var(--text);
+  }
+
+  /* Calendar page: dark page background, but keep inner containers light */
+  body.dark .calendar-page {
+    background-color: var(--bg);
+  }
+  body.dark .calendar-grid-container,
+  body.dark .calendar-legend-container {
+    background-color: #ffffff; /* same as light mode */
+    color: #111111;            /* same as light mode */
+  }
+
+  Keep calendar heading/subtitle colors identical to light mode
+  body.dark .calendar-heading {
+    color: #1e3a8a; 
+  }
+  body.dark .calendar-subtitle {
+    color: #6b7280; /* matches light subtitle*/
   }
 
   /* Example components picking up variables */
@@ -48,6 +61,9 @@
     background: var(--accent);
     color: #fff;
   }
+
+  /* Keep calendar containers light, but do not override text colors globally
+     so headings/subtitles can use dark-mode text */
 
   /* Commentary: CSS variables define theme colors.
      Light mode is the default; dark mode applies when body has .dark.
