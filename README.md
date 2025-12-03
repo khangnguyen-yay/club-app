@@ -75,9 +75,23 @@ cd frontend
 npx ts-node --esm utils/saveGoogleSession.ts
 npx playwright test
 npm run cucumber
-
+```
 ## ✅ Your local environment should now be running!
-
+```
 You can open the frontend in your browser and interact with the full system.
+```
 
-If you need a production-ready README or want badges, images, or formatting improvements, feel free to ask!
+## Models
+### Class Diagram
+<img width="791" height="924" alt="ClubFindr-camilla-ClassDiagram drawio" src="https://github.com/user-attachments/assets/0e2b2254-18e8-4723-b043-a49c475f9086" />
+
+### Sequence Diagrams for Common Interactions (summary provided for all)
+<img width="915" height="732" alt="ClubFindr-Login drawio" src="https://github.com/user-attachments/assets/013a31a8-cc3a-4518-aa17-092dadbc842b" />
+<img width="819" height="733" alt="ClubFindr-ExploreClubs drawio" src="https://github.com/user-attachments/assets/d7b31fbc-6951-4664-a91f-4245c1adf672" />
+<img width="819" height="1088" alt="ClubFindr-PostStatuses drawio" src="https://github.com/user-attachments/assets/f1874420-b0ab-4fe3-9d37-ffe9ae3f24cd" />
+<img width="915" height="732" alt="ClubFindr-Logout drawio" src="https://github.com/user-attachments/assets/0b1d1900-e2ef-4661-9d86-1ae885b0da73" />
+
+
+
+
+
