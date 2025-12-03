@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/login-page.css";
+import clubfindrLogo from "../assets/clubfinder-logo.png"; 
 import { useAuth } from "../AuthContext/authContext";
 
 const LoginPage: React.FC = () => {
@@ -8,8 +9,21 @@ const LoginPage: React.FC = () => {
   return (
     <div className="login-page">
       <div className="login-card">
-        <h1 className="page-title">Clubfindr</h1>
-        <p className="page-subtitle">Discover and Join Campus Clubs Effortlessly</p>
+        <div className="login-header">
+          <img
+            src={clubfindrLogo}
+            alt="Clubfindr logo"
+            className="login-logo"
+          />
+          <div>
+            <h1 className="page-title">clubfindr</h1>
+            <p className="page-tagline">club apps made convenient</p>
+          </div>
+        </div>
+
+        <p className="page-subtitle">
+          Discover and Join Campus Clubs Effortlessly
+        </p>
 
         <button onClick={loginWithGoogle} className="google button">
           Sign in with Google

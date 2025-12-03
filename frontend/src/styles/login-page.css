@@ -1,67 +1,95 @@
-/* Full-screen background (light blue gradient) */
+/* Full-page container with background image */
 .login-page {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(to bottom right, #e9f0ff, #dbe7ff);
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  box-sizing: border-box;
+
+  /* 👇 use your pastel cards background here */
+  /* adjust the path/filename if needed */
+  background-image: url("../assets/clubfindr-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* subtle overlay so the card stands out */
+  background-color: rgba(255, 255, 255, 0.15);
+  background-blend-mode: lighten;
 }
 
-/* Centered card (deep blue) */
+/* Center card */
 .login-card {
-  width: 100%;
-  max-width: 440px;
-  background: #1e3a8a;              /* deep blue */
-  color: white;
-  border-radius: 1.5rem;
-  padding: 3rem 2.5rem;
-  box-shadow: 0 12px 40px rgba(30, 58, 138, 0.35);
-  text-align: center;
-  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  padding: 2.5rem 3rem;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
 }
 
-/* Title styling */
+/* Row for logo + title text */
+.login-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Logo size */
+.login-logo {
+  height: 52px;
+  width: auto;
+}
+
+/* “clubfindr” text */
 .page-title {
+  margin: 0;
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 0.6rem;
-  color: #ffffff;
+  color: #114a96; /* deep blue from your logo */
 }
 
-/* Subtitle styling */
+/* “club apps made convenient” */
+.page-tagline {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: #f2b700; /* yellow from your logo */
+}
+
+/* Subtitle under header */
 .page-subtitle {
-  font-size: 1.05rem;
-  opacity: 0.9;
-  margin-bottom: 2.4rem;
-  color: #e2e8f0;
+  margin-top: 1.5rem;
+  margin-bottom: 2.25rem;
+  font-size: 1rem;
+  color: #244870;
 }
 
-/* Primary sign-in button */
+/* Google button */
 .google.button {
+  display: inline-block;
   width: 100%;
-  background: #020617;            /* dark navy */
-  color: #ffffff;
   border: none;
-  padding: 0.9rem 1.2rem;
+  border-radius: 9999px;
+  padding: 0.9rem 1.25rem;
   font-size: 1rem;
   font-weight: 600;
-
-  border-radius: 0.7rem;
   cursor: pointer;
-
-  transition: 0.15s ease-in-out;
+  background-color: #081b33;
+  color: white;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
 }
 
-/* Hover + active states */
 .google.button:hover {
-  background: #0b1127;
+  background-color: #0f2644;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
   transform: translateY(-1px);
 }
 
 .google.button:active {
-  background: #131a33;
   transform: translateY(0);
+  box-shadow: none;
 }
