@@ -12,23 +12,20 @@ export const test = baseTest.extend<fixture>({
 
         //iterate through selected applied buttons and unselect them
         const updatedAppliedButtons = await page.locator('.statusButton.appliedButtonClicked');
-        const countApplied = await updatedAppliedButtons.count();
-        for (let i = 0; i < countApplied; i++) {
-            await updatedAppliedButtons.nth(i).click();
+        while (await updatedAppliedButtons.count() > 0) {
+            await updatedAppliedButtons.first().click();
         }
 
         //iterate through applying buttons and unselect them
         const updatedApplyingButtons = await page.locator('.statusButton.applyingButtonClicked');
-        const countApplying = await updatedApplyingButtons.count();
-        for (let i = 0; i < countApplying; i++) {
-            await updatedApplyingButtons.nth(i).click();
+        while (await updatedApplyingButtons.count() > 0) {
+            await updatedApplyingButtons.first().click();
         }
 
         //iterate through consider buttons and unselect them
         const updatedConsiderButtons = await page.locator('.statusButton.considerButtonClicked');
-        const countConsider = await updatedConsiderButtons.count();
-        for (let i = 0; i < countConsider; i++) {
-            await updatedConsiderButtons.nth(i).click();
+        while (await updatedConsiderButtons.count() > 0) {
+            await updatedConsiderButtons.first().click();
         }
     }
     await use(resetFunction);
