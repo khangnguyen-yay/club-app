@@ -71,10 +71,14 @@ npm run dev
 ```
 ## Tests
 ```
+For Frontend: 
 cd frontend
 npx ts-node --esm utils/saveGoogleSession.ts
 npx playwright test
 npm run cucumber
+
+For Backend:
+npx jest
 ```
 ## ✅ Your local environment should now be running!
 ```

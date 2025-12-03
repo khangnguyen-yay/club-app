@@ -34,12 +34,11 @@
     color: #111111;            /* same as light mode */
   }
 
-  Keep calendar heading/subtitle colors identical to light mode
   body.dark .calendar-heading {
-    color: #1e3a8a; 
+    color: #7ca4e0; 
   }
   body.dark .calendar-subtitle {
-    color: #6b7280; /* matches light subtitle*/
+    color: #abb7cf;
   }
 
   /* Example components picking up variables */
@@ -121,3 +120,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+  /* Explore page heading in dark mode */
+  body.dark .heading {
+    color: #7ca4e0;
+  }
