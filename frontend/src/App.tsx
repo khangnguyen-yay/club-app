@@ -7,6 +7,7 @@ import Explore from "./pages/Explore";
 import Calendar from "./pages/Calendar";
 import LoginPage from "./pages/Login";
 import Header from "./components/header";
+import { ThemeProvider } from './theme/ThemeContext';
 
 import HomeLogo from './styles/navigation-ui/home.svg';
 import ExploreLogo from './styles/navigation-ui/explore.svg';
@@ -61,9 +62,11 @@ const AppLayout = () => {
 
 function App() {
   return (
-    <Router>
-      <AppLayout />
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <AppLayout />
+      </Router>
+    </ThemeProvider>
   );
 }
 
