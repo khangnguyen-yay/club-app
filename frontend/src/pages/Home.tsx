@@ -9,7 +9,17 @@ import { fetchClubsByStatus } from "../../utils/apiHelpers.ts";
 
 function Home() {
 
-  let categoryCount : number = 0;
+  interface categoryCounts {
+    appliedCount : number,
+    applyingCount : number,
+    considerCount : number
+  }
+
+  const [categoryCounts, setCategoryCounts] = useState<categoryCounts>({
+    appliedCount : 0,
+    applyingCount : 0,
+    considerCount : 0
+})
 
   let applyingDisplay : React.JSX.Element | string = "No clubs in this category yet."
   let appliedDisplay : React.JSX.Element | string = "No clubs in this category yet."
@@ -64,6 +74,14 @@ function Home() {
     fetchClubs();
   }, []); 
 
+  useEffect(() => {
+    setCategoryCounts({
+      applyingCount: applyingClubs.length,
+      appliedCount: appliedClubs.length,
+      considerCount: considerClubs.length
+    })
+  }, [applyingClubs, appliedClubs, considerClubs])
+
   if (loading) return <div>Loading...</div>;
 
   applyingDisplay = <ClubList filteredCards={applyingClubs}></ClubList>
@@ -78,7 +96,7 @@ function Home() {
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Applied</h2>
-          <span className="countBox">{categoryCount}</span>
+          <span className="countBox">{categoryCounts.appliedCount}</span>
         </div>
         <h3>{appliedDisplay}</h3>
       </div>
@@ -87,7 +105,7 @@ function Home() {
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Applying</h2>
-          <span className="countBox">{categoryCount}</span>
+          <span className="countBox">{categoryCounts.applyingCount}</span>
         </div>
         <h3>{applyingDisplay}</h3>
       </div>
@@ -95,7 +113,7 @@ function Home() {
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Considering</h2>
-          <span className="countBox">{categoryCount}</span>
+          <span className="countBox">{categoryCounts.considerCount}</span>
         </div>
         <h3>{considerDisplay}</h3>
       </div>

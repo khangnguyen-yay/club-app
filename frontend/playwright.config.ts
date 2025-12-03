@@ -32,7 +32,6 @@ export default defineConfig({
     trace: 'on-first-retry',
     storageState: 'storageState.json',
     headless: false,
-    slowMo: 500,
     actionTimeout: 20000
   },
 
