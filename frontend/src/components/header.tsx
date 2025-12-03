@@ -29,10 +29,11 @@ const Header = () => {
 
     return (
         <header data-testid="app-header" className="app-header">
-            <div className="header-content">
-                <h1>Clubfindr</h1>
-                <p>Discover clubs effortlessly</p>
-            </div>
+            <img
+                src="/logo.png"
+                alt="Clubfindr"
+                className="header-logo"
+            />
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <ThemeToggle />
