@@ -34,9 +34,9 @@
     color: #111111;            /* same as light mode */
   }
 
-  /* Keep calendar heading/subtitle colors identical to light mode */
+  Keep calendar heading/subtitle colors identical to light mode
   body.dark .calendar-heading {
-    color: #111827; /* matches light heading in header.css palette */
+    color: #1e3a8a; 
   }
   body.dark .calendar-subtitle {
     color: #6b7280; /* matches light subtitle*/
@@ -62,33 +62,8 @@
     color: #fff;
   }
 
-  /* Keep calendar styles in light mode except page background */
-  .calendar-root {
-    /* reset variables to light palette within calendar */
-    --text: #111111;
-    --card-bg: #f7f7f7;
-    --accent: #0b57d0;
-    color: var(--text);
-  }
-  .calendar-root button,
-  .calendar-root h1,
-  .calendar-root h2,
-  .calendar-root h3,
-  .calendar-root h4,
-  .calendar-root h5,
-  .calendar-root h6,
-  .calendar-root p,
-  .calendar-root div,
-  .calendar-root .calendar-grid,
-  .calendar-root .legend-title {
-    color: inherit;
-    background: initial;
-  }
-  .calendar-root .btn-primary,
-  .calendar-root button {
-    background: var(--accent);
-    color: #fff;
-  }
+  /* Keep calendar containers light, but do not override text colors globally
+     so headings/subtitles can use dark-mode text */
 
   /* Commentary: CSS variables define theme colors.
      Light mode is the default; dark mode applies when body has .dark.
