@@ -2,17 +2,57 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+  /*
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  */
 
+    /* Light mode variables (default): no visual changes requested */
+    --bg: #ffffff;
+    --text: #111111;
+    --card-bg: #f7f7f7;
+    --accent: #0b57d0;
+  }
+
+  body.dark {
+    /* Dark mode: higher contrast */
+    --bg: #0e0e10;
+    --text: #e8eaed;
+    --card-bg: #1a1c1f;
+    --accent: #8ab4f8;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  /* Example components picking up variables */
+  .navLinks {
+    background: var(--card-bg);
+  }
+
+  .link {
+    color: var(--text);
+  }
+
+  .deadline-card,
+  .card {
+    background: var(--card-bg);
+    color: var(--text);
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* Commentary: CSS variables define theme colors.
+     Light mode is the default; dark mode applies when body has .dark.
+     Components use variables so they automatically adapt. */
+  
 a {
   font-weight: 500;
   color: #646cff;

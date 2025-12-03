@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/header.css"
+import { ThemeToggle } from './ThemeToggle';
 
 const BACKEND_URL = "http://localhost:3000";
 
@@ -33,9 +34,12 @@ const Header = () => {
                 <p>Discover clubs effortlessly</p>
             </div>
 
-            <button onClick={handleLogout} className="logout-button">
-                Log out
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <ThemeToggle />
+                <button onClick={handleLogout} className="logout-button">
+                    Log out
+                </button>
+            </div>
         </header>
     );
 }
