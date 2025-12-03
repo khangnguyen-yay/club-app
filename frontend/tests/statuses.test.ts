@@ -1,4 +1,5 @@
-import { test, expect } from "@playwright/test";
+import { expect } from "@playwright/test";
+import { test } from './fixtures.ts'
 
 interface Club {
   id: number;
@@ -18,7 +19,8 @@ const CONSIDER_COLOR_SELECTED = 'rgb(202, 96, 96)';
 //Verifies that selecting and unselecting buttons on the explore page properly updates the backend
 
 //SELECTION TESTS
-test('Selecting applied button on explore page adds club to applied category in backend', async ({ page }) => {
+test('Selecting applied button on explore page adds club to applied category in backend', async ({ reset, page }) => {
+
     // Go to explore page
     await page.goto('http://localhost:5173/explore');
 
@@ -37,9 +39,11 @@ test('Selecting applied button on explore page adds club to applied category in 
     const appliedClubs : Club[] = await res.json();
     const clubIDToCheck = 1;
     expect(appliedClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(true);
+
+    await reset();
   });
 
-  test('Selecting applying button on explore page adds club to applying category in backend', async ({ page }) => {
+  test('Selecting applying button on explore page adds club to applying category in backend', async ({ reset, page }) => {
     // Go to explore page
     await page.goto('http://localhost:5173/explore');
 
@@ -59,9 +63,11 @@ test('Selecting applied button on explore page adds club to applied category in 
     const clubIDToCheck = 1;
     console.log(applyingClubs);
     expect(applyingClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(true);
+
+    await reset();
   });
 
-  test('Selecting consider button on explore page adds club to considering category in backend', async ({ page }) => {
+  test('Selecting consider button on explore page adds club to considering category in backend', async ({ reset, page }) => {
     // Go to explore page
     await page.goto('http://localhost:5173/explore');
 
@@ -81,10 +87,12 @@ test('Selecting applied button on explore page adds club to applied category in 
     const clubIDToCheck = 1;
     //console.log(considerClubs);
     expect(considerClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(true);
+
+    await reset();
   });
 
   //DESELECTION TESTS
-  test('Deselecting applied button on explore page removes club from applied category in backend', async ({ page }) => {
+  test('Deselecting applied button on explore page removes club from applied category in backend', async ({ reset, page }) => {
     // Go to explore page
     await page.goto('http://localhost:5173/explore');
 
@@ -107,9 +115,11 @@ test('Selecting applied button on explore page adds club to applied category in 
     console.log(appliedClubs);
     const clubIDToCheck = 2;
     expect(appliedClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(false);
+
+    await reset();
   });
 
-  test('Selecting applying button on explore page removes club from applying category in backend', async ({ page }) => {
+  test('Selecting applying button on explore page removes club from applying category in backend', async ({ reset, page }) => {
     // Go to explore page
     await page.goto('http://localhost:5173/explore');
 
@@ -133,9 +143,11 @@ test('Selecting applied button on explore page adds club to applied category in 
     const clubIDToCheck = 1;
     console.log(applyingClubs);
     expect(applyingClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(false);
+
+    await reset();
   });
 
-  test('Selecting consider button on explore page removes club from consider category in backend', async ({ page }) => {
+  test('Selecting consider button on explore page removes club from consider category in backend', async ({ reset, page }) => {
     // Go to explore page
     await page.goto('http://localhost:5173/explore');
 
@@ -158,6 +170,8 @@ test('Selecting applied button on explore page adds club to applied category in 
     const clubIDToCheck = 1;
     //console.log(considerClubs);
     expect(considerClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(false);
+
+    await reset();
   });
 
 
@@ -165,7 +179,7 @@ test('Selecting applied button on explore page adds club to applied category in 
 //Verifies that selecting and unselecting buttons on the homepage properly updates the backend
 
  //SELECTION TESTS
-test('Selecting applied button on home page adds club to applied category in backend', async ({ page }) => {
+test('Selecting applied button on home page adds club to applied category in backend', async ({ reset ,page }) => {
   // Go to explore page
   await page.goto('http://localhost:5173/home');
 
@@ -184,9 +198,11 @@ test('Selecting applied button on home page adds club to applied category in bac
   const appliedClubs : Club[] = await res.json();
   const clubIDToCheck = 1;
   expect(appliedClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(true);
+
+  await reset();
 });
 
-test('Selecting applying button on home page adds club to applying category in backend', async ({ page }) => {
+test('Selecting applying button on home page adds club to applying category in backend', async ({ reset, page }) => {
   // Go to explore page
   await page.goto('http://localhost:5173/home');
 
@@ -206,9 +222,11 @@ test('Selecting applying button on home page adds club to applying category in b
   const clubIDToCheck = 1;
   console.log(applyingClubs);
   expect(applyingClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(true);
+
+  await reset();
 });
 
-test('Selecting consider button on home page adds club to considering category in backend', async ({ page }) => {
+test('Selecting consider button on home page adds club to considering category in backend', async ({ reset, page }) => {
   // Go to explore page
   await page.goto('http://localhost:5173/home');
 
@@ -228,10 +246,12 @@ test('Selecting consider button on home page adds club to considering category i
   const clubIDToCheck = 1;
   //console.log(considerClubs);
   expect(considerClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(true);
+
+  await reset();
 });
 
 //DESELECTION TESTS
-test('Deselecting applied button on home page removes club from applied category in backend', async ({ page }) => {
+test('Deselecting applied button on home page removes club from applied category in backend', async ({ reset, page }) => {
   // Go to explore page
   await page.goto('http://localhost:5173/home');
 
@@ -254,9 +274,11 @@ test('Deselecting applied button on home page removes club from applied category
   console.log(appliedClubs);
   const clubIDToCheck = 2;
   expect(appliedClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(false);
+
+  await reset();
 });
 
-test('Selecting applying button on home page removes club from applying category in backend', async ({ page }) => {
+test('Selecting applying button on home page removes club from applying category in backend', async ({ reset, page }) => {
   // Go to explore page
   await page.goto('http://localhost:5173/home');
 
@@ -280,9 +302,11 @@ test('Selecting applying button on home page removes club from applying category
   const clubIDToCheck = 1;
   console.log(applyingClubs);
   expect(applyingClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(false);
+
+  await reset();
 });
 
-test('Selecting consider button on home page removes club from consider category in backend', async ({ page }) => {
+test('Selecting consider button on home page removes club from consider category in backend', async ({ reset, page }) => {
   // Go to explore page
   await page.goto('http://localhost:5173/home');
 
@@ -305,4 +329,6 @@ test('Selecting consider button on home page removes club from consider category
   const clubIDToCheck = 1;
   //console.log(considerClubs);
   expect(considerClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(false);
+  
+  await reset();
 });
