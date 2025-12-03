@@ -10,6 +10,7 @@
     margin-bottom: var(--card-margin);
     margin-left: var(--card-margin);
     margin-right: var(--card-margin);
+    background-color: #c3d7f5;
   }
   
   .clubName {
@@ -20,6 +21,7 @@
     font-size: 18px;
     text-align:left;
     font-weight: 600;
+    color: black;
   }
   
   .category {
@@ -31,6 +33,7 @@
     margin-right: var(--card-margin);
     margin-bottom: 35px;
     font-weight: 600;
+    color: #00327d;
   }
   
   .descriptionLines {
@@ -93,22 +96,25 @@
   }
   
   .considerButton {
-    background-color: rgb(35, 35, 248);
-    border-color: white;
+    background-color: #d8a4a4;
+    border-color: #d8a4a4;
     margin-left: var(--card-margin);
+    color: black;
   }
   
   .applyingButton {
-    background-color: orange;
-    border-color: white;
+    background-color: #d9d59d;
+    border-color: #d9d59d;
     margin-left: 10px;
+    color: black;
   }
   
   .appliedButton {
-    background-color: rgb(18, 176, 18);
-    border-color: white;
+    background-color: #94d298;
+    border-color: #94d298;
     margin-left: 10px;
     margin-right: var(--card-margin);
+    color: black;
   }
 
   .box:hover {
@@ -116,32 +122,35 @@
   }
 
   .considerButton:hover {
-    background-color: rgb(18, 18, 165);
+    background-color: #ca6060;
   }
 
   .applyingButton:hover {
-    background-color: rgb(194, 126, 0)
+    background-color: #b0a834;
   }
   
   .appliedButton:hover {
-    background-color: rgb(0, 101, 0)
+    background-color: #54a059
   }
 
   .applyingButtonClicked {
     margin-left: 10px;
-    background-color: rgb(194, 126, 0);
+    background-color: #b0a834;
+    color: black;
   }
 
   .considerButtonClicked {
-    background-color: rgb(18, 18, 165);
+    background-color: #ca6060;
     margin-left: var(--card-margin);
+    color: black;
   }
 
   .appliedButtonClicked {
-    background-color: rgb(0, 101, 0);
+    background-color: #54a059;
     border-color: white;
     margin-left: 10px;
     margin-right: var(--card-margin);
+    color: black;
   }
   
 
@@ -164,7 +173,7 @@
     width: fit-content;
     display: inline-block;
 
-    margin-right: 10px;
+    margin-right: 10 px;
   }
 
   .filterText {
