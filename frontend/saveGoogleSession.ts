@@ -13,7 +13,7 @@ import { chromium } from '@playwright/test';
 
   // Wait until redirected to the authenticated page
   // Increase timeout if needed
-  await page.waitForURL('http://localhost:5173/explore', { timeout: 0 });
+  await page.waitForURL('http://localhost:5173/explore', { timeout: 1000000000});
 
   // Save storage state
   await context.storageState({ path: 'storageState.json' });
