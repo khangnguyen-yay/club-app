@@ -38,7 +38,7 @@
     color: #7ca4e0; 
   }
   body.dark .calendar-subtitle {
-    color: #6b7280; /* matches light subtitle*/
+    color: #abb7cf;
   }
 
   /* Example components picking up variables */
