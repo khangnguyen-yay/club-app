@@ -1,73 +1,82 @@
+import { Routes, Route, NavLink, Navigate, useLocation } from "react-router-dom";
 
-import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-// Import your page components
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import Calendar from "./pages/Calendar";
 import LoginPage from "./pages/Login";
 import Header from "./components/header";
-import { ThemeProvider } from './theme/ThemeContext';
 
-import HomeLogo from './styles/navigation-ui/home.svg';
-import ExploreLogo from './styles/navigation-ui/explore.svg';
-import CalendarLogo from './styles/navigation-ui/calendar.svg';
+import HomeLogo from "./styles/navigation-ui/home.svg";
+import ExploreLogo from "./styles/navigation-ui/explore.svg";
+import CalendarLogo from "./styles/navigation-ui/calendar.svg";
 
-import './styles/navigation-ui/Navigation.css';
+import "./styles/navigation-ui/Navigation.css";
+import ProtectedRoute from "./AuthContext/protectedRoute";
 
 const AppLayout = () => {
   const location = useLocation();
-
-  //check if current path is /login
-  //if so, do not render navigation bar and header component
-  const isLoginPage = location.pathname === '/login';
+  const isLoginPage = location.pathname === "/login";
 
   return (
     <>
-      {/* if not on login page, then show header and nav bar*/}
-
+      {/* Hide header + nav on login page */}
       {!isLoginPage && <Header />}
       {!isLoginPage && (
         <nav className="navLinks">
-        {/* Simple navigation links */}
-        <NavLink to="/home" className="link">
-          <img src={HomeLogo} className="navBarLogo"></img> Home
-        </NavLink>
+          <NavLink to="/home" className="link">
+            <img src={HomeLogo} className="navBarLogo" /> Home
+          </NavLink>
 
-        <NavLink to="/explore" className="link">
-          <img src={ExploreLogo} className="navBarLogo"></img> Explore
-        </NavLink>
-      
-        <NavLink to="/calendar" className="link">
-        <img src={CalendarLogo} className="navBarLogo"></img> Calendar
-        </NavLink>
-      </nav>
-    )}
+          <NavLink to="/explore" className="link">
+            <img src={ExploreLogo} className="navBarLogo" /> Explore
+          </NavLink>
 
-    <Routes>
-        {/* Login Page first */}
+          <NavLink to="/calendar" className="link">
+            <img src={CalendarLogo} className="navBarLogo" /> Calendar
+          </NavLink>
+        </nav>
+      )}
+
+      <Routes>
+        {/* Public login route */}
         <Route path="/login" element={<LoginPage />} />
-        {/* Define your routes */}
-        <Route path="/home" element={<Home />} />
-        <Route path="/explore" element={<Explore />} />
-        <Route path="/calendar" element={<Calendar />} />
 
-        {/* Default and all other routes should go to login page*/}
+        {/* Protected routes */}
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/explore"
+          element={
+            <ProtectedRoute>
+              <Explore />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/calendar"
+          element={
+            <ProtectedRoute>
+              <Calendar />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Default + any random routes lead to login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </>
-  )
-}
+  );
+};
 
 function App() {
-  return (
-    <ThemeProvider>
-      <Router>
-        <AppLayout />
-      </Router>
-    </ThemeProvider>
-  );
+  return <AppLayout />;
 }
 
 export default App;
