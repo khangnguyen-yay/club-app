@@ -1,4 +1,3 @@
-// src/components/calendar/calendar-view.tsx
 import { useEffect, useState } from "react";
 import DeadlineCalendar from "./deadlineCalendar";
 import type { ClubDeadline } from "./calendarUtils";
@@ -10,6 +9,7 @@ const CalendarView: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  /*Fetching the app_date data from the backend API endpoint */
   useEffect(() => {
     async function fetchDeadlines() {
       try {
@@ -46,7 +46,9 @@ const CalendarView: React.FC = () => {
 
   return  (
     <>
+      <section className="calendar-legend-row">
       <CalendarLegend />
+      </section>
       <DeadlineCalendar deadlines={deadlines} />
     </>
   );

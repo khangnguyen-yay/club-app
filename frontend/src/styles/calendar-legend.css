@@ -5,7 +5,13 @@
   background: #ffffff;
   width: fit-content;
   margin-bottom: 1rem;
-  margin-left: 3.5rem;
+  margin-left: 1rem;
+}
+
+.calendar-legend-row {
+  display: flex;
+  justify-content: center;   /* center legend */
+  margin-bottom: 2rem;
 }
 
 
@@ -17,7 +23,7 @@
 }
 
 
-/* Items Wrapper */
+/* Items */
 .legend-items {
   display: flex;
   flex-direction: column;
@@ -41,7 +47,7 @@
 }
 
 
-/* reuse your event classes */
+/* reusing colours from calendar.css */
 .legend-color-box.event-considering {
   background: #fef3c7;
 }
@@ -61,3 +67,4 @@
   font-size: 0.9rem;
   color: #4b5563;
 }
+

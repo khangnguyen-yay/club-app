@@ -1,19 +1,19 @@
 import CalendarView from "../components/calendar/calendar-view";
-
+import "../styles/calendar.css"
 
 const Calendar = () => {
-
   return (
-    <div className="calendar-page">
-      <h1 className="calendar-title">Calendar</h1>
-      <p>
-        Upcoming application deadlines for clubs you're considering or
-        applying to.
-      </p>
+    <main className="calendar-page calendar-root">
+      <section className="calendar-header-container">
+        <h1 className="calendar-heading">Calendar</h1>
+        <p className="calendar-subtitle">
+          Upcoming application deadlines for clubs you're considering or applying to.
+        </p>
+      </section>
 
       <CalendarView />
-    </div>
+    </main>
   );
-}
+};
 
 export default Calendar;

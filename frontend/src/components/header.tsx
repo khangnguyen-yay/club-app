@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/header.css"
+import { ThemeToggle } from './ThemeToggle';
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+const BACKEND_URL = "http://localhost:3000";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -28,14 +29,18 @@ const Header = () => {
 
     return (
         <header data-testid="app-header" className="app-header">
-            <div className="header-content">
-                <h1>Clubfindr</h1>
-                <p>Discover clubs effortlessly</p>
-            </div>
+            <img
+                src="/logo.png"
+                alt="Clubfindr"
+                className="header-logo"
+            />
 
-            <button onClick={handleLogout} className="logout-button">
-                Log out
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <ThemeToggle />
+                <button onClick={handleLogout} className="logout-button">
+                    Log out
+                </button>
+            </div>
         </header>
     );
 }
