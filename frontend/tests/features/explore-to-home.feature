@@ -1,42 +1,40 @@
 Feature: Selecting and unselecting status buttons on the explore page updates the home page
     
-    Scenario: First card appears under "Applying" category under home page
+    Scenario: Card appears under "Applying" category under home page when selected
         Given the user is on the explore page
-        Given the Applying button is not highlighted
-        Given the first card has a title
+        Given the Applying button is light yellow
         When we click on the Applying button
         When we navigate to the home page
         Then the first card should appear under the Applying section
 
-    Scenario: First card doesn't appear under "Applying" category under home page
+    Scenario: Card doesn't appear under "Applying" category under home page when not selected
         Given the user is on the explore page
-        Given the Applying button on the first card is unselected
+        Given the Applying button is light yellow
         When we navigate to the home page
-        Then the card should not be displayed under the Applying category label
+        Then the first card should not appear under the Applying section
 
-    Scenario: First card doesn't appear under "Applying" category under home page when deselected
+    Scenario: Card appears under "Applied" category under home page when selected
         Given the user is on the explore page
-        Given the Applying button on the first card is selected
-        When we click on the Applying button
+        Given the Applied button is light green
+        When we click on the Applied button
         When we navigate to the home page
-        Then the card should not be displayed under the Applying category label
+        Then the first card should appear under the Applied section
 
-    Scenario: Second card appears under "Applying" category under home page
+    Scenario: Card doesn't appear under "Applied" category under home page when not selected
         Given the user is on the explore page
-        Given the Applying button on the second card is selected
+        Given the Applied button is light green
         When we navigate to the home page
-        Then the first card should appear under the Applying section
+        Then the first card should not appear under the Applied section
 
-    Scenario: Second card doesn't appear under "Applying" category under home page
+    Scenario: Card appears under "Considering" category under home page when selected
         Given the user is on the explore page
-        Given the Applying button on the second card is unselected
+        Given the Consider button is light red
+        When we click on the Consider button
         When we navigate to the home page
-        Then the card should not be displayed under the Applying category label
+        Then the first card should appear under the Considering section
 
-     Scenario: Status is preserved for Applying when navigating from explore to home
+    Scenario: Card doesn't appear under "Considering" category under home page when not selected
         Given the user is on the explore page
-        Given the Applying button is light orange
-        When we click on the Applying button
+        Given the Consider button is light red
         When we navigate to the home page
-        Then the first card should appear under the Applying section
-        Then the Applying button is dark orange
+        Then the first card should not appear under the Considering section

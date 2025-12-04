@@ -30,10 +30,6 @@ When('we click on the Applying button', async function () {
 });
 
 Then('the Applying button is dark yellow', async function () {
-    //move mouse to different button
-    const anotherButton = await this.page.locator('.applyingButton')
-    await anotherButton.first().click()
-
     //test selected color
     this.selectedButton = this.page.locator('.statusButton.applyingButtonClicked').first()
     await expect(this.selectedButton).toHaveCSS('background-color', APPLYING_COLOR_SELECTED);
@@ -53,10 +49,6 @@ When('we click on the Consider button', async function () {
 });
 
 Then('the Consider button is dark red', async function () {
-    //move mouse to different button
-    const anotherButton = await this.page.locator('.applyingButton')
-    await anotherButton.first().click()
-
     //test selected color
     this.selectedButton = this.page.locator('.statusButton.considerButtonClicked').first()
     await expect(this.selectedButton).toHaveCSS('background-color', CONSIDER_COLOR_SELECTED);
@@ -76,11 +68,7 @@ When('we click on the Applied button', async function () {
 });
 
 Then('the Applied button is dark green', async function () {
-    await this.page.pause();
     //move mouse to different button
-    //const anotherButton = await this.page.locator('.applyingButton')
-    //await anotherButton.first().click()
-
     //test selected color
     this.selectedButton = this.page.locator('.statusButton.appliedButtonClicked').first()
     await expect(this.selectedButton).toHaveCSS('background-color', APPLIED_COLOR_SELECTED);
