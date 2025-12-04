@@ -85,6 +85,9 @@
     height: 30px;
     margin-bottom: var(--card-margin);
     text-align:center;
+    display: inline-flex;   /* <-- key change */
+    justify-content: center;
+    align-items: center;
     color: white;
     padding: 0px 10px;
     font-weight: 100px;
@@ -99,14 +102,14 @@
     background-color: #d8a4a4;
     border-color: #d8a4a4;
     margin-left: var(--card-margin);
-    color: black;
+    color: rgb(245, 240, 240);
   }
   
   .applyingButton {
     background-color: #d9d59d;
     border-color: #d9d59d;
     margin-left: 10px;
-    color: black;
+    color: rgb(245, 240, 240);
   }
   
   .appliedButton {
@@ -114,7 +117,7 @@
     border-color: #94d298;
     margin-left: 10px;
     margin-right: var(--card-margin);
-    color: black;
+    color: rgb(245, 240, 240);
   }
 
   .box:hover {
