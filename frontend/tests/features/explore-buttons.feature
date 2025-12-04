@@ -1,38 +1,38 @@
 Feature: Explore Page status buttons
 
-    Scenario: Select the "Applying" button
+    Scenario: Select the "Applying" button, color change
         Given the user is on the explore page
-        Given the Applying button is light orange
+        Given the Applying button is light yellow
         When we click on the Applying button
-        Then the Applying button is dark orange
+        Then the Applying button is dark yellow
 
-    Scenario: Select the "Consider" button
+    Scenario: Select the "Consider" button, color change
         Given the user is on the explore page
-        Given the Consider button is light blue
+        Given the Consider button is light red
         When we click on the Consider button
-        Then the Consider button is dark blue
+        Then the Consider button is dark red
 
-    Scenario: Select the "Applied" button
+    Scenario: Select the "Applied" button, color change
         Given the user is on the explore page
         Given the Applied button is light green
         When we click on the Applied button
         Then the Applied button is dark green
 
-    Scenario: Select the "Applying" button
+    Scenario: Deselect the "Applying" button, color change
         Given the user is on the explore page
         Given we click on the Applying button
-        Given the Applying button is dark orange
+        Given the Applying button is dark yellow
         When we click on the Applying button
-        Then the Applying button is light orange
+        Then the Applying button is light yellow
 
-    Scenario: Select the "Consider" button
+    Scenario: Deselect the "Consider" button, color change
         Given the user is on the explore page
         Given we click on the Consider button
-        Given the Consider button is dark blue
+        Given the Consider button is dark red
         When we click on the Consider button
-        Then the Consider button is light blue
+        Then the Consider button is light red
 
-    Scenario: Select the "Applied" button
+    Scenario: Deselect the "Applied" button, color change
         Given the user is on the explore page
         Given we click on the Applied button
         Given the Applied button is dark green

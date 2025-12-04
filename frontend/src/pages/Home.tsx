@@ -3,7 +3,6 @@ import { useState, useEffect } from "react"
 import '../styles/Home.css';
 import ClubList from '../appCard/CardList.tsx';
 import type { Club } from '../appCard/CardList.tsx';
-//import TestStatus from "../components/testStatus";
 import { fetchClubsByStatus } from "../../utils/apiHelpers.ts";
 
 
