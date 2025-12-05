@@ -16,6 +16,8 @@ Feature: Selecting and unselecting buttons when on home page
          Then the Considering category count should show the correct number of Consider cards
 
       Scenario: Deselecting Applying button on home page removes it from the home page
+         Given the user is on the explore page
+         Given we click on the Applying button
         Given we navigate to the home page
         Given the Applying button is dark yellow
         When we click on the Applying button
@@ -23,6 +25,8 @@ Feature: Selecting and unselecting buttons when on home page
         Then the first card should not appear under the Applying section
 
       Scenario: Deselecting Applied button on home page removes it from the home page
+         Given the user is on the explore page
+         Given we click on the Applied button
         Given we navigate to the home page
         Given the Applied button is dark green
         When we click on the Applied button
@@ -30,6 +34,8 @@ Feature: Selecting and unselecting buttons when on home page
         Then the first card should not appear under the Applied section
 
       Scenario: Deselecting Consider button on home page removes it from the home page
+         Given the user is on the explore page
+         Given we click on the Consider button
         Given we navigate to the home page
         Given the Consider button is dark red
         When we click on the Consider button
