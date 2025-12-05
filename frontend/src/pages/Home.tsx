@@ -8,76 +8,66 @@ import { fetchClubsByStatus } from "../../utils/apiHelpers.ts";
 
 function Home() {
 
-  interface categoryCounts {
-    appliedCount : number,
-    applyingCount : number,
-    considerCount : number
+  type statusCounts = {
+    applied : number,
+    applying : number,
+    consider : number
   }
 
-  const [categoryCounts, setCategoryCounts] = useState<categoryCounts>({
-    appliedCount : 0,
-    applyingCount : 0,
-    considerCount : 0
+  const [statusCounts, setStatusCounts] = useState<statusCounts>({
+    applied : 0,
+    applying : 0,
+    consider : 0
 })
 
-  let applyingDisplay : React.JSX.Element | string = "No clubs in this category yet."
-  let appliedDisplay : React.JSX.Element | string = "No clubs in this category yet."
-  let considerDisplay : React.JSX.Element | string = "No clubs in this category yet."
+
+
+  let applyingDisplay : React.JSX.Element;
+  let appliedDisplay : React.JSX.Element;
+  let considerDisplay : React.JSX.Element;
 
   const [applyingClubs, setApplyingClubs] = useState<Club[]>([]);
   const [appliedClubs, setAppliedClubs] = useState<Club[]>([]);
   const [considerClubs, setConsiderClubs] = useState<Club[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function fetchClubs() {
-      try {
-        let res = await fetchClubsByStatus("applying");
-        const applyingData = await res;
-        if (typeof applyingData == "string") {
-          return;
+  async function getClubsByStatus(status : string) {
+    try {
+      let res = await fetchClubsByStatus(status);
+        const clubs = await res;
+        if (typeof clubs == "string") {
+          return [];
         }
-        const applyingDataWithStatus = applyingData.map(club => ({
+        const clubsWithStatus = clubs.map(club => ({
           ...club,
-          preference: "applying"
+          preference: status
         }))
-        console.log(applyingDataWithStatus);
-        setApplyingClubs(applyingDataWithStatus);
-        res = await fetchClubsByStatus("applied");
-        const appliedData = await res;
-        if (typeof appliedData == "string") {
-          return;
-        }
-        const appliedDataWithStatus = appliedData.map(club => ({
-          ...club,
-          preference: "applied"
-        }))
-        setAppliedClubs(appliedDataWithStatus);
-        res = await fetchClubsByStatus("considering");
-        const considerData = await res;
-        if (typeof considerData == "string") {
-          return;
-        }
-        const considerDataWithStatus = considerData.map(club => ({
-          ...club,
-          preference: "considering"
-        }))
-        setConsiderClubs(considerDataWithStatus);
+        return clubsWithStatus;
       } catch (err) {
         console.error(err);
+        return [];
       } finally {
         setLoading(false);
       }
     }
 
-    fetchClubs();
-  }, []); 
+    useEffect(() => {
+      async function fetchClubs() {
+        const applyingClubs = await getClubsByStatus("applying");
+        setApplyingClubs(applyingClubs);
+        const appliedClubs = await getClubsByStatus("applied");
+        setAppliedClubs(appliedClubs);
+        const considerClubs = await getClubsByStatus("considering");
+        setConsiderClubs(considerClubs);
+      }
+      fetchClubs();
+    }, []);
 
   useEffect(() => {
-    setCategoryCounts({
-      applyingCount: applyingClubs.length,
-      appliedCount: appliedClubs.length,
-      considerCount: considerClubs.length
+    setStatusCounts({
+      applying: applyingClubs.length,
+      applied: appliedClubs.length,
+      consider: considerClubs.length
     })
   }, [applyingClubs, appliedClubs, considerClubs])
 
@@ -95,7 +85,7 @@ function Home() {
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Applied</h2>
-          <span className="countBox">{categoryCounts.appliedCount}</span>
+          <span className="countBox">{statusCounts.applied}</span>
         </div>
         <h3>{appliedDisplay}</h3>
       </div>
@@ -104,7 +94,7 @@ function Home() {
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Applying</h2>
-          <span className="countBox">{categoryCounts.applyingCount}</span>
+          <span className="countBox">{statusCounts.applying}</span>
         </div>
         <h3>{applyingDisplay}</h3>
       </div>
@@ -112,7 +102,7 @@ function Home() {
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Considering</h2>
-          <span className="countBox">{categoryCounts.considerCount}</span>
+          <span className="countBox">{statusCounts.consider}</span>
         </div>
         <h3>{considerDisplay}</h3>
       </div>
