@@ -1,91 +1,14 @@
-import React from "react";
-import { useState, useEffect } from "react"
 import '../styles/Home.css';
+import useStatusSections from "../components/statusSection.tsx" 
 import ClubList from '../appCard/CardList.tsx';
-import type { Club } from '../appCard/CardList.tsx';
-import { fetchClubsByStatus } from "../../utils/apiHelpers.ts";
 
-
+//Display club cards in sections grouped by status (applied/applying/consider)
 function Home() {
 
-  interface categoryCounts {
-    appliedCount : number,
-    applyingCount : number,
-    considerCount : number
-  }
+//Retrieve lists of clubs corresponding to each status
+const { loading, applyingClubs, appliedClubs, considerClubs } = useStatusSections();
 
-  const [categoryCounts, setCategoryCounts] = useState<categoryCounts>({
-    appliedCount : 0,
-    applyingCount : 0,
-    considerCount : 0
-})
-
-  let applyingDisplay : React.JSX.Element | string = "No clubs in this category yet."
-  let appliedDisplay : React.JSX.Element | string = "No clubs in this category yet."
-  let considerDisplay : React.JSX.Element | string = "No clubs in this category yet."
-
-  const [applyingClubs, setApplyingClubs] = useState<Club[]>([]);
-  const [appliedClubs, setAppliedClubs] = useState<Club[]>([]);
-  const [considerClubs, setConsiderClubs] = useState<Club[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchClubs() {
-      try {
-        let res = await fetchClubsByStatus("applying");
-        const applyingData = await res;
-        if (typeof applyingData == "string") {
-          return;
-        }
-        const applyingDataWithStatus = applyingData.map(club => ({
-          ...club,
-          preference: "applying"
-        }))
-        console.log(applyingDataWithStatus);
-        setApplyingClubs(applyingDataWithStatus);
-        res = await fetchClubsByStatus("applied");
-        const appliedData = await res;
-        if (typeof appliedData == "string") {
-          return;
-        }
-        const appliedDataWithStatus = appliedData.map(club => ({
-          ...club,
-          preference: "applied"
-        }))
-        setAppliedClubs(appliedDataWithStatus);
-        res = await fetchClubsByStatus("considering");
-        const considerData = await res;
-        if (typeof considerData == "string") {
-          return;
-        }
-        const considerDataWithStatus = considerData.map(club => ({
-          ...club,
-          preference: "considering"
-        }))
-        setConsiderClubs(considerDataWithStatus);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchClubs();
-  }, []); 
-
-  useEffect(() => {
-    setCategoryCounts({
-      applyingCount: applyingClubs.length,
-      appliedCount: appliedClubs.length,
-      considerCount: considerClubs.length
-    })
-  }, [applyingClubs, appliedClubs, considerClubs])
-
-  if (loading) return <div>Loading...</div>;
-
-  applyingDisplay = <ClubList filteredCards={applyingClubs}></ClubList>
-  appliedDisplay = <ClubList filteredCards={appliedClubs}></ClubList>
-  considerDisplay = <ClubList filteredCards={considerClubs}></ClubList>
+if (loading) return <div>Loading...</div>;
 
   return (
     <div className="homeContainer">
@@ -95,26 +18,27 @@ function Home() {
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Applied</h2>
-          <span className="countBox">{categoryCounts.appliedCount}</span>
+          <span className="countBox">{appliedClubs.length}</span> {/* Display category count */}
         </div>
-        <h3>{appliedDisplay}</h3>
+        <ClubList filteredCards={appliedClubs}></ClubList> {/* Display list of clubs for Applied section in ClubList format */}
       </div>
 
       <div className="applyingSection">
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Applying</h2>
-          <span className="countBox">{categoryCounts.applyingCount}</span>
+          <span className="countBox">{applyingClubs.length}</span>
         </div>
-        <h3>{applyingDisplay}</h3>
+        <ClubList filteredCards={applyingClubs}></ClubList>
       </div>
+
       <div className="considerSection">
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Considering</h2>
-          <span className="countBox">{categoryCounts.considerCount}</span>
+          <span className="countBox">{considerClubs.length}</span>
         </div>
-        <h3>{considerDisplay}</h3>
+        <ClubList filteredCards={considerClubs}></ClubList>
       </div>
     </div>
   );

@@ -20,7 +20,6 @@ test('Typing Test in search Bar', async ({ page }) => {
 });
 
 test('Search bar input filters club list', async ({ page }) => {
-  await page.pause();
   await page.goto('http://localhost:5173/explore');
 
   const searchTerm = "ACM"; //using this as test since there is only one club with ACM in the name in sample data
