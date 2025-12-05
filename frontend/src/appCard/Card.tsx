@@ -20,13 +20,6 @@ type CardProps = {
 //later: add assertions about width/contents of each parameter before displaying it (ex. isn't too long, etc)
 export function Card({id, name, type, notes, website, instagram, filters, preference, test} : CardProps) {
 
-  console.log("ID")
-  console.log(id)
-  console.log("name")
-  console.log(name)
-  console.log("preference")
-  console.log(preference)
-  console.log(test);
   const [selected, setSelected] = useState({
     considering: (preference === "considering"),
     applying: (preference === "applying"),
@@ -36,8 +29,6 @@ export function Card({id, name, type, notes, website, instagram, filters, prefer
   function handleClick(label : string) {
     //setClicked lets you pass in a function that also returns a struct instead of a struct
     //React will pass in the current state
-    console.log("Preference: ")
-    console.log(preference)
     let labelSelected = !selected[label as keyof typeof selected];
     if (labelSelected) {
       postStatus(id, label);
@@ -103,11 +94,8 @@ export function Card({id, name, type, notes, website, instagram, filters, prefer
   //so that the card component can display the handle instead of the link
   //https://www.instagram.com/ucladanceteam/ -> ucladanceteam
   function extractInstagramHandle(instagram : string) : (string | null) {
-    console.log(instagram)
     //(match returns an array with the capture groups)
     const match : (RegExpMatchArray | null) = instagram.match(/(instagram\.com\/)([A-Za-z]+)/)
-    console.log(match)
     const handle : (string | null) = match == null ? null : "@" + match[2]
-    console.log(handle)
-    return handle
+    return handle;
   }
