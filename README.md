@@ -68,6 +68,7 @@ docker compose up --build
 ```
 cd backend
 npm run dev
+Note: Must place .env file in backend folder for backend to successfully run
 ```
 ## Tests
 ```
