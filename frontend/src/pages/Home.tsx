@@ -1,90 +1,11 @@
-import React from "react";
-import { useState, useEffect } from "react"
 import '../styles/Home.css';
-import { fetchClubsByStatus } from "../../utils/apiHelpers.ts";
 import useStatusSections from "../components/statusSection.tsx" 
 import ClubList from '../appCard/CardList.tsx';
 
-
+//Display club cards in sections grouped by status (applied/applying/consider)
 function Home() {
 
-  /*
-  type statusCounts = {
-    applied : number,
-    applying : number,
-    consider : number
-  }
-
-  const [statusCounts, setStatusCounts] = useState<statusCounts>({
-    applied : 0,
-    applying : 0,
-    consider : 0
-})
-*/
-/*
-  let applyingDisplay : React.JSX.Element;
-  let appliedDisplay : React.JSX.Element;
-  let considerDisplay : React.JSX.Element;
-
-  const [applyingClubs, setApplyingClubs] = useState<Club[]>([]);
-  const [appliedClubs, setAppliedClubs] = useState<Club[]>([]);
-  const [considerClubs, setConsiderClubs] = useState<Club[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  async function getClubsByStatus(status : string) {
-    try {
-      let res = await fetchClubsByStatus(status);
-        const clubs = await res;
-        if (typeof clubs == "string") {
-          return [];
-        }
-        const clubsWithStatus = clubs.map(club => ({
-          ...club,
-          preference: status
-        }))
-        return clubsWithStatus;
-      } catch (err) {
-        console.error(err);
-        return [];
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    useEffect(() => {
-      async function fetchClubs() {
-
-        const applyingClubs = await getClubsByStatus("applying");
-        setApplyingClubs(applyingClubs);
-
-        const appliedClubs = await getClubsByStatus("applied");
-        setAppliedClubs(appliedClubs);
-
-        const considerClubs = await getClubsByStatus("considering");
-        setConsiderClubs(considerClubs);
-
-      }
-      fetchClubs();
-    }, []);
-
-    /*
-  useEffect(() => {
-    setStatusCounts({
-      applying: applyingClubs.length,
-      applied: appliedClubs.length,
-      consider: considerClubs.length
-    })
-  }, [applyingClubs, appliedClubs, considerClubs])
-*/
-
-/*
-  if (loading) return <div>Loading...</div>;
-
-  applyingDisplay = <ClubList filteredCards={applyingClubs}></ClubList>
-  appliedDisplay = <ClubList filteredCards={appliedClubs}></ClubList>
-  considerDisplay = <ClubList filteredCards={considerClubs}></ClubList>
-*/
-
+//Retrieve lists of clubs corresponding to each status
 const { loading, applyingClubs, appliedClubs, considerClubs } = useStatusSections();
 
 if (loading) return <div>Loading...</div>;
@@ -97,9 +18,9 @@ if (loading) return <div>Loading...</div>;
         <div className="categoryBlock">
           <span className="dot"></span>
           <h2>Applied</h2>
-          <span className="countBox">{appliedClubs.length}</span>
+          <span className="countBox">{appliedClubs.length}</span> {/* Display category count */}
         </div>
-        <ClubList filteredCards={appliedClubs}></ClubList>
+        <ClubList filteredCards={appliedClubs}></ClubList> {/* Display list of clubs for Applied section in ClubList format */}
       </div>
 
       <div className="applyingSection">
@@ -110,6 +31,7 @@ if (loading) return <div>Loading...</div>;
         </div>
         <ClubList filteredCards={applyingClubs}></ClubList>
       </div>
+
       <div className="considerSection">
         <div className="categoryBlock">
           <span className="dot"></span>

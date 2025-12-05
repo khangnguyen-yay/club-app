@@ -14,11 +14,9 @@ type CardProps = {
   instagram? : string
   filters? : string[]
   preference : string
-  test : string
 }
 
-//later: add assertions about width/contents of each parameter before displaying it (ex. isn't too long, etc)
-export function Card({id, name, type, notes, website, instagram, filters, preference, test} : CardProps) {
+export function Card({id, name, type, notes, website, instagram, filters, preference} : CardProps) {
 
   const [selected, setSelected] = useState({
     considering: (preference === "considering"),
@@ -27,9 +25,11 @@ export function Card({id, name, type, notes, website, instagram, filters, prefer
   });
 
   function handleClick(label : string) {
-    //setClicked lets you pass in a function that also returns a struct instead of a struct
-    //React will pass in the current state
+    //Button changes to selected if originally unselected
+    //Button changes to unselected if originally selected
     let labelSelected = !selected[label as keyof typeof selected];
+
+    //Update backend with new status for the club
     if (labelSelected) {
       postStatus(id, label);
     }
@@ -37,14 +37,17 @@ export function Card({id, name, type, notes, website, instagram, filters, prefer
       postStatus(id, "none");
     }
 
+    //Update frontend to reflect new button state
     setSelected((prev) => 
       {
-        const newState = { ...prev, [label]: labelSelected }; //second part of struct overwrites current state
+        const newState = { ...prev, [label]: labelSelected };
         return  newState;
       }
     );
   }
 
+  //Determine CSS classes depending on button status
+  //Since selected/unselected buttons use different CSS styling
   const classNameConsider = ["statusButton", 
   selected.considering ? "considerButtonClicked" : "considerButton"].join(' ')
 
@@ -55,6 +58,7 @@ export function Card({id, name, type, notes, website, instagram, filters, prefer
   selected.applied ? "appliedButtonClicked" : "appliedButton"].join(' ')
 
   const instagramHandle = extractInstagramHandle(instagram || '')
+  
   return (
       <div className="club-card" data-testid="club-card">
         <h1 className="clubName">{name}</h1>
@@ -90,9 +94,9 @@ export function Card({id, name, type, notes, website, instagram, filters, prefer
     )
 }
 
-  //This function extracts an Instagram handle from an Instagram link,
-  //so that the card component can display the handle instead of the link
-  //https://www.instagram.com/ucladanceteam/ -> ucladanceteam
+  //Extracts an Instagram handle from an Instagram link,
+  //So that the card component can display the handle instead of the link
+  //Ex. https://www.instagram.com/ucladanceteam/ -> ucladanceteam
   function extractInstagramHandle(instagram : string) : (string | null) {
     //(match returns an array with the capture groups)
     const match : (RegExpMatchArray | null) = instagram.match(/(instagram\.com\/)([A-Za-z]+)/)
