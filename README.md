@@ -74,9 +74,9 @@ Note: Must place .env file in backend folder for backend to successfully run
 ```
 For Frontend: 
 cd frontend
-npx ts-node --esm utils/saveGoogleSession.ts
-npx playwright test
+npx ts-node --esm saveGoogleSession.ts
 npm run cucumber
+npx playwright test
 
 For Backend:
 npx jest
