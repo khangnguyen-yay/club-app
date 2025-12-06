@@ -7,6 +7,8 @@ const BACKEND_URL = "http://localhost:3000";
 const Header = () => {
     const navigate = useNavigate();
 
+    //Handling API call to logout 
+    // Make sure user needs to be reauthenticated after with ProtectedRoutes
     const handleLogout = async () => {
         try {
             const response = await fetch(`${BACKEND_URL}/auth/logout`, {

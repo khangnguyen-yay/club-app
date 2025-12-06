@@ -7,6 +7,8 @@ interface SearchBarInterface {
     onSearch?: (query: string) => void;
 }
 
+// SerchBar component just renders the search bar and accepts input
+// This does not handle filtering logic itself
 const SearchBar: React.FC<SearchBarInterface> = ({placeholderText = "Search club names...", query, onSearch}) => {
     return (
         <input

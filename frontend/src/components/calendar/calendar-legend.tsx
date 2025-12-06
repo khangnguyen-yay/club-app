@@ -8,7 +8,8 @@ export default function CalendarLegend() {
     { label: "Applied", className: "event-applied" },
   ];
 
-
+  //Legend component to explain color coding on the calendar events
+  // Same colors are used from deadline status color in calendar
   return (
     <div className="calendar-legend-container">
       <h3 className="legend-title">Legend</h3>

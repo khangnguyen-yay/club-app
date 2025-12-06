@@ -5,6 +5,7 @@ type fixture = {
 }
 
 export const test = baseTest.extend<fixture>({
+    //Remove all currently stored clubs
   reset : async ({ page }, use) => {
     const resetFunction = async() => {
         console.log('RESET EVERYTHING');

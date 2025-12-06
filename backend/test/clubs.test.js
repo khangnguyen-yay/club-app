@@ -1,3 +1,4 @@
+//GPT-5 helped with the creation of these tests
 // backend/tests/clubs.test.js
 import request from 'supertest';
 import { jest } from '@jest/globals';

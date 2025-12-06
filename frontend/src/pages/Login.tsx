@@ -4,6 +4,7 @@ import clubfindrLogo from "../assets/clubfinder-logo.png";
 import { useAuth } from "../AuthContext/authContext";
 
 const LoginPage: React.FC = () => {
+  //calls hook useAuth created in AuthContext to store user state
   const { loginWithGoogle } = useAuth();
 
   return (
