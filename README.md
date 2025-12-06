@@ -81,6 +81,8 @@ npx playwright test
 For Backend:
 npx jest
 ```
+Note: If any cucumber tests fail, make sure the Google account you are using does not currently have any selected clubs. 
+
 ## ✅ Your local environment should now be running!
 ```
 You can open the frontend in your browser and interact with the full system.
