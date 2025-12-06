@@ -68,18 +68,21 @@ docker compose up --build
 ```
 cd backend
 npm run dev
+Note: Must place .env file in backend folder for backend to successfully run
 ```
 ## Tests
 ```
 For Frontend: 
 cd frontend
-npx ts-node --esm utils/saveGoogleSession.ts
-npx playwright test
+npx ts-node --esm saveGoogleSession.ts
 npm run cucumber
+npx playwright test
+Note: If any Cucumber tests fail, make sure the Google account you are using does not currently have any selected clubs. 
 
 For Backend:
 npx jest
 ```
+
 ## ✅ Your local environment should now be running!
 ```
 You can open the frontend in your browser and interact with the full system.

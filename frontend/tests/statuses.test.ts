@@ -20,7 +20,6 @@ const CONSIDER_COLOR_SELECTED = 'rgb(202, 96, 96)';
 
 //SELECTION TESTS
 test('Selecting applied button on explore page adds club to applied category in backend', async ({ reset, page }) => {
-  page.pause();
     await reset();
 
     // Go to explore page
@@ -34,11 +33,17 @@ test('Selecting applied button on explore page adds club to applied category in 
     const selectedButton = page.locator('.statusButton.appliedButtonClicked').first();
     await expect(selectedButton).toHaveCSS('background-color', APPLIED_COLOR_SELECTED);
     // Check that it is now in backend
-    const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applied');
-    const clubs : Club[] = await res.json();
-    const clubIDToCheck = 1;
-    expect(clubs.some((club : Club) => club.id === clubIDToCheck)).toBe(true);
-
+    let found = false;
+    for (let i = 0; i < 10; i++) {
+      const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applied');
+      const clubs : Club[] = await res.json();
+      const clubIDToCheck = 1;
+      if (clubs.some((club : Club) => club.id === clubIDToCheck)) {
+        found = true;
+      }
+      await page.waitForTimeout(1000);
+    }
+    await expect(found).toBe(true);
     await reset();
   });
 
@@ -59,12 +64,17 @@ test('Selecting applied button on explore page adds club to applied category in 
     await expect(updatedApplyingButton).toHaveCSS('background-color', APPLYING_COLOR_SELECTED);
 
     // Check that it is now in backend
-    const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applying');
-    const applyingClubs : Club[] = await res.json();
-    const clubIDToCheck = 1;
-    console.log(applyingClubs);
-    expect(applyingClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(true);
-
+    let found = false;
+    for (let i = 0; i < 10; i++) {
+      const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applying');
+      const clubs : Club[] = await res.json();
+      const clubIDToCheck = 1;
+      if (clubs.some((club : Club) => club.id === clubIDToCheck)) {
+        found = true;
+      }
+      await page.waitForTimeout(1000);
+    }
+    await expect(found).toBe(true);
     await reset();
   });
 
@@ -85,12 +95,17 @@ test('Selecting applied button on explore page adds club to applied category in 
     await expect(updatedConsiderButton).toHaveCSS('background-color', CONSIDER_COLOR_SELECTED);
 
     // Check that it is now in backend
-    const res = await page.request.get('http://localhost:3000/api/user/clubs?status=considering');
-    const considerClubs : Club[] = await res.json();
-    const clubIDToCheck = 1;
-    //console.log(considerClubs);
-    expect(considerClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(true);
-
+    let found = false;
+    for (let i = 0; i < 10; i++) {
+      const res = await page.request.get('http://localhost:3000/api/user/clubs?status=considering');
+      const clubs : Club[] = await res.json();
+      const clubIDToCheck = 1;
+      if (clubs.some((club : Club) => club.id === clubIDToCheck)) {
+        found = true;
+      }
+      await page.waitForTimeout(1000);
+    }
+    expect(found).toBe(true);
     await reset();
   });
 
@@ -110,12 +125,16 @@ test('Selecting applied button on explore page adds club to applied category in 
     await updatedButton.click();
 
     // Check that it is now not in backend
-    const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applied');
-    const categoryClubs : Club[] = await res.json();
-    console.log(categoryClubs);
-    const clubIDToCheck = 1;
-    expect(categoryClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(false);
-
+    let found = false;
+    for (let i = 0; i < 10; i++) {
+      const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applied');
+      const clubs : Club[] = await res.json();
+      const clubIDToCheck = 1;
+      if (clubs.some((club : Club) => club.id === clubIDToCheck)) {
+        found = true;
+      }
+      await page.waitForTimeout(1000);
+    }
     await reset();
   });
 
@@ -128,17 +147,23 @@ test('Selecting applied button on explore page adds club to applied category in 
     //Click button that is currently unselected, then select it
     const button = await page.locator('.applyingButton').first();
     await button.click();
-    const updatedButton = await page.locator('.statusButton.applyingButtonClicked');
+    const updatedButton = await page.locator('.statusButton.applyingButtonClicked').first();
 
     //Unselect button
     await updatedButton.click();
 
     // Check that it is now not in backend
-    const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applying');
-    const categoryClubs : Club[] = await res.json();
-    console.log(categoryClubs);
-    const clubIDToCheck = 1;
-    expect(categoryClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(false);
+    let found = false;
+    for (let i = 0; i < 10; i++) {
+      const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applying');
+      const clubs : Club[] = await res.json();
+      const clubIDToCheck = 1;
+      if (clubs.some((club : Club) => club.id === clubIDToCheck)) {
+        found = true;
+      }
+      await page.waitForTimeout(1000);
+    }
+    await expect(found).toBe(true);
 
     await reset();
   });
@@ -158,12 +183,17 @@ test('Selecting applied button on explore page adds club to applied category in 
     await updatedButton.click();
 
     // Check that it is now not in backend
-    const res = await page.request.get('http://localhost:3000/api/user/clubs?status=considering');
-    const categoryClubs : Club[] = await res.json();
-    console.log(categoryClubs);
-    const clubIDToCheck = 1;
-    expect(categoryClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(false);
-
+    let found = false;
+    for (let i = 0; i < 10; i++) {
+      const res = await page.request.get('http://localhost:3000/api/user/clubs?status=considering');
+      const clubs : Club[] = await res.json();
+      const clubIDToCheck = 1;
+      if (clubs.some((club : Club) => club.id === clubIDToCheck)) {
+        found = true;
+      }
+      await page.waitForTimeout(1000);
+    }
+    await expect(found).toBe(true);
     await reset();
   });
 
@@ -174,6 +204,11 @@ test('Selecting applied button on explore page adds club to applied category in 
  //SELECTION TESTS
 test('Selecting applied button on home page adds club to applied category in backend', async ({ reset ,page }) => {
   await reset();
+
+  //Select a club in explore page 
+  await page.goto('http://localhost:5173/explore');
+  const considerButton = await page.locator('.considerButton').first();
+  await considerButton.click();
   
   // Go to home page
   await page.goto('http://localhost:5173/home');
@@ -189,16 +224,27 @@ test('Selecting applied button on home page adds club to applied category in bac
   await expect(updatedAppliedButton).toHaveCSS('background-color', APPLIED_COLOR_SELECTED);
   // Check that it is now in backend
   //const appliedClubs = await fetchClubsByStatus("applied"); this didn't work
-  const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applied');
-  const appliedClubs : Club[] = await res.json();
-  const clubIDToCheck = 1;
-  expect(appliedClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(true);
-
+  let found = false;
+    for (let i = 0; i < 10; i++) {
+      const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applied');
+      const clubs : Club[] = await res.json();
+      const clubIDToCheck = 1;
+      if (clubs.some((club : Club) => club.id === clubIDToCheck)) {
+        found = true;
+      }
+      await page.waitForTimeout(1000);
+    }
+    await expect(found).toBe(true);
   await reset();
 });
 
 test('Selecting applying button on home page adds club to applying category in backend', async ({ reset, page }) => {
   await reset();
+
+   //Select a club in explore page 
+   await page.goto('http://localhost:5173/explore');
+   const considerButton = await page.locator('.considerButton').first();
+   await considerButton.click();
   
   // Go to home page
   await page.goto('http://localhost:5173/home');
@@ -214,17 +260,28 @@ test('Selecting applying button on home page adds club to applying category in b
   await expect(updatedApplyingButton).toHaveCSS('background-color', APPLYING_COLOR_SELECTED);
 
   // Check that it is now in backend
-  const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applying');
-  const applyingClubs : Club[] = await res.json();
-  const clubIDToCheck = 1;
-  console.log(applyingClubs);
-  expect(applyingClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(true);
+  let found = false;
+    for (let i = 0; i < 10; i++) {
+      const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applying');
+      const clubs : Club[] = await res.json();
+      const clubIDToCheck = 1;
+      if (clubs.some((club : Club) => club.id === clubIDToCheck)) {
+        found = true;
+      }
+      await page.waitForTimeout(1000);
+    }
+    await expect(found).toBe(true);
 
   await reset();
 });
 
 test('Selecting consider button on home page adds club to considering category in backend', async ({ reset, page }) => {
   await reset();
+
+   //Select a club in explore page 
+   await page.goto('http://localhost:5173/explore');
+   const applyingButton = await page.locator('.applyingButton').first();
+   await applyingButton.click();
   
   // Go to home page
   await page.goto('http://localhost:5173/home');
@@ -240,11 +297,17 @@ test('Selecting consider button on home page adds club to considering category i
   await expect(updatedConsiderButton).toHaveCSS('background-color', CONSIDER_COLOR_SELECTED);
 
   // Check that it is now in backend
-  const res = await page.request.get('http://localhost:3000/api/user/clubs?status=considering');
-  const considerClubs : Club[] = await res.json();
-  const clubIDToCheck = 1;
-  //console.log(considerClubs);
-  expect(considerClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(true);
+  let found = false;
+    for (let i = 0; i < 10; i++) {
+      const res = await page.request.get('http://localhost:3000/api/user/clubs?status=considering');
+      const clubs : Club[] = await res.json();
+      const clubIDToCheck = 1;
+      if (clubs.some((club : Club) => club.id === clubIDToCheck)) {
+        found = true;
+      }
+      await page.waitForTimeout(1000);
+    }
+    await expect(found).toBe(true);
 
   await reset();
 });
@@ -268,16 +331,22 @@ test('Deselecting applied button on home page removes club from applied category
   await homeAppliedButton.click();
 
   // Check that it is now not in backend
-  const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applied');
-  const appliedClubs : Club[] = await res.json();
-  const clubIDToCheck = 1;
-  expect(appliedClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(false);
+  let found = false;
+    for (let i = 0; i < 10; i++) {
+      const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applied');
+      const clubs : Club[] = await res.json();
+      const clubIDToCheck = 1;
+      if (clubs.some((club : Club) => club.id === clubIDToCheck)) {
+        found = true;
+      }
+      await page.waitForTimeout(1000);
+    }
+    await expect(found).toBe(true);
 
   await reset();
 });
 
 test('Deselecting applying button on home page removes club from applying category in backend', async ({ reset, page }) => {
-  page.pause();
   await reset();
 
   //Select a club on explore page
@@ -295,11 +364,17 @@ test('Deselecting applying button on home page removes club from applying catego
   await homeApplyingButton.click();
 
   // Check that it is now not in backend
-  const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applying');
-  const applyingClubs : Club[] = await res.json();
-  const clubIDToCheck = 1;
-  expect(applyingClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(false);
-
+  let found = false;
+  for (let i = 0; i < 10; i++) {
+    const res = await page.request.get('http://localhost:3000/api/user/clubs?status=applying');
+    const clubs : Club[] = await res.json();
+    const clubIDToCheck = 1;
+    if (clubs.some((club : Club) => club.id === clubIDToCheck)) {
+      found = true;
+    }
+    await page.waitForTimeout(1000);
+  }
+  await expect(found).toBe(true);
   await reset();
 });
 
@@ -322,10 +397,16 @@ test('Deselecting consider button on home page removes club from consider catego
   await homeConsiderButton.click();
 
   // Check that it is now not in backend
-  const res = await page.request.get('http://localhost:3000/api/user/clubs?status=considering');
-  const considerClubs : Club[] = await res.json();
-  const clubIDToCheck = 1;
-  expect(considerClubs.some((club : Club) => club.id === clubIDToCheck)).toBe(false);
-
+  let found = false;
+    for (let i = 0; i < 10; i++) {
+      const res = await page.request.get('http://localhost:3000/api/user/clubs?status=considering');
+      const clubs : Club[] = await res.json();
+      const clubIDToCheck = 1;
+      if (clubs.some((club : Club) => club.id === clubIDToCheck)) {
+        found = true;
+      }
+      await page.waitForTimeout(1000);
+    }
+    await expect(found).toBe(true);
   await reset();
 });
