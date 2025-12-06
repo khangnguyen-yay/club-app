@@ -1,3 +1,5 @@
+//Note: GPT-5 generated this code
+
 import { chromium } from '@playwright/test';
 
 (async () => {

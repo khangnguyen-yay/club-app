@@ -347,7 +347,6 @@ test('Deselecting applied button on home page removes club from applied category
 });
 
 test('Deselecting applying button on home page removes club from applying category in backend', async ({ reset, page }) => {
-  await page.pause();
   await reset();
 
   //Select a club on explore page
