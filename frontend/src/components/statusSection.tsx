@@ -32,7 +32,6 @@ export default function useStatusSections() {
   return { loading, applyingClubs, appliedClubs, considerClubs }
 }
 
-//Given a status (applied/applying/considering), return an array of Clubs categorized under that status 
 async function getClubsByStatus(status : string) {
     
     if (!isValidStatus(status)) {
@@ -42,23 +41,19 @@ async function getClubsByStatus(status : string) {
 
     const clubs = await fetchClubsByStatus(status);
 
-    if (typeof clubs === "string") { //Exit early if API returns an error message (ex. 401 unauthorized)
+    if (typeof clubs === "string") { //Since backend returns string if there is error (ex. 401 unauthorized)
         console.error('Error fetching clubs');  
         return [];
     }
 
-    //Append preference field to each club, which will be necessary for cards on Home page
-    //to display correct status button toggle states
     const clubsWithStatus = clubs.map(club => ({
       ...club,
-      preference: status
+      preference: status //Home page (which uses this code) relies on preference field to display correct status button toggle state
     }))
 
     return clubsWithStatus;
   }
 
-//Verifies a string is one of the statuses recognized by the backend API
-//In order to avoid querying the backend with unsupported statuses
 function isValidStatus(status : string) {
     if (status == "applied" || status == "applying" || status == "considering")
         return true;
