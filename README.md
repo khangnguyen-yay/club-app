@@ -77,10 +77,12 @@ cd frontend
 npx ts-node --esm saveGoogleSession.ts
 npm run cucumber
 npx playwright test
+Note: If any Cucumber tests fail, make sure the Google account you are using does not currently have any selected clubs. 
 
 For Backend:
 npx jest
 ```
+
 ## ✅ Your local environment should now be running!
 ```
 You can open the frontend in your browser and interact with the full system.

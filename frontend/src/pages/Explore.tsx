@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import type { Club } from "../appCard/CardList";
-import ClubList from "../appCard/CardList";
+import CardList from "../appCard/CardList";
 import CategoryFilter from "../components/filter-view/filter-view";
 import "../styles/explore.css";
 import SearchBar from "../components/search-bar";
@@ -64,7 +64,7 @@ const ExplorePage: React.FC = () => {
         />
       </div>
 
-      <ClubList filteredCards={searchedClubs} />
+      <CardList filteredCards={searchedClubs} />
     </div>
   );
 };
