@@ -42,13 +42,13 @@ async function getClubsByStatus(status : string) {
 
     const clubs = await fetchClubsByStatus(status);
 
-    if (typeof clubs == "string") { //API returns an error message (ex. 401 unauthorized)
+    if (typeof clubs == "string") { //Exit early if API returns an error message (ex. 401 unauthorized)
         console.error('Error fetching clubs');  
         return [];
     }
 
     //Append preference field to each club, which will be necessary for cards on Home page
-    //to display correct state button toggle states
+    //to display correct status button toggle states
     const clubsWithStatus = clubs.map(club => ({
       ...club,
       preference: status
