@@ -36,30 +36,26 @@ export default function useStatusSections() {
 async function getClubsByStatus(status : string) {
     
     if (!isValidStatus(status)) {
-        throw new Error(`Invalid status ${status}`);
-    }
-
-    try {
-        const clubs = await fetchClubsByStatus(status);
-
-        if (typeof clubs == "string") { //throw error if API returns error message (ex. 401 unauthorized)
-            throw new Error('Error fetching clubs');
-        }
-
-        //Append preference field to each club, which will be necessary for cards on Home page
-        //to display correct state button toggle states
-        const clubsWithStatus = clubs.map(club => ({
-          ...club,
-          preference: status
-        }))
-
-        return clubsWithStatus;
-
-      } catch (err) {
-        console.error(err);
+        console.error(`Invalid status ${status}`);
         return [];
-      }
     }
+
+    const clubs = await fetchClubsByStatus(status);
+
+    if (typeof clubs == "string") { //API returns an error message (ex. 401 unauthorized)
+        console.error('Error fetching clubs');  
+        return [];
+    }
+
+    //Append preference field to each club, which will be necessary for cards on Home page
+    //to display correct state button toggle states
+    const clubsWithStatus = clubs.map(club => ({
+      ...club,
+      preference: status
+    }))
+
+    return clubsWithStatus;
+  }
 
 //Verifies a string is one of the statuses recognized by the backend API
 //In order to avoid querying the backend with unsupported statuses
