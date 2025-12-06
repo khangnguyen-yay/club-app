@@ -29,7 +29,7 @@ interface CardListProps {
 }
 
 //Displays each club in filteredCards as a Card component in a grid format
-export default function ClubList({filteredCards}: CardListProps) {
+export default function CardList({filteredCards}: CardListProps) {
     return (
       <div className="cardGrid">
         {filteredCards.map((club) => (

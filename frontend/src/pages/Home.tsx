@@ -1,6 +1,6 @@
 import '../styles/Home.css';
 import useStatusSections from "../components/statusSection.tsx" 
-import ClubList from '../appCard/CardList.tsx';
+import CardList from '../appCard/CardList.tsx';
 
 //Display club cards in sections grouped by status (applied/applying/consider)
 function Home() {
@@ -20,7 +20,7 @@ if (loading) return <div>Loading...</div>;
           <h2>Applied</h2>
           <span className="countBox">{appliedClubs.length}</span> {/* Display category count */}
         </div>
-        <ClubList filteredCards={appliedClubs}></ClubList> {/* Display list of clubs for Applied section in ClubList format */}
+        <CardList filteredCards={appliedClubs}></CardList> {/* Display list of clubs for Applied section in ClubList format */}
       </div>
 
       <div className="applyingSection">
@@ -29,7 +29,7 @@ if (loading) return <div>Loading...</div>;
           <h2>Applying</h2>
           <span className="countBox">{applyingClubs.length}</span>
         </div>
-        <ClubList filteredCards={applyingClubs}></ClubList>
+        <CardList filteredCards={applyingClubs}></CardList>
       </div>
 
       <div className="considerSection">
@@ -38,7 +38,7 @@ if (loading) return <div>Loading...</div>;
           <h2>Considering</h2>
           <span className="countBox">{considerClubs.length}</span>
         </div>
-        <ClubList filteredCards={considerClubs}></ClubList>
+        <CardList filteredCards={considerClubs}></CardList>
       </div>
     </div>
   );

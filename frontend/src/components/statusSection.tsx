@@ -42,7 +42,7 @@ async function getClubsByStatus(status : string) {
 
     const clubs = await fetchClubsByStatus(status);
 
-    if (typeof clubs == "string") { //Exit early if API returns an error message (ex. 401 unauthorized)
+    if (typeof clubs === "string") { //Exit early if API returns an error message (ex. 401 unauthorized)
         console.error('Error fetching clubs');  
         return [];
     }
