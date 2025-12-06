@@ -7,6 +7,9 @@ export interface ClubCard {
   instagram: string;
 }
 
+// This is test data for club cards
+// The implementation is fetching data from backend now
+
 export const cards = [
   {
     "id": 1,

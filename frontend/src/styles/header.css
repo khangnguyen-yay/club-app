@@ -33,9 +33,9 @@
   line-height: 1.2;
 }
 
-/* Make "Clubfindr" smaller */
+/* Title styling helped through GPT */
 .header-title {
-  font-size: 1.7rem;      /* ↓ smaller than before */
+  font-size: 1.7rem;      
   font-weight: 700;
   color: #111827;
   margin-bottom: 0.2rem;

@@ -55,7 +55,7 @@ async function getClubsByStatus(status : string) {
   }
 
 function isValidStatus(status : string) {
-    if (status == "applied" || status == "applying" || status == "considering")
+    if (status === "applied" || status === "applying" || status === "considering")
         return true;
     else 
         return false;

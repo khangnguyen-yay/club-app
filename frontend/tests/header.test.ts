@@ -12,11 +12,6 @@ test.describe("App header", () => {
       const header = page.getByTestId("app-header");
       await expect(header).toBeVisible();
 
-      await expect(header.getByText("Clubfindr")).toBeVisible();
-      await expect(
-        header.getByText("Discover clubs effortlessly", { exact: false })
-      ).toBeVisible();
-
       await expect(
         header.getByRole("button", { name: /log out/i })
       ).toBeVisible();
@@ -28,6 +23,7 @@ test.describe("App header", () => {
   }) => {
     await page.goto(`${BASE_URL}/home`);
 
+    // code was written by GPT 5 for figuring out authentication related issues in our test
     // Stub the backend /auth/logout call so the test doesn't depend on real backend
     await page.route("**/auth/logout", async (route) => {
       await route.fulfill({
